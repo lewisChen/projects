@@ -25,6 +25,7 @@ static GameScene *sharedScene;
     sharedScene = self;
     self.score = 0;
     
+    
     level = [CCBReader nodeGraphFromFile:@"level.ccbi"];
     [levelLayer addChild:level];
 }
