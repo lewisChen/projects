@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>6976156A-FC2F-4554-AFC4-471B96B3BCCF</string>
+	<key>IDESourceControlProjectName</key>
+	<string>CocosDragon</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>8AE83C04-AC1F-497B-9F39-F1CF9C4685AD</key>
+		<string>https://github.com/lewisChen/projects.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>CocosDragon.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>8AE83C04-AC1F-497B-9F39-F1CF9C4685AD</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/lewisChen/projects.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>8AE83C04-AC1F-497B-9F39-F1CF9C4685AD</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>8AE83C04-AC1F-497B-9F39-F1CF9C4685AD</string>
+			<key>IDESourceControlWCCName</key>
+			<string>CocosDragon</string>
+		</dict>
+	</array>
+</dict>
+</plist>
