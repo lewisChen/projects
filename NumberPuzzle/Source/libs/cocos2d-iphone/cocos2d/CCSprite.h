@@ -172,6 +172,10 @@
  If key is nil, then a new texture will be created each time by the CCTextureCache.
  @since v0.99.0
  */
+
+
++(id)spriteWithSpriteFrameName:(NSString*)spriteFrameName;
+
 +(id) spriteWithCGImage: (CGImageRef)image key:(NSString*)key;
 
 /**

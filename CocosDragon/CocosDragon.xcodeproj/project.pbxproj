@@ -1204,6 +1204,11 @@
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 0460;
+				TargetAttributes = {
+					CEF01FFF175073CC00BDD28E = {
+						DevelopmentTeam = JBWATZTRU3;
+					};
+				};
 			};
 			buildConfigurationList = CEF01FFB175073CC00BDD28E /* Build configuration list for PBXProject "CocosDragon" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -1465,7 +1470,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CODE_SIGN_IDENTITY = "iPhone Developer: 陈 Chen (3HX865HBF5)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: 陈 Chen (3HX865HBF5)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -1477,8 +1482,7 @@
 					"-ObjC",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "8D37BE58-82EC-43F4-9915-C45FA69C80A2";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "8D37BE58-82EC-43F4-9915-C45FA69C80A2";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -1488,7 +1492,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CODE_SIGN_IDENTITY = "iPhone Developer: 陈 Chen (3HX865HBF5)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: 陈 Chen (3HX865HBF5)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = CocosDragon/Prefix.pch;
@@ -1499,8 +1503,7 @@
 					"-ObjC",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "8D37BE58-82EC-43F4-9915-C45FA69C80A2";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "8D37BE58-82EC-43F4-9915-C45FA69C80A2";
+				PROVISIONING_PROFILE = "";
 				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;
 			};

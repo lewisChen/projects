@@ -10,9 +10,19 @@
 #import "cocos2d.h"
 #import "../Objects/objectDef/ObjectDef.h"
 
-@interface numberItem : CCSprite
+@interface NumberItem : CCSprite
 {
     CCLabelTTF *m_lable;
+    unsigned char m_indexX;
+    unsigned char m_indexY;
 }
+
+@property (readwrite) CCLabelTTF* numberLabel;
+@property (readwrite) unsigned char indexX;
+@property (readwrite) unsigned char indexY;
+
+
+-(id)init;
+-
 
 @end

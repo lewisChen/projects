@@ -172,6 +172,13 @@
 			<key>tabletScale</key>
 			<integer>1</integer>
 		</dict>
+		<key>ccbResources/myRes</key>
+		<dict>
+			<key>isDirty</key>
+			<true/>
+			<key>isSmartSpriteSheet</key>
+			<true/>
+		</dict>
 	</dict>
 	<key>tabletPositionScaleFactorType</key>
 	<integer>0</integer>
