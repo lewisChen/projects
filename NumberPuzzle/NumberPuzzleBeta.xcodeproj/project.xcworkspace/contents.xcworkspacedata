@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:NumberPuzzle.xcodeproj">
+      location = "self:NumberPuzzleBeta.xcodeproj">
    </FileRef>
 </Workspace>
