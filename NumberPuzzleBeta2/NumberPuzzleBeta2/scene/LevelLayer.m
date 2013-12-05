@@ -21,10 +21,11 @@
 - (void) didLoadFromCCB
 {
     [self initLayer];
-    
+    [[[CCDirector sharedDirector] touchDispatcher] addTargetedDelegate:self priority:0 swallowsTouches:NO];
 }
 
 - (void)initLayer
+
 {
     //self = [super init];
     if (self)
@@ -70,7 +71,6 @@
                 
                 
                 numberItem.position = ccp(numberItem.contentSize.width+xOffset, (self.contentSize.height*3/4)+ yOffset);
-                
                 [self addChild:numberItem];
                 
             }
@@ -79,5 +79,16 @@
     //return self;
 }
 
+
+- (BOOL)ccTouchBegan:(UITouch *)touch withEvent:(UIEvent *)event
+{
+    
+    return NO;
+}
+
+- (void)ccTouchEnded:(UITouch *)touch withEvent:(UIEvent *)event
+{
+    
+}
 
 @end

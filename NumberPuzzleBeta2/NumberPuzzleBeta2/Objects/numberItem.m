@@ -39,7 +39,10 @@
         m_lable.anchorPoint = ccp(0.5, 0.5);
         m_lable.position = ccp(itemBackground.contentSize.width/2, itemBackground.contentSize.height/2);
         [itemBackground addChild:m_lable];
+        
     }
     return self;
 }
+
+
 @end

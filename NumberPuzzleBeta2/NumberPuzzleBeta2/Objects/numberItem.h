@@ -15,12 +15,13 @@
     CCLabelTTF *m_lable;
     unsigned char m_indexX;
     unsigned char m_indexY;
+    unsigned char m_labelNmber;
 }
 
-@property (readwrite) CCLabelTTF* numberLabel;
+@property (readwrite,retain) CCLabelTTF* numberLabel;
 @property (readwrite) unsigned char indexX;
 @property (readwrite) unsigned char indexY;
-
+@property (readonly) unsigned char labelNumber;
 
 -(id)init;
 
