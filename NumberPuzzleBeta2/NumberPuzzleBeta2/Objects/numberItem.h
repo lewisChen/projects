@@ -10,6 +10,9 @@
 #import "cocos2d.h"
 #import "../Objects/objectDef/ObjectDef.h"
 
+#define kItemwidth (32.0)
+#define kItemHight (32.0)
+
 @interface NumberItem : CCSprite
 {
     CCLabelTTF *m_lable;

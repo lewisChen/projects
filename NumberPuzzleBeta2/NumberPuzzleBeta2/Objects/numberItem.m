@@ -13,16 +13,17 @@
 
 @implementation NumberItem
 
-@synthesize numberLabel = m_lable;
+//@synthesize numberLabel = m_lable;
 @synthesize indexX = m_indexX;
 @synthesize indexY = m_indexY;
+@synthesize labelNumber =m_labelNmber;
 
 - (id)init
 {
     self = [super init];
     if (self)
     {
-        [self setContentSize:CGSizeMake(32.0, 32.0)];
+        [self setContentSize:CGSizeMake(kItemwidth,kItemHight)];
         
         CCSpriteFrameCache *spriteCache = [CCSpriteFrameCache sharedSpriteFrameCache];
         //[spriteCache addSpriteFramesWithFile:@"myRes.plist"];
@@ -35,6 +36,7 @@
         
         
         m_lable = [CCLabelTTF labelWithString:@"0" fontName:FontNameNormal fontSize:FontSizeNormal];
+        m_labelNmber = m_lable.string.integerValue;
         m_lable.color = ccBLACK;
         m_lable.anchorPoint = ccp(0.5, 0.5);
         m_lable.position = ccp(itemBackground.contentSize.width/2, itemBackground.contentSize.height/2);
@@ -44,5 +46,23 @@
     return self;
 }
 
+-(void)setNumberLabel:(CCLabelTTF *)numberLabel
+{
+    m_lable.string = numberLabel.string;
+    m_labelNmber = numberLabel.string.integerValue;
+    
+}
+
+-(CCLabelTTF*)numberLabel
+{
+    return m_lable;
+}
+
+
+-(void)dealloc
+{
+    [m_lable release];
+    [super dealloc];
+}
 
 @end

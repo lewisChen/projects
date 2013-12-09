@@ -9,6 +9,7 @@
 #import "LevelLayer.h"
 #import "../Objects/numberItem.h"
 #include "CCBReader.h"
+#include "../UiConstDef/FontRelateDef.h"
 
 #define MAX_ITEM_COUNT_X (9)
 #define MAX_ITEM_COUNT_Y (9)
@@ -82,6 +83,25 @@
 
 - (BOOL)ccTouchBegan:(UITouch *)touch withEvent:(UIEvent *)event
 {
+    CGPoint currentPosition = [touch locationInView:touch.view];
+    currentPosition = [[CCDirector sharedDirector] convertToGL:currentPosition];
+    currentPosition = [self convertToNodeSpace:currentPosition];
+    
+    CCArray *childrenArray = [self children];
+    CCNode *node = NULL;
+    NumberItem *numberItem = NULL;
+    CCARRAY_FOREACH(childrenArray, node)
+    {
+        if ([node isKindOfClass:[NumberItem class]])
+        {
+            numberItem = (NumberItem*)node;
+            if (ccpDistanceSQ(currentPosition, numberItem.position)<(kItemwidth*kItemHight/4))
+            {
+                [numberItem setNumberLabel:[CCLabelTTF labelWithString:@"1" fontName:FontNameNormal fontSize:FontSizeNormal]];
+            }
+            
+        }
+    }
     
     return NO;
 }
