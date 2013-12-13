@@ -10,6 +10,7 @@
 #import "../UiConstDef/FontRelateDef.h"
 #include "CCScale9Sprite.h"
 
+#define kBackgroundTag (1)
 
 @implementation NumberItem
 
@@ -32,7 +33,7 @@
         CCScale9Sprite *itemBackground = [CCScale9Sprite spriteWithSpriteFrameName:@"itemBoxWhite.png" ];
         [itemBackground setContentSize:[self contentSize]];
         itemBackground.position = ccp(self.contentSize.width/2, self.contentSize.height/2);
-        [self addChild:itemBackground];
+        [self addChild:itemBackground z:1 tag:kBackgroundTag];
         
         
         m_lable = [CCLabelTTF labelWithString:@"0" fontName:FontNameNormal fontSize:FontSizeNormal];
@@ -58,6 +59,11 @@
     return m_lable;
 }
 
+-(void)setItemColor:(ccColor3B)color
+{
+    CCScale9Sprite *sprite = (CCScale9Sprite*)[self getChildByTag:kBackgroundTag];
+    [sprite setColor:color];
+}
 
 -(void)dealloc
 {

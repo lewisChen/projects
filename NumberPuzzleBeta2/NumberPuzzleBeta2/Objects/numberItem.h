@@ -26,6 +26,8 @@
 @property (readwrite) unsigned char indexY;
 @property (readonly) unsigned char labelNumber;
 
+-(void)setItemColor:(ccColor3B) color;
+
 -(id)init;
 
 @end

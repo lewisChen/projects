@@ -93,6 +93,7 @@
     CCArray *childrenArray = [self children];
     CCNode *node = NULL;
     NumberItem *numberItem = NULL;
+    NSString *currentTouchNumberString = @"0";
     CCARRAY_FOREACH(childrenArray, node)
     {
         if ([node isKindOfClass:[NumberItem class]])
@@ -100,10 +101,28 @@
             numberItem = (NumberItem*)node;
             if (ccpDistanceSQ(currentPosition, numberItem.position)<(kItemwidth*kItemHight/4))
             {
-                [numberItem setNumberLabel:[CCLabelTTF labelWithString:@"1" fontName:FontNameNormal fontSize:FontSizeNormal]];
+                currentTouchNumberString = [numberItem numberLabel].string;
+                break;
+                //[numberItem setNumberLabel:[CCLabelTTF labelWithString:@"1" fontName:FontNameNormal fontSize:FontSizeNormal]];
             }
-            
         }
+    }
+    
+    CCARRAY_FOREACH(childrenArray, node)
+    {
+        if ([node isKindOfClass:[NumberItem class]])
+        {
+            numberItem = (NumberItem*)node;
+            if (currentTouchNumberString == numberItem.numberLabel.string)
+            {
+                [numberItem setItemColor:ccGRAY];
+            }
+            else
+            {
+                [numberItem setItemColor:ccWHITE];
+            }
+        }
+
     }
     
     return NO;
