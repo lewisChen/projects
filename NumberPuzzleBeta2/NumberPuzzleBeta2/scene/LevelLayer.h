@@ -15,9 +15,9 @@
 }
 
 - (void)initLayer;
+
 - (BOOL)ccTouchBegan:(UITouch *)touch withEvent:(UIEvent *)event;
 - (void)ccTouchEnded:(UITouch *)touch withEvent:(UIEvent *)event;
-
 
 
 @end

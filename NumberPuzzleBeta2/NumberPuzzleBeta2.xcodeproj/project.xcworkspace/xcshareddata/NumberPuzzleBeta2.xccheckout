@@ -5,7 +5,7 @@
 	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
-	<string>2887A2CD-176B-43ED-A23D-18F582075824</string>
+	<string>DF06E172-600C-4999-B107-B8C0BED89431</string>
 	<key>IDESourceControlProjectName</key>
 	<string>NumberPuzzleBeta2</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
@@ -22,7 +22,7 @@
 		<key>4E10E6D8-5F4D-4E7F-930B-307B7708CC59</key>
 		<string>../../..</string>
 		<key>90CD16A2-79C7-47B3-9CCF-909ADD7F1E2F</key>
-		<string>../../../../CCBReader</string>
+		<string>../../NumberPuzzleBeta2/CCBReader</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
 	<string>https://github.com/lewisChen/projects.git</string>

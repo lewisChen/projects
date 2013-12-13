@@ -10,6 +10,7 @@
 #import "../Objects/numberItem.h"
 #include "CCBReader.h"
 #include "../UiConstDef/FontRelateDef.h"
+#include "NumberArithmetic.h"
 
 #define MAX_ITEM_COUNT_X (9)
 #define MAX_ITEM_COUNT_Y (9)
@@ -26,19 +27,21 @@
 }
 
 - (void)initLayer
-
 {
     //self = [super init];
     if (self)
     {
         float xOffset = 0.0;
         float yOffset = 0.0;
+        NSMutableArray *array = [NumberArithmetic sharedNumberArithmetic].createNumberPuzzleArray;
+        
         //self.contentSize = [CCDirector sharedDirector].winSize;
         for (unsigned char indexX = 0; indexX<MAX_ITEM_COUNT_X; indexX++)
         {
             for (unsigned char indexY = 0; indexY<MAX_ITEM_COUNT_Y; indexY++)
             {
                 NumberItem *numberItem = [NumberItem node];
+                [numberItem setNumberLabel:[CCLabelTTF labelWithString:(NSString*)[array objectAtIndex:(indexX*MAX_ITEM_COUNT_X+indexY)] fontName:FontNameNormal fontSize:FontSizeNormal]];
                 numberItem.anchorPoint = ccp(0.5, 0.5);
                 
                 //determind x offset

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CEB9C9C3185AD63500F2243C /* NumberArithmetic.m in Sources */ = {isa = PBXBuildFile; fileRef = CEB9C9C2185AD63500F2243C /* NumberArithmetic.m */; };
 		CEBFB725184DCDAB00709858 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEBFB724184DCDAB00709858 /* QuartzCore.framework */; };
 		CEBFB727184DCDAB00709858 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEBFB726184DCDAB00709858 /* OpenGLES.framework */; };
 		CEBFB729184DCDAB00709858 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEBFB728184DCDAB00709858 /* OpenAL.framework */; };
@@ -181,6 +182,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		CEB9C9C1185AD63500F2243C /* NumberArithmetic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NumberArithmetic.h; path = ../../../../../study/arithmetic/numberPuzzleArithmetic/NumberArithmetic.h; sourceTree = "<group>"; };
+		CEB9C9C2185AD63500F2243C /* NumberArithmetic.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NumberArithmetic.m; path = ../../../../../study/arithmetic/numberPuzzleArithmetic/NumberArithmetic.m; sourceTree = "<group>"; };
 		CEBFB721184DCDAB00709858 /* NumberPuzzleBeta2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NumberPuzzleBeta2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEBFB724184DCDAB00709858 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		CEBFB726184DCDAB00709858 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -554,6 +557,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		CEBA2745185897560016E638 /* arithmetic */ = {
+			isa = PBXGroup;
+			children = (
+				CEB9C9C1185AD63500F2243C /* NumberArithmetic.h */,
+				CEB9C9C2185AD63500F2243C /* NumberArithmetic.m */,
+			);
+			name = arithmetic;
+			sourceTree = "<group>";
+		};
 		CEBFB718184DCDAB00709858 = {
 			isa = PBXGroup;
 			children = (
@@ -591,6 +603,7 @@
 		CEBFB738184DCDAB00709858 /* NumberPuzzleBeta2 */ = {
 			isa = PBXGroup;
 			children = (
+				CEBA2745185897560016E638 /* arithmetic */,
 				CEBFB94A184E03BD00709858 /* scene */,
 				CEBFB8D7184DCE3F00709858 /* Objects */,
 				CEBFB8DC184DCE3F00709858 /* UiConstDef */,
@@ -1386,6 +1399,7 @@
 				CEBFB831184DCDAD00709858 /* cocos2d.m in Sources */,
 				CEBFB7DE184DCDAC00709858 /* CCProgressTimer.m in Sources */,
 				CEBFB7B3184DCDAC00709858 /* CCLabelTTF.m in Sources */,
+				CEB9C9C3185AD63500F2243C /* NumberArithmetic.m in Sources */,
 				CEBFB860184DCDAD00709858 /* CCFileUtils.m in Sources */,
 				CEBFB92D184DD27C00709858 /* CCControlPotentiometer.m in Sources */,
 				CEBFB84D184DCDAD00709858 /* CCEventDispatcher.m in Sources */,
@@ -1459,6 +1473,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = NumberPuzzleBeta2/Prefix.pch;
 				HEADER_SEARCH_PATHS = "\"NumberPuzzleBeta2/libs/kazmath/include\"";
+				"HEADER_SEARCH_PATHS[arch=*]" = "\"NumberPuzzleBeta2/libs/kazmath/include\"";
 				INFOPLIST_FILE = NumberPuzzleBeta2/Resources/Info.plist;
 				OTHER_LDFLAGS = (
 					"-lz",
@@ -1466,6 +1481,7 @@
 					"-ObjC",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				"USER_HEADER_SEARCH_PATHS[arch=*]" = /Users/user/Documents/study/arithmetic;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -1485,6 +1501,7 @@
 					"-ObjC",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				"USER_HEADER_SEARCH_PATHS[arch=*]" = /Users/user/Documents/study/arithmetic;
 				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;
 			};
@@ -1509,6 +1526,7 @@
 				CEBFB8D6184DCDAE00709858 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
