@@ -28,7 +28,6 @@
 
 - (void)initLayer
 {
-    //self = [super init];
     if (self)
     {
         float xOffset = 0.0;
@@ -86,6 +85,12 @@
 
 - (BOOL)ccTouchBegan:(UITouch *)touch withEvent:(UIEvent *)event
 {
+    
+    return YES;
+}
+
+- (void)ccTouchEnded:(UITouch *)touch withEvent:(UIEvent *)event
+{
     CGPoint currentPosition = [touch locationInView:touch.view];
     currentPosition = [[CCDirector sharedDirector] convertToGL:currentPosition];
     currentPosition = [self convertToNodeSpace:currentPosition];
@@ -108,13 +113,17 @@
         }
     }
     
+    
+    CCAction *rotateAction = nil;
     CCARRAY_FOREACH(childrenArray, node)
     {
+        rotateAction = [CCRotateBy actionWithDuration:0.5 angle:360];
         if ([node isKindOfClass:[NumberItem class]])
         {
             numberItem = (NumberItem*)node;
             if (currentTouchNumberString == numberItem.numberLabel.string)
             {
+                [numberItem runAction:rotateAction];
                 [numberItem setItemColor:ccGRAY];
             }
             else
@@ -122,15 +131,10 @@
                 [numberItem setItemColor:ccWHITE];
             }
         }
-
+        
+        
     }
-    
-    return NO;
-}
 
-- (void)ccTouchEnded:(UITouch *)touch withEvent:(UIEvent *)event
-{
-    
 }
 
 @end
