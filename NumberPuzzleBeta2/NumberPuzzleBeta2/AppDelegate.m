@@ -60,7 +60,7 @@
 
 @implementation AppController
 
-@synthesize window=window_, navController=navController_, director=director_;
+@synthesize window=window_, navController=navController_, director=director_,adView = m_admobView;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
@@ -140,6 +140,14 @@
 	
 	// make main window visible
 	[window_ makeKeyAndVisible];
+    
+    m_admobView = [[GADBannerView alloc] initWithFrame:CGRectMake(0.0,director_.winSize.height-kGADAdSizeBanner.size.height, kGADAdSizeBanner.size.width, kGADAdSizeBanner.size.height)];
+    m_admobView.adUnitID = @"a152b6a56755244";
+    
+    m_admobView.rootViewController = navController_;
+    [[[window_ rootViewController] view] addSubview:m_admobView];
+    
+    [m_admobView loadRequest:[GADRequest request]];
 	
 	return YES;
 }
@@ -193,6 +201,7 @@
 {
 	[window_ release];
 	[navController_ release];
+    [m_admobView release];
 	
 	[super dealloc];
 }

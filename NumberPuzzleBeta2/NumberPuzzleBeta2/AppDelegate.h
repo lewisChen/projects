@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "cocos2d.h"
+#include "GADBannerView.h"
 
 // Added only for iOS 6 support
 @interface MyNavigationController : UINavigationController <CCDirectorDelegate>
@@ -19,10 +20,12 @@
 	MyNavigationController *navController_;
 
 	CCDirectorIOS	*director_;							// weak ref
+    GADBannerView *m_admobView;
 }
 
 @property (nonatomic, retain) UIWindow *window;
 @property (readonly) MyNavigationController *navController;
 @property (readonly) CCDirectorIOS *director;
+@property (nonatomic,retain) GADBannerView *adView;
 
 @end
