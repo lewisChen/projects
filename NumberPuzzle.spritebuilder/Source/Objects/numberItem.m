@@ -32,9 +32,9 @@
         
         CCSprite9Slice *itemBackground = [CCSprite9Slice spriteWithImageNamed:@"itemBoxWhite.png" ];//[CCSprite9Slice spriteWithSpriteFrameName:@"itemBoxWhite.png" ];
         [itemBackground setContentSize:[self contentSize]];
-        itemBackground.color = [CCColor colorWithCcColor3b:ccc3(205, 133, 63)];
+        itemBackground.color = [CCColor colorWithCcColor3b:myItemColor];
         itemBackground.position = ccp(self.contentSize.width/2, self.contentSize.height/2);
-        [self addChild:itemBackground z:1];
+        [self addChild:itemBackground z:1 name:@"itemBackground"];
         //[self addChild:itemBackground z:1 tag:kBackgroundTag];
         
         
@@ -64,8 +64,8 @@
 
 -(void)setItemColor:(ccColor3B)color
 {
-//    CCScale9Sprite *sprite = (CCScale9Sprite*)[self getChildByTag:kBackgroundTag];
-//    [sprite setColor:color];
+    CCSprite9Slice *sprite = (CCSprite9Slice*)[self getChildByName:@"itemBackground" recursively:YES];
+    [sprite setColor:[CCColor colorWithCcColor3b:color]];
 }
 
 //-(void)dealloc

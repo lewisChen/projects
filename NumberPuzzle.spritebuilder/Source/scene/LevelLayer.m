@@ -23,6 +23,7 @@
 - (void) didLoadFromCCB
 {
     [self initLayer];
+    [self setEnabled:YES];
     //[[[CCDirector sharedDirector] touchDispatcher] addTargetedDelegate:self priority:0 swallowsTouches:NO];
 }
 
@@ -82,51 +83,56 @@
     //return self;
 }
 
+-(void)touchBegan:(UITouch *)touch withEvent:(UIEvent *)event
+{
+    
+}
+
 -(void)touchEnded:(UITouch *)touch withEvent:(UIEvent *)event
 {
-//    CGPoint currentPosition = [touch locationInView:touch.view];
-//    currentPosition = [[CCDirector sharedDirector] convertToGL:currentPosition];
-//    currentPosition = [self convertToNodeSpace:currentPosition];
-//    
-//    NSArray *childrenArray = [self children];
-//    CCNode *node = NULL;
-//    NumberItem *numberItem = NULL;
-//    NSString *currentTouchNumberString = @"0";
-//    CCARRAY_FOREACH(childrenArray, node)
-//    {
-//        if ([node isKindOfClass:[NumberItem class]])
-//        {
-//            numberItem = (NumberItem*)node;
-//            if (ccpDistanceSQ(currentPosition, numberItem.position)<(kItemwidth*kItemHight/4))
-//            {
-//                currentTouchNumberString = [numberItem numberLabel].string;
-//                break;
-//                //[numberItem setNumberLabel:[CCLabelTTF labelWithString:@"1" fontName:FontNameNormal fontSize:FontSizeNormal]];
-//            }
-//        }
-//    }
-//    
-//    
-//    CCAction *rotateAction = nil;
-//    CCARRAY_FOREACH(childrenArray, node)
-//    {
-//        rotateAction = [CCRotateBy actionWithDuration:0.5 angle:360];
-//        if ([node isKindOfClass:[NumberItem class]])
-//        {
-//            numberItem = (NumberItem*)node;
-//            if (currentTouchNumberString == numberItem.numberLabel.string)
-//            {
-//                [numberItem runAction:rotateAction];
-//                [numberItem setItemColor:ccGRAY];
-//            }
-//            else
-//            {
-//                [numberItem setItemColor:ccWHITE];
-//            }
-//        }
-//        
-//        
-//    }
+    CGPoint currentPosition = [touch locationInView:touch.view];
+    currentPosition = [[CCDirector sharedDirector] convertToGL:currentPosition];
+    currentPosition = [self convertToNodeSpace:currentPosition];
+    
+    NSArray *childrenArray = [self children];
+    CCNode *node = NULL;
+    NumberItem *numberItem = NULL;
+    NSString *currentTouchNumberString = @"0";
+    for (node in childrenArray)
+    {
+        if ([node isKindOfClass:[NumberItem class]])
+        {
+            numberItem = (NumberItem*)node;
+            if (ccpDistanceSQ(currentPosition, numberItem.position)<(kItemwidth*kItemHight/4))
+            {
+                currentTouchNumberString = [numberItem numberLabel].string;
+                break;
+                //[numberItem setNumberLabel:[CCLabelTTF labelWithString:@"1" fontName:FontNameNormal fontSize:FontSizeNormal]];
+            }
+        }
+
+    }
+    
+    CCAction *rotateAction = nil;
+    for (node in childrenArray)
+    {
+        rotateAction = [CCBRotateTo actionWithDuration:0.5 angle:360];
+        if ([node isKindOfClass:[NumberItem class]])
+        {
+            numberItem = (NumberItem*)node;
+            if (currentTouchNumberString == numberItem.numberLabel.string)
+            {
+                [numberItem runAction:rotateAction];
+                [numberItem setItemColor:ccGRAY];
+            }
+            else
+            {
+                [numberItem setItemColor:myItemColor];
+            }
+        }
+        
+        
+    }
 }
 
 

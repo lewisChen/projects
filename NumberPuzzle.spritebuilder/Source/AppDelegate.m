@@ -49,12 +49,26 @@
     
     [self setupCocos2dWithOptions:cocos2dSetup];
     
+    m_admobView = [[GADBannerView alloc] initWithFrame:CGRectMake(0.0,[CCDirector sharedDirector].viewSize.height-kGADAdSizeBanner.size.height, kGADAdSizeBanner.size.width, kGADAdSizeBanner.size.height)];
+    m_admobView.adUnitID = @"a152b6a56755244";
+    
+    m_admobView.rootViewController = navController_;
+    [[[window_ rootViewController] view] addSubview:m_admobView];
+    
+    [m_admobView loadRequest:[GADRequest request]];
+
+    
     return YES;
 }
 
 - (CCScene*) startScene
 {
     return [CCBReader loadAsScene:@"MainScene"];
+}
+
+- (void) delete:(id)sender
+{
+    [self delete:m_admobView];
 }
 
 @end

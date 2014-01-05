@@ -13,6 +13,8 @@
 #define kItemwidth (32.0)
 #define kItemHight (32.0)
 
+#define myItemColor ccc3(205, 133, 63)
+
 @interface NumberItem : CCSprite
 {
     CCLabelTTF *m_lable;

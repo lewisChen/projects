@@ -9,13 +9,15 @@
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
 
-@interface LevelLayer:CCLayout
+@interface LevelLayer:CCControl
 {
     
 }
 
 - (void)initLayer;
 
+- (void)touchBegan:(UITouch *)touch withEvent:(UIEvent *)event;
 - (void)touchEnded:(UITouch *)touch withEvent:(UIEvent *)event;
+
 
 @end

@@ -131,6 +131,8 @@
 						</array>
 					</dict>
 				</array>
+				<key>selected</key>
+				<true/>
 			</dict>
 			<dict>
 				<key>baseClass</key>
@@ -245,7 +247,7 @@
 						<string>String</string>
 						<key>value</key>
 						<array>
-							<string>Return</string>
+							<string>Back</string>
 							<false/>
 						</array>
 					</dict>
@@ -458,7 +460,7 @@
 			</dict>
 		</array>
 		<key>customClass</key>
-		<string></string>
+		<string>LevelLayer</string>
 		<key>displayName</key>
 		<string>CCNode</string>
 		<key>memberVarAssignmentName</key>

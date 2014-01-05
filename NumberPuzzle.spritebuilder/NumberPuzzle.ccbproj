@@ -2,6 +2,10 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>defaultOrientation</key>
+	<integer>1</integer>
+	<key>designTarget</key>
+	<integer>0</integer>
 	<key>deviceOrientationLandscapeLeft</key>
 	<true/>
 	<key>deviceOrientationLandscapeRight</key>
@@ -10,6 +14,8 @@
 	<false/>
 	<key>deviceOrientationUpsideDown</key>
 	<false/>
+	<key>deviceScaling</key>
+	<integer>0</integer>
 	<key>exporter</key>
 	<string>ccbi</string>
 	<key>fileType</key>
@@ -18,8 +24,6 @@
 	<integer>1</integer>
 	<key>flattenPaths</key>
 	<false/>
-	<key>generatedSpriteSheets</key>
-	<dict/>
 	<key>javascriptBased</key>
 	<true/>
 	<key>javascriptMainCCB</key>
@@ -28,6 +32,10 @@
 	<true/>
 	<key>onlyPublishCCBs</key>
 	<false/>
+	<key>publishAudioQuality_android</key>
+	<integer>1</integer>
+	<key>publishAudioQuality_ios</key>
+	<integer>1</integer>
 	<key>publishDirectory</key>
 	<string>Source/Resources/Published-iOS</string>
 	<key>publishDirectoryAndroid</key>
@@ -46,23 +54,21 @@
 	<integer>1</integer>
 	<key>publishResolutionHTML5_width</key>
 	<integer>480</integer>
-	<key>publishResolution_</key>
+	<key>publishResolution_android_phone</key>
 	<false/>
-	<key>publishResolution_hd</key>
+	<key>publishResolution_android_phonehd</key>
 	<false/>
-	<key>publishResolution_ipad</key>
+	<key>publishResolution_android_tablet</key>
 	<false/>
-	<key>publishResolution_ipadhd</key>
+	<key>publishResolution_android_tablethd</key>
 	<false/>
-	<key>publishResolution_large</key>
+	<key>publishResolution_ios_phone</key>
 	<false/>
-	<key>publishResolution_medium</key>
+	<key>publishResolution_ios_phonehd</key>
 	<false/>
-	<key>publishResolution_small</key>
+	<key>publishResolution_ios_tablet</key>
 	<false/>
-	<key>publishResolution_xlarge</key>
-	<false/>
-	<key>publishResolution_xsmall</key>
+	<key>publishResolution_ios_tablethd</key>
 	<false/>
 	<key>publishToZipFile</key>
 	<false/>
@@ -75,9 +81,11 @@
 			<string>SpriteBuilder Resources</string>
 		</dict>
 	</array>
+	<key>resourceProperties</key>
+	<dict/>
 	<key>versionStr</key>
-	<string>Version: 3.0-alpha5
-GitHub: 76499877e8
+	<string>Version: 1.0.0.beta.0
+GitHub: 30d09beb81
 </string>
 </dict>
 </plist>

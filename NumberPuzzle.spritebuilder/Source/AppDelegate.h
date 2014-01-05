@@ -25,9 +25,14 @@
 
 #import <UIKit/UIKit.h>
 #import "cocos2d.h"
+#include "GADBannerView.h"
 
 @interface AppController : CCAppDelegate
 {
+    GADBannerView *m_admobView;
+
 }
+@property (nonatomic,retain) GADBannerView *adView;
+
 
 @end
