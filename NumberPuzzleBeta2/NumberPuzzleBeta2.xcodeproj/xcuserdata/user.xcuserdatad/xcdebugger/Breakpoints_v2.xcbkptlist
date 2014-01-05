@@ -159,7 +159,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "92"
             endingLineNumber = "92"
-            landmarkName = "-ccTouchBegan:withEvent:"
+            landmarkName = "-ccTouchEnded:withEvent:"
             landmarkType = "5">
             <Locations>
                <Location
