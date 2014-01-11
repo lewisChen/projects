@@ -68,6 +68,16 @@
     [sprite setColor:[CCColor colorWithCcColor3b:color]];
 }
 
+-(void)setNumberLabelVisable:(BOOL)isVisable
+{
+    m_lable.visible = isVisable;
+}
+
+-(BOOL)numberLabelVisable
+{
+    return m_lable.visible;
+}
+
 //-(void)dealloc
 //{
 ////    [m_lable release];

@@ -29,7 +29,8 @@
 @property (readonly) unsigned char labelNumber;
 
 -(void)setItemColor:(ccColor3B) color;
-
+-(void)setNumberLabelVisable:(BOOL)isVisable;
+-(BOOL)numberLabelVisable;
 -(id)init;
 
 @end
