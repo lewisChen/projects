@@ -23,7 +23,8 @@
 - (void) didLoadFromCCB
 {
     [self initLayer];
-    [self setEnabled:YES];
+    [self setLevel:1];//create level;
+    [self setEnabled:YES];//enable touch event
     //[[[CCDirector sharedDirector] touchDispatcher] addTargetedDelegate:self priority:0 swallowsTouches:NO];
 }
 
@@ -83,6 +84,30 @@
     //return self;
 }
 
+-(void)setLevel:(NSUInteger)level
+{
+    BOOL isShow = NO;
+    NSInteger randomNumber = 0;
+    srandom(time(NULL));
+    NSArray *childrenArray = [self children];
+
+    CCNode *node = NULL;
+    NumberItem *numberItem = NULL;
+    for (node in childrenArray)
+    {
+        randomNumber = random()%2;
+        isShow = randomNumber>0?YES:NO;
+        if ([node isKindOfClass:[NumberItem class]])
+        {
+            numberItem = (NumberItem*)node;
+            [numberItem setNumberLabelVisable:isShow];
+        }
+        
+    }
+    
+    
+}
+
 -(void)touchBegan:(UITouch *)touch withEvent:(UIEvent *)event
 {
     
@@ -98,6 +123,8 @@
     CCNode *node = NULL;
     NumberItem *numberItem = NULL;
     NSString *currentTouchNumberString = @"0";
+    BOOL isIgnoreTouch = NO;
+    
     for (node in childrenArray)
     {
         if ([node isKindOfClass:[NumberItem class]])
@@ -105,6 +132,11 @@
             numberItem = (NumberItem*)node;
             if (ccpDistanceSQ(currentPosition, numberItem.position)<(kItemwidth*kItemHight/4))
             {
+                isIgnoreTouch = numberItem.numberLabelVisable?NO:YES;
+                if (isIgnoreTouch)
+                {
+                    break;
+                }
                 currentTouchNumberString = [numberItem numberLabel].string;
                 break;
                 //[numberItem setNumberLabel:[CCLabelTTF labelWithString:@"1" fontName:FontNameNormal fontSize:FontSizeNormal]];
@@ -113,25 +145,29 @@
 
     }
     
-    CCAction *rotateAction = nil;
-    for (node in childrenArray)
+    if (!isIgnoreTouch)
     {
-        rotateAction = [CCBRotateTo actionWithDuration:0.5 angle:360];
-        if ([node isKindOfClass:[NumberItem class]])
+        //CCAction *rotateAction = nil;
+        for (node in childrenArray)
         {
-            numberItem = (NumberItem*)node;
-            if (currentTouchNumberString == numberItem.numberLabel.string)
+            //rotateAction = [CCActionRotateBy actionWithDuration:0.5 angle:360];
+            if ([node isKindOfClass:[NumberItem class]])
             {
-                [numberItem runAction:rotateAction];
-                [numberItem setItemColor:ccGRAY];
-            }
-            else
-            {
-                [numberItem setItemColor:myItemColor];
+                numberItem = (NumberItem*)node;
+                if ((currentTouchNumberString == numberItem.numberLabel.string)
+                    &&(numberItem.numberLabelVisable))
+                {
+                    //[numberItem runAction:rotateAction];
+                    [numberItem setItemColor:ccGRAY];
+                }
+                
+                else
+                {
+                    [numberItem setItemColor:myItemColor];
+                }
             }
         }
-        
-        
+
     }
 }
 
@@ -141,6 +177,13 @@
     CCScene *scene = [CCBReader loadAsScene:@"MainScene.ccbi"];
     [[CCDirector sharedDirector] replaceScene:scene];
 
+}
+
+-(void)itemButtonClick:(id)sender
+{
+    CCButton *btn = (CCButton*)sender;
+    NSString *temString = btn.title;
+    btn.position = ccp(btn.position.x+2.0,btn.position.y);
 }
 
 @end
