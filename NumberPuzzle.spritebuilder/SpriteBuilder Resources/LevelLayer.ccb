@@ -131,6 +131,8 @@
 						</array>
 					</dict>
 				</array>
+				<key>selected</key>
+				<true/>
 			</dict>
 			<dict>
 				<key>baseClass</key>
@@ -466,9 +468,9 @@
 				<key>displayName</key>
 				<string>CCButton</string>
 				<key>memberVarAssignmentName</key>
-				<string></string>
+				<string>m_btn2</string>
 				<key>memberVarAssignmentType</key>
-				<integer>0</integer>
+				<integer>1</integer>
 				<key>properties</key>
 				<array>
 					<dict>
@@ -486,8 +488,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>56.527790069580078</real>
-							<real>70.805564880371094</real>
+							<real>54.527790069580078</real>
+							<real>87.805564880371094</real>
 							<integer>0</integer>
 							<integer>0</integer>
 							<integer>0</integer>
@@ -532,8 +534,8 @@
 						<string>Block</string>
 						<key>value</key>
 						<array>
-							<string></string>
-							<integer>0</integer>
+							<string>itemButtonClick:</string>
+							<integer>1</integer>
 						</array>
 					</dict>
 					<dict>
@@ -543,8 +545,8 @@
 						<string>Size</string>
 						<key>value</key>
 						<array>
-							<real>40</real>
-							<real>40</real>
+							<real>50</real>
+							<real>50</real>
 							<integer>0</integer>
 							<integer>0</integer>
 						</array>
@@ -601,6 +603,19 @@
 						<array>
 							<string></string>
 							<string>ccbResources/ccbButtonHighlighted.png</string>
+						</array>
+					</dict>
+					<dict>
+						<key>name</key>
+						<string>backgroundColor|Highlighted</string>
+						<key>type</key>
+						<string>Color3</string>
+						<key>value</key>
+						<array>
+							<real>0.5738074779510498</real>
+							<real>0.56553584337234497</real>
+							<real>0.0</real>
+							<real>1</real>
 						</array>
 					</dict>
 					<dict>
@@ -685,7 +700,7 @@
 						<string>FloatScale</string>
 						<key>value</key>
 						<array>
-							<real>17</real>
+							<real>24</real>
 							<integer>0</integer>
 						</array>
 					</dict>
@@ -798,9 +813,9 @@
 				<key>displayName</key>
 				<string>CCButton</string>
 				<key>memberVarAssignmentName</key>
-				<string></string>
+				<string>m_btn4</string>
 				<key>memberVarAssignmentType</key>
-				<integer>0</integer>
+				<integer>1</integer>
 				<key>properties</key>
 				<array>
 					<dict>
@@ -818,8 +833,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>121.11112213134766</real>
-							<real>70.805557250976562</real>
+							<real>124.11112213134766</real>
+							<real>88.805557250976562</real>
 							<integer>0</integer>
 							<integer>0</integer>
 							<integer>0</integer>
@@ -855,7 +870,7 @@
 						<key>type</key>
 						<string>Degrees</string>
 						<key>value</key>
-						<real>15.763774871826172</real>
+						<real>0.91864585876464844</real>
 					</dict>
 					<dict>
 						<key>name</key>
@@ -864,8 +879,8 @@
 						<string>Block</string>
 						<key>value</key>
 						<array>
-							<string></string>
-							<integer>0</integer>
+							<string>itemButtonClick:</string>
+							<integer>1</integer>
 						</array>
 					</dict>
 					<dict>
@@ -875,8 +890,8 @@
 						<string>Size</string>
 						<key>value</key>
 						<array>
-							<real>40</real>
-							<real>40</real>
+							<real>50</real>
+							<real>50</real>
 							<integer>0</integer>
 							<integer>0</integer>
 						</array>
@@ -1017,7 +1032,7 @@
 						<string>FloatScale</string>
 						<key>value</key>
 						<array>
-							<real>17</real>
+							<real>24</real>
 							<integer>0</integer>
 						</array>
 					</dict>
@@ -1130,9 +1145,9 @@
 				<key>displayName</key>
 				<string>CCButton</string>
 				<key>memberVarAssignmentName</key>
-				<string></string>
+				<string>m_btn5</string>
 				<key>memberVarAssignmentType</key>
-				<integer>0</integer>
+				<integer>1</integer>
 				<key>properties</key>
 				<array>
 					<dict>
@@ -1151,7 +1166,7 @@
 						<key>value</key>
 						<array>
 							<real>158.611083984375</real>
-							<real>71.500007629394531</real>
+							<real>89.666671752929688</real>
 							<integer>0</integer>
 							<integer>0</integer>
 							<integer>0</integer>
@@ -1207,8 +1222,8 @@
 						<string>Size</string>
 						<key>value</key>
 						<array>
-							<real>40</real>
-							<real>40</real>
+							<real>50</real>
+							<real>50</real>
 							<integer>0</integer>
 							<integer>0</integer>
 						</array>
@@ -1244,14 +1259,6 @@
 							<string>5</string>
 							<false/>
 						</array>
-					</dict>
-					<dict>
-						<key>name</key>
-						<string>zoomWhenHighlighted</string>
-						<key>type</key>
-						<string>Check</string>
-						<key>value</key>
-						<true/>
 					</dict>
 					<dict>
 						<key>name</key>
@@ -1357,7 +1364,7 @@
 						<string>FloatScale</string>
 						<key>value</key>
 						<array>
-							<real>17</real>
+							<real>24</real>
 							<integer>0</integer>
 						</array>
 					</dict>
@@ -1459,8 +1466,6 @@
 						</array>
 					</dict>
 				</array>
-				<key>selected</key>
-				<true/>
 			</dict>
 			<dict>
 				<key>baseClass</key>
@@ -1472,9 +1477,9 @@
 				<key>displayName</key>
 				<string>CCButton</string>
 				<key>memberVarAssignmentName</key>
-				<string></string>
+				<string>m_btn6</string>
 				<key>memberVarAssignmentType</key>
-				<integer>0</integer>
+				<integer>1</integer>
 				<key>properties</key>
 				<array>
 					<dict>
@@ -1492,8 +1497,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>194.72222900390625</real>
-							<real>74.97222900390625</real>
+							<real>193.72222900390625</real>
+							<real>87.97222900390625</real>
 							<integer>0</integer>
 							<integer>0</integer>
 							<integer>0</integer>
@@ -1529,7 +1534,7 @@
 						<key>type</key>
 						<string>Degrees</string>
 						<key>value</key>
-						<real>6.442875862121582</real>
+						<real>7.0019502639770508</real>
 					</dict>
 					<dict>
 						<key>name</key>
@@ -1538,8 +1543,8 @@
 						<string>Block</string>
 						<key>value</key>
 						<array>
-							<string></string>
-							<integer>0</integer>
+							<string>itemButtonClick:</string>
+							<integer>1</integer>
 						</array>
 					</dict>
 					<dict>
@@ -1549,8 +1554,8 @@
 						<string>Size</string>
 						<key>value</key>
 						<array>
-							<real>40</real>
-							<real>40</real>
+							<real>50</real>
+							<real>50</real>
 							<integer>0</integer>
 							<integer>0</integer>
 						</array>
@@ -1691,7 +1696,7 @@
 						<string>FloatScale</string>
 						<key>value</key>
 						<array>
-							<real>17</real>
+							<real>24</real>
 							<integer>0</integer>
 						</array>
 					</dict>
@@ -1804,9 +1809,9 @@
 				<key>displayName</key>
 				<string>CCButton</string>
 				<key>memberVarAssignmentName</key>
-				<string></string>
+				<string>m_btn3</string>
 				<key>memberVarAssignmentType</key>
-				<integer>0</integer>
+				<integer>1</integer>
 				<key>properties</key>
 				<array>
 					<dict>
@@ -1824,8 +1829,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>86.388885498046875</real>
-							<real>70.111122131347656</real>
+							<real>89.388885498046875</real>
+							<real>90.111122131347656</real>
 							<integer>0</integer>
 							<integer>0</integer>
 							<integer>0</integer>
@@ -1870,8 +1875,8 @@
 						<string>Block</string>
 						<key>value</key>
 						<array>
-							<string></string>
-							<integer>0</integer>
+							<string>itemButtonClick:</string>
+							<integer>1</integer>
 						</array>
 					</dict>
 					<dict>
@@ -1881,8 +1886,8 @@
 						<string>Size</string>
 						<key>value</key>
 						<array>
-							<real>40</real>
-							<real>40</real>
+							<real>50</real>
+							<real>50</real>
 							<integer>0</integer>
 							<integer>0</integer>
 						</array>
@@ -2023,7 +2028,7 @@
 						<string>FloatScale</string>
 						<key>value</key>
 						<array>
-							<real>17</real>
+							<real>24</real>
 							<integer>0</integer>
 						</array>
 					</dict>
@@ -2136,9 +2141,9 @@
 				<key>displayName</key>
 				<string>CCButton</string>
 				<key>memberVarAssignmentName</key>
-				<string></string>
+				<string>m_btn7</string>
 				<key>memberVarAssignmentType</key>
-				<integer>0</integer>
+				<integer>1</integer>
 				<key>properties</key>
 				<array>
 					<dict>
@@ -2156,8 +2161,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>228.75</real>
-							<real>75.666671752929688</real>
+							<real>226.75</real>
+							<real>86.666671752929688</real>
 							<integer>0</integer>
 							<integer>0</integer>
 							<integer>0</integer>
@@ -2202,8 +2207,8 @@
 						<string>Block</string>
 						<key>value</key>
 						<array>
-							<string></string>
-							<integer>0</integer>
+							<string>itemButtonClick:</string>
+							<integer>1</integer>
 						</array>
 					</dict>
 					<dict>
@@ -2213,8 +2218,8 @@
 						<string>Size</string>
 						<key>value</key>
 						<array>
-							<real>40</real>
-							<real>40</real>
+							<real>50</real>
+							<real>50</real>
 							<integer>0</integer>
 							<integer>0</integer>
 						</array>
@@ -2355,7 +2360,7 @@
 						<string>FloatScale</string>
 						<key>value</key>
 						<array>
-							<real>17</real>
+							<real>24</real>
 							<integer>0</integer>
 						</array>
 					</dict>
@@ -2468,9 +2473,9 @@
 				<key>displayName</key>
 				<string>CCButton</string>
 				<key>memberVarAssignmentName</key>
-				<string></string>
+				<string>m_btn8</string>
 				<key>memberVarAssignmentType</key>
-				<integer>0</integer>
+				<integer>1</integer>
 				<key>properties</key>
 				<array>
 					<dict>
@@ -2488,8 +2493,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>262.08334350585938</real>
-							<real>74.277786254882812</real>
+							<real>261.08334350585938</real>
+							<real>85.277786254882812</real>
 							<integer>0</integer>
 							<integer>0</integer>
 							<integer>0</integer>
@@ -2534,8 +2539,8 @@
 						<string>Block</string>
 						<key>value</key>
 						<array>
-							<string></string>
-							<integer>0</integer>
+							<string>itemButtonClick:</string>
+							<integer>1</integer>
 						</array>
 					</dict>
 					<dict>
@@ -2545,8 +2550,8 @@
 						<string>Size</string>
 						<key>value</key>
 						<array>
-							<real>40</real>
-							<real>40</real>
+							<real>50</real>
+							<real>50</real>
 							<integer>0</integer>
 							<integer>0</integer>
 						</array>
@@ -2687,7 +2692,7 @@
 						<string>FloatScale</string>
 						<key>value</key>
 						<array>
-							<real>17</real>
+							<real>24</real>
 							<integer>0</integer>
 						</array>
 					</dict>
@@ -2800,9 +2805,9 @@
 				<key>displayName</key>
 				<string>CCButton</string>
 				<key>memberVarAssignmentName</key>
-				<string></string>
+				<string>m_btn9</string>
 				<key>memberVarAssignmentType</key>
-				<integer>0</integer>
+				<integer>1</integer>
 				<key>properties</key>
 				<array>
 					<dict>
@@ -2820,8 +2825,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>294.02777099609375</real>
-							<real>71.500007629394531</real>
+							<real>297.02777099609375</real>
+							<real>84.500007629394531</real>
 							<integer>0</integer>
 							<integer>0</integer>
 							<integer>0</integer>
@@ -2857,7 +2862,7 @@
 						<key>type</key>
 						<string>Degrees</string>
 						<key>value</key>
-						<real>2.4366550445556641</real>
+						<real>-3.2246360778808594</real>
 					</dict>
 					<dict>
 						<key>name</key>
@@ -2866,8 +2871,8 @@
 						<string>Block</string>
 						<key>value</key>
 						<array>
-							<string></string>
-							<integer>0</integer>
+							<string>itemButtonClick:</string>
+							<integer>1</integer>
 						</array>
 					</dict>
 					<dict>
@@ -2877,8 +2882,8 @@
 						<string>Size</string>
 						<key>value</key>
 						<array>
-							<real>40</real>
-							<real>40</real>
+							<real>50</real>
+							<real>50</real>
 							<integer>0</integer>
 							<integer>0</integer>
 						</array>
@@ -3019,7 +3024,7 @@
 						<string>FloatScale</string>
 						<key>value</key>
 						<array>
-							<real>17</real>
+							<real>24</real>
 							<integer>0</integer>
 						</array>
 					</dict>
@@ -3132,9 +3137,9 @@
 				<key>displayName</key>
 				<string>CCButton</string>
 				<key>memberVarAssignmentName</key>
-				<string></string>
+				<string>m_btn1</string>
 				<key>memberVarAssignmentType</key>
-				<integer>0</integer>
+				<integer>1</integer>
 				<key>properties</key>
 				<array>
 					<dict>
@@ -3152,8 +3157,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>21.805568695068359</real>
-							<real>72.194450378417969</real>
+							<real>19.805568695068359</real>
+							<real>87.194450378417969</real>
 							<integer>0</integer>
 							<integer>0</integer>
 							<integer>0</integer>
@@ -3198,8 +3203,8 @@
 						<string>Block</string>
 						<key>value</key>
 						<array>
-							<string></string>
-							<integer>0</integer>
+							<string>itemButtonClick:</string>
+							<integer>1</integer>
 						</array>
 					</dict>
 					<dict>
@@ -3209,8 +3214,8 @@
 						<string>Size</string>
 						<key>value</key>
 						<array>
-							<real>40</real>
-							<real>40</real>
+							<real>50</real>
+							<real>50</real>
 							<integer>0</integer>
 							<integer>0</integer>
 						</array>
@@ -3260,6 +3265,19 @@
 					</dict>
 					<dict>
 						<key>name</key>
+						<string>backgroundColor|Normal</string>
+						<key>type</key>
+						<string>Color3</string>
+						<key>value</key>
+						<array>
+							<real>0.99999600648880005</real>
+							<real>1</real>
+							<real>1</real>
+							<real>1</real>
+						</array>
+					</dict>
+					<dict>
+						<key>name</key>
 						<string>backgroundSpriteFrame|Highlighted</string>
 						<key>type</key>
 						<string>SpriteFrame</string>
@@ -3267,6 +3285,19 @@
 						<array>
 							<string></string>
 							<string>ccbResources/ccbButtonHighlighted.png</string>
+						</array>
+					</dict>
+					<dict>
+						<key>name</key>
+						<string>backgroundColor|Highlighted</string>
+						<key>type</key>
+						<string>Color3</string>
+						<key>value</key>
+						<array>
+							<real>0.99999600648880005</real>
+							<real>1</real>
+							<real>1</real>
+							<real>1</real>
 						</array>
 					</dict>
 					<dict>
@@ -3351,7 +3382,7 @@
 						<string>FloatScale</string>
 						<key>value</key>
 						<array>
-							<real>17</real>
+							<real>24</real>
 							<integer>0</integer>
 						</array>
 					</dict>

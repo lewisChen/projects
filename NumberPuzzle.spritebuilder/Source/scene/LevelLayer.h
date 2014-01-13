@@ -11,8 +11,19 @@
 
 @interface LevelLayer:CCControl
 {
-    
+    CCButton *m_btn1;
+    CCButton *m_btn2;
+    CCButton *m_btn3;
+    CCButton *m_btn4;
+    CCButton *m_btn5;
+    CCButton *m_btn6;
+    CCButton *m_btn7;
+    CCButton *m_btn8;
+    CCButton *m_btn9;
+    NSMutableArray *m_btnArray;
 }
+
+@property(readwrite)NSString* currentSelectIndexString;
 
 - (void)initLayer;
 - (void)setLevel:(NSUInteger)level;

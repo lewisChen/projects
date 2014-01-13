@@ -16,12 +16,15 @@
 #define MAX_ITEM_COUNT_Y (9)
 #define FIRST_BLOCK_INDEX (2)
 #define SECOND_BLOCK_INDEX (5)
+#define kBtnPositionOffset (5)
 
 
 @implementation LevelLayer
 
 - (void) didLoadFromCCB
 {
+    m_btnArray = [NSMutableArray arrayWithObjects:m_btn1,m_btn2,m_btn3,m_btn4,m_btn5,m_btn6,m_btn7,m_btn8,m_btn9, nil];
+    self.currentSelectIndexString = @"-1";
     [self initLayer];
     [self setLevel:1];//create level;
     [self setEnabled:YES];//enable touch event
@@ -35,7 +38,7 @@
         float xOffset = 0.0;
         float yOffset = 0.0;
         NSMutableArray *array = [NumberArithmetic sharedNumberArithmetic].createNumberPuzzleArray;
-        
+        NSString *indexString = @"";
         self.contentSize = [CCDirector sharedDirector].viewSize;
         for (unsigned char indexX = 0; indexX<MAX_ITEM_COUNT_X; indexX++)
         {
@@ -75,8 +78,12 @@
                 }
                 
                 
+                indexString = [NSString stringWithFormat:@"%d",indexX*MAX_ITEM_COUNT_X+indexY];
                 numberItem.position = ccp(numberItem.contentSize.width+xOffset, (self.contentSize.height*3/4)+ yOffset);
-                [self addChild:numberItem];
+                [self addChild:numberItem z:1 name:indexString];
+                //numberItem.indexX = indexX;
+               // numberItem.indexY = indexY;
+                numberItem.currentIndexString = indexString;
                 
             }
         }
@@ -122,8 +129,8 @@
     NSArray *childrenArray = [self children];
     CCNode *node = NULL;
     NumberItem *numberItem = NULL;
-    NSString *currentTouchNumberString = @"0";
-    BOOL isIgnoreTouch = NO;
+    NSString *currentTouchNumberString = @"";
+    BOOL isHightLightSameNumber = NO;
     
     for (node in childrenArray)
     {
@@ -132,9 +139,10 @@
             numberItem = (NumberItem*)node;
             if (ccpDistanceSQ(currentPosition, numberItem.position)<(kItemwidth*kItemHight/4))
             {
-                isIgnoreTouch = numberItem.numberLabelVisable?NO:YES;
-                if (isIgnoreTouch)
+                isHightLightSameNumber = numberItem.numberLabelVisable?YES:NO;
+                if (!isHightLightSameNumber)
                 {
+                    self.currentSelectIndexString = numberItem.currentIndexString;
                     break;
                 }
                 currentTouchNumberString = [numberItem numberLabel].string;
@@ -145,7 +153,7 @@
 
     }
     
-    if (!isIgnoreTouch)
+    if (isHightLightSameNumber)
     {
         //CCAction *rotateAction = nil;
         for (node in childrenArray)
@@ -167,6 +175,19 @@
                 }
             }
         }
+    }
+    else
+    {
+        for (node in childrenArray)
+        {
+            if ([node isKindOfClass:[NumberItem class]])
+            {
+                numberItem = (NumberItem*)node;
+                [numberItem setItemColor:myItemColor];
+            }
+        }
+        numberItem = (NumberItem*)[self getChildByName:self.currentSelectIndexString recursively:NO];
+        [numberItem setItemColor:ccGRAY];
 
     }
 }
@@ -182,8 +203,30 @@
 -(void)itemButtonClick:(id)sender
 {
     CCButton *btn = (CCButton*)sender;
-    NSString *temString = btn.title;
-    btn.position = ccp(btn.position.x+2.0,btn.position.y);
+    NSString *btnTitle = btn.title;
+    
+    if (self.currentSelectIndexString.intValue>=0)
+    {
+        NumberItem *currentNumberItem = (NumberItem*)[self getChildByName:self.currentSelectIndexString recursively:NO];
+        CGPoint toPosition = currentNumberItem.position;
+        CGPoint currentPos = btn.position;
+        
+        if (currentNumberItem.labelNumber == btnTitle.intValue)
+        {
+            NSArray *actionsArray = [NSArray arrayWithObjects:[CCActionMoveTo actionWithDuration:0.3 position:toPosition],
+                                     [CCActionHide action],
+                                     [CCActionMoveTo actionWithDuration:0.0 position:currentPos],
+                                     [CCActionShow action],nil];
+            CCAction *action = [CCActionSequence actionWithArray:actionsArray];
+            [btn runAction:action];
+            [currentNumberItem setNumberLabelVisable:YES];
+            
+        }
+
+    }
+    
+//    btn.position = ccp(btn.position.x+2.0,btn.position.y);
+//    m_btn1.position = ccp(m_btn1.position.x, m_btn1.position.y+5);
 }
 
 @end

@@ -30,6 +30,8 @@
 		B77F1B3E17B978D7009739AE /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B77F1B3D17B978D7009739AE /* Foundation.framework */; };
 		B77F1B4017B978D7009739AE /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B77F1B3F17B978D7009739AE /* CoreGraphics.framework */; };
 		B77F1B4217B978D7009739AE /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B77F1B4117B978D7009739AE /* CoreText.framework */; };
+		CEB2BAF21882C96D003621D0 /* myRes.plist in Resources */ = {isa = PBXBuildFile; fileRef = CEB2BAF01882C96D003621D0 /* myRes.plist */; };
+		CEB2BAF31882C96D003621D0 /* myRes.png in Resources */ = {isa = PBXBuildFile; fileRef = CEB2BAF11882C96D003621D0 /* myRes.png */; };
 		CEB37C4A18793A6F007F2157 /* libGoogleAdMobAds.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CEB37C3C18793A6F007F2157 /* libGoogleAdMobAds.a */; };
 		CEB37C4B18793A70007F2157 /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = CEB37C3D18793A6F007F2157 /* README.txt */; };
 		CEB37C4C18793A70007F2157 /* numberItem.m in Sources */ = {isa = PBXBuildFile; fileRef = CEB37C4018793A6F007F2157 /* numberItem.m */; };
@@ -138,6 +140,8 @@
 		B77F1B3F17B978D7009739AE /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		B77F1B4117B978D7009739AE /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
 		B7B3713D180358F1007369CC /* libObjectiveChipmunk.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libObjectiveChipmunk.a; path = "../libs/cocos2d-iphone/external/Chipmunk/xcode/build/Debug-iphoneos/libObjectiveChipmunk.a"; sourceTree = "<group>"; };
+		CEB2BAF01882C96D003621D0 /* myRes.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = myRes.plist; path = Source/Resources/myRes.plist; sourceTree = SOURCE_ROOT; };
+		CEB2BAF11882C96D003621D0 /* myRes.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = myRes.png; path = Source/Resources/myRes.png; sourceTree = SOURCE_ROOT; };
 		CEB37C3318793A6F007F2157 /* GADAdMobExtras.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADAdMobExtras.h; sourceTree = "<group>"; };
 		CEB37C3418793A6F007F2157 /* GADAdNetworkExtras.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADAdNetworkExtras.h; sourceTree = "<group>"; };
 		CEB37C3518793A6F007F2157 /* GADAdSize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADAdSize.h; sourceTree = "<group>"; };
@@ -360,6 +364,8 @@
 		B77F1B4617B978D7009739AE /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				CEB2BAF01882C96D003621D0 /* myRes.plist */,
+				CEB2BAF11882C96D003621D0 /* myRes.png */,
 				B73789911807667A0076A88C /* Icons */,
 				B737893A180761570076A88C /* Published-iOS */,
 			);
@@ -692,7 +698,9 @@
 				B737897E180762440076A88C /* Icon@2x.png in Resources */,
 				B737893B180761570076A88C /* Published-iOS in Resources */,
 				B737897C180762440076A88C /* Icon-Small@2x.png in Resources */,
+				CEB2BAF31882C96D003621D0 /* myRes.png in Resources */,
 				CEB37C4B18793A70007F2157 /* README.txt in Resources */,
+				CEB2BAF21882C96D003621D0 /* myRes.plist in Resources */,
 				D2E65C9D18626890007D0B1F /* CMakeLists.txt in Resources */,
 				B7378976180762440076A88C /* Default-Landscape~ipad.png in Resources */,
 				B7378975180762440076A88C /* Default-568h@2x.png in Resources */,
