@@ -213,20 +213,26 @@
         
         if (currentNumberItem.labelNumber == btnTitle.intValue)
         {
+            CCActionCallFunc* callFunc = [CCActionCallFunc actionWithTarget:self selector:@selector(selectRightFunction)];
+
             NSArray *actionsArray = [NSArray arrayWithObjects:[CCActionMoveTo actionWithDuration:0.3 position:toPosition],
                                      [CCActionHide action],
                                      [CCActionMoveTo actionWithDuration:0.0 position:currentPos],
-                                     [CCActionShow action],nil];
+                                     [CCActionShow action],
+                                     callFunc,nil];
             CCAction *action = [CCActionSequence actionWithArray:actionsArray];
             [btn runAction:action];
-            [currentNumberItem setNumberLabelVisable:YES];
-            
         }
-
     }
-    
-//    btn.position = ccp(btn.position.x+2.0,btn.position.y);
-//    m_btn1.position = ccp(m_btn1.position.x, m_btn1.position.y+5);
+}
+
+-(void)selectRightFunction
+{
+    NumberItem *currentNumberItem = (NumberItem*)[self getChildByName:self.currentSelectIndexString recursively:NO];
+    [currentNumberItem setNumberLabelVisable:YES];
+    [currentNumberItem setItemColor:myItemColor];
+    //reset current select
+    self.currentSelectIndexString = @"-1";
 }
 
 @end

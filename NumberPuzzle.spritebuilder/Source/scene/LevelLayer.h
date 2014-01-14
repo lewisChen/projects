@@ -27,6 +27,7 @@
 
 - (void)initLayer;
 - (void)setLevel:(NSUInteger)level;
+- (void)selectRightFunction;
 
 - (void)touchBegan:(UITouch *)touch withEvent:(UIEvent *)event;
 - (void)touchEnded:(UITouch *)touch withEvent:(UIEvent *)event;
