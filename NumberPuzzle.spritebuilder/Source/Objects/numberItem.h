@@ -18,14 +18,14 @@
 @interface NumberItem : CCSprite
 {
     CCLabelTTF *m_lable;
-    unsigned char m_indexX;
-    unsigned char m_indexY;
+    NSUInteger m_indexX;
+    NSUInteger m_indexY;
     NSUInteger m_labelNmber;
 }
 
 @property (readwrite,assign) CCLabelTTF* numberLabel;
-@property (readwrite) unsigned char indexX;
-@property (readwrite) unsigned char indexY;
+@property (readwrite) NSUInteger indexX;
+@property (readwrite) NSUInteger indexY;
 @property (readwrite) NSString* currentIndexString;
 @property (readonly) NSUInteger labelNumber;
 

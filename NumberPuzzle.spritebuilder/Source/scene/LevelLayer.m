@@ -12,10 +12,11 @@
 #include "../UiConstDef/FontRelateDef.h"
 #include "NumberArithmetic.h"
 
+#define kMaxCountSectionItem (9)
 #define MAX_ITEM_COUNT_X (9)
 #define MAX_ITEM_COUNT_Y (9)
-#define FIRST_BLOCK_INDEX (2)
-#define SECOND_BLOCK_INDEX (5)
+#define FIRST_BLOCK_INDEX (3)//first block edge
+#define SECOND_BLOCK_INDEX (6)//second blog edge
 #define kBtnPositionOffset (5)
 
 
@@ -49,30 +50,30 @@
                 numberItem.anchorPoint = ccp(0.5, 0.5);
                 
                 //determind x offset
-                if (indexX<=FIRST_BLOCK_INDEX)
+                if (indexX<FIRST_BLOCK_INDEX)
                 {
                     xOffset = numberItem.contentSize.width*indexX;
                 }
-                else if (FIRST_BLOCK_INDEX<indexX && indexX<=SECOND_BLOCK_INDEX)
+                else if (FIRST_BLOCK_INDEX<=indexX && indexX<SECOND_BLOCK_INDEX)
                 {
                     xOffset = numberItem.contentSize.width*indexX+2;
                 }
-                else if (indexX>SECOND_BLOCK_INDEX)
+                else if (indexX>=SECOND_BLOCK_INDEX)
                 {
                     xOffset = numberItem.contentSize.width*indexX+4;
                 }
                 
                 //determind y offset
-                if (indexY<=FIRST_BLOCK_INDEX)
+                if (indexY<FIRST_BLOCK_INDEX)
                 {
                     yOffset = -numberItem.contentSize.height*indexY;
                 }
-                else if (FIRST_BLOCK_INDEX<indexY && indexY<=SECOND_BLOCK_INDEX)
+                else if (FIRST_BLOCK_INDEX<=indexY && indexY<SECOND_BLOCK_INDEX)
                 {
                     yOffset = -numberItem.contentSize.height*indexY-2;
                     
                 }
-                else if (indexY>SECOND_BLOCK_INDEX)
+                else if (indexY>=SECOND_BLOCK_INDEX)
                 {
                     yOffset = -numberItem.contentSize.height*indexY-4;
                 }
@@ -81,8 +82,8 @@
                 indexString = [NSString stringWithFormat:@"%d",indexX*MAX_ITEM_COUNT_X+indexY];
                 numberItem.position = ccp(numberItem.contentSize.width+xOffset, (self.contentSize.height*3/4)+ yOffset);
                 [self addChild:numberItem z:1 name:indexString];
-                //numberItem.indexX = indexX;
-               // numberItem.indexY = indexY;
+                numberItem.indexX = indexX;
+                numberItem.indexY = indexY;
                 numberItem.currentIndexString = indexString;
                 
             }
@@ -231,8 +232,124 @@
     NumberItem *currentNumberItem = (NumberItem*)[self getChildByName:self.currentSelectIndexString recursively:NO];
     [currentNumberItem setNumberLabelVisable:YES];
     [currentNumberItem setItemColor:myItemColor];
+    [self isSectionFinish:currentNumberItem.indexX :currentNumberItem.indexY];
     //reset current select
     self.currentSelectIndexString = @"-1";
+    [self levelFinishHandle];
+}
+
+//9 item is one section
+-(BOOL)isSectionFinish:(NSUInteger)xIndex :(NSUInteger)yIndex
+{
+    BOOL result = NO;
+    NSUInteger xStartIndex = 0;
+    NSUInteger xEndIndex = 0;
+    NSUInteger yStartIndex = 0;
+    NSUInteger yEndIndex = 0;
+    
+    if (xIndex<FIRST_BLOCK_INDEX)
+    {
+        xStartIndex = 0;
+        xEndIndex = FIRST_BLOCK_INDEX;
+    }
+    else if (FIRST_BLOCK_INDEX<=xIndex && xIndex<SECOND_BLOCK_INDEX)
+    {
+        xStartIndex = FIRST_BLOCK_INDEX;
+        xEndIndex = SECOND_BLOCK_INDEX;
+    }
+    else if (xIndex>=SECOND_BLOCK_INDEX)
+    {
+        xStartIndex = SECOND_BLOCK_INDEX;
+        xEndIndex = MAX_ITEM_COUNT_X;
+    }
+    
+
+    if (yIndex<FIRST_BLOCK_INDEX)
+    {
+        yStartIndex = 0;
+        yEndIndex = FIRST_BLOCK_INDEX;
+    }
+    else if (FIRST_BLOCK_INDEX<=yIndex && yIndex<SECOND_BLOCK_INDEX)
+    {
+        yStartIndex = FIRST_BLOCK_INDEX;
+        yEndIndex = SECOND_BLOCK_INDEX;
+        
+    }
+    else if (yIndex>=SECOND_BLOCK_INDEX)
+    {
+        yStartIndex = SECOND_BLOCK_INDEX;
+        yEndIndex = MAX_ITEM_COUNT_Y;
+    }
+    
+    NSUInteger visableCount = 0;
+    for (NSUInteger x = xStartIndex; x<xEndIndex; x++)
+    {
+        for (NSUInteger y = yStartIndex; y<yEndIndex; y++)
+        {
+            NSString *indexString = [NSString stringWithFormat:@"%d",x*MAX_ITEM_COUNT_X+y];
+            NumberItem *numberItem = (NumberItem*)[self getChildByName:indexString recursively:NO];
+            if (numberItem.numberLabelVisable)
+            {
+                visableCount++;
+            }
+        }
+    }
+    
+    CCAction *rotateAction = nil;
+    if (kMaxCountSectionItem == visableCount)
+    {
+        for (NSUInteger x = xStartIndex; x<xEndIndex; x++)
+        {
+            for (NSUInteger y = yStartIndex; y<yEndIndex; y++)
+            {
+                NSString *indexString = [NSString stringWithFormat:@"%d",x*MAX_ITEM_COUNT_X+y];
+                NumberItem *numberItem = (NumberItem*)[self getChildByName:indexString recursively:NO];
+                rotateAction = [CCActionRotateBy actionWithDuration:0.5 angle:360];
+                [numberItem runAction:rotateAction];
+            }
+        }
+
+        result = YES;
+    }
+    
+    return result;
+}
+
+-(void)levelFinishHandle
+{
+    NSArray *childrenArray = [self children];
+    CCNode *node = NULL;
+    NumberItem *numberItem = NULL;
+    NSUInteger visableCount = 0;
+    
+    for (node in childrenArray)
+    {
+        if ([node isKindOfClass:[NumberItem class]])
+        {
+            numberItem = (NumberItem*)node;
+            if (numberItem.numberLabelVisable)
+            {
+                visableCount++;
+            }
+        }
+    }
+    
+    if (visableCount == MAX_ITEM_COUNT_X*MAX_ITEM_COUNT_Y)
+    {
+        CCAction *rotateAction = nil;
+        for (node in childrenArray)
+        {
+            if ([node isKindOfClass:[NumberItem class]])
+            {
+                rotateAction = [CCActionRotateBy actionWithDuration:0.5 angle:360];
+                numberItem = (NumberItem*)node;
+                [numberItem runAction:rotateAction];
+            }
+        }
+        CCLOG(@"You win");
+    }
+
+    
 }
 
 @end
