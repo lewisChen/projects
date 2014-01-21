@@ -29,6 +29,7 @@
 - (void)setLevel:(NSUInteger)level;
 - (void)selectRightFunction;
 - (BOOL)isSectionFinish:(NSUInteger)xIndex :(NSUInteger)yIndex;
+- (void)buttonVisblaHandle:(NSString*)itemString;
 - (void)levelFinishHandle;
 
 - (void)touchBegan:(UITouch *)touch withEvent:(UIEvent *)event;

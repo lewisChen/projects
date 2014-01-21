@@ -232,10 +232,41 @@
     NumberItem *currentNumberItem = (NumberItem*)[self getChildByName:self.currentSelectIndexString recursively:NO];
     [currentNumberItem setNumberLabelVisable:YES];
     [currentNumberItem setItemColor:myItemColor];
+    
+    //hide button if kinds of item reach 9
+    [self buttonVisblaHandle:currentNumberItem.numberLabel.string];
+    //run effect if one section finish
     [self isSectionFinish:currentNumberItem.indexX :currentNumberItem.indexY];
     //reset current select
     self.currentSelectIndexString = @"-1";
     [self levelFinishHandle];
+}
+
+-(void)buttonVisblaHandle:(NSString *)itemString
+{
+    NSArray *childrenArray = [self children];
+    CCNode *node = NULL;
+    NumberItem *numberItem = NULL;
+    NSUInteger finishCount = 0;
+    
+    for (node in childrenArray)
+    {
+        if ([node isKindOfClass:[NumberItem class]])
+        {
+            numberItem = (NumberItem*)node;
+            if ((numberItem.numberLabelVisable)&&(numberItem.labelNumber == itemString.intValue))
+            {
+                finishCount++;
+            }
+        }
+    }
+    if (kMaxCountSectionItem==finishCount)
+    {
+        CCButton *btn = [m_btnArray objectAtIndex:itemString.intValue-1];
+        btn.visible = NO;
+    }
+    
+
 }
 
 //9 item is one section
