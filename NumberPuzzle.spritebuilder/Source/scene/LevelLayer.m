@@ -239,6 +239,7 @@
     [self isSectionFinish:currentNumberItem.indexX :currentNumberItem.indexY];
     //reset current select
     self.currentSelectIndexString = @"-1";
+    //level finish effect
     [self levelFinishHandle];
 }
 
@@ -377,7 +378,13 @@
                 [numberItem runAction:rotateAction];
             }
         }
-        CCLOG(@"You win");
+        //show finish layer
+        CCNode *finishLayer = [CCBReader load:@"GameFinishLayer.ccbi"];
+        finishLayer.position = ccp(0.0, self.contentSize.height);
+        [self addChild:finishLayer z:2];
+        CCAction *moveAction = [CCActionMoveTo actionWithDuration:0.5 position:ccp(0.0, 0.0)];
+        [finishLayer runAction:moveAction];
+        //CCLOG(@"You win");
     }
 
     

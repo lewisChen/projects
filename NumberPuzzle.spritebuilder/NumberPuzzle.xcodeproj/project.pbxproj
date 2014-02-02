@@ -42,6 +42,7 @@
 		CEB37C5818793BFF007F2157 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEB37C5718793BFF007F2157 /* MessageUI.framework */; };
 		CEB37C5A18793C09007F2157 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEB37C5918793C09007F2157 /* StoreKit.framework */; };
 		CEB37C5C18793C14007F2157 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEB37C5B18793C14007F2157 /* SystemConfiguration.framework */; };
+		CEBD8EC1188ED0C00084A1EF /* GameFinishLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = CEBD8EC0188ED0C00084A1EF /* GameFinishLayer.m */; };
 		D2E65C3C1862647B007D0B1F /* chipmunk.c in Sources */ = {isa = PBXBuildFile; fileRef = D2E65C1E1862647B007D0B1F /* chipmunk.c */; };
 		D2E65C3D1862647B007D0B1F /* CMakeLists.txt in Resources */ = {isa = PBXBuildFile; fileRef = D2E65C1F1862647B007D0B1F /* CMakeLists.txt */; };
 		D2E65C3E1862647B007D0B1F /* cpArbiter.c in Sources */ = {isa = PBXBuildFile; fileRef = D2E65C201862647B007D0B1F /* cpArbiter.c */; };
@@ -167,6 +168,8 @@
 		CEB37C5718793BFF007F2157 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		CEB37C5918793C09007F2157 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		CEB37C5B18793C14007F2157 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		CEBD8EBF188ED0C00084A1EF /* GameFinishLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameFinishLayer.h; sourceTree = "<group>"; };
+		CEBD8EC0188ED0C00084A1EF /* GameFinishLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameFinishLayer.m; sourceTree = "<group>"; };
 		D2E65C1E1862647B007D0B1F /* chipmunk.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = chipmunk.c; path = "Source/libs/cocos2d-iphone/external/Chipmunk/src/chipmunk.c"; sourceTree = "<group>"; };
 		D2E65C1F1862647B007D0B1F /* CMakeLists.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = CMakeLists.txt; path = "Source/libs/cocos2d-iphone/external/Chipmunk/src/CMakeLists.txt"; sourceTree = "<group>"; };
 		D2E65C201862647B007D0B1F /* cpArbiter.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = cpArbiter.c; path = "Source/libs/cocos2d-iphone/external/Chipmunk/src/cpArbiter.c"; sourceTree = "<group>"; };
@@ -437,6 +440,8 @@
 				CEB37C4518793A6F007F2157 /* LevelLayer.m */,
 				CEB37C4618793A6F007F2157 /* MainScene.h */,
 				CEB37C4718793A6F007F2157 /* MainScene.m */,
+				CEBD8EBF188ED0C00084A1EF /* GameFinishLayer.h */,
+				CEBD8EC0188ED0C00084A1EF /* GameFinishLayer.m */,
 			);
 			name = scene;
 			path = Source/scene;
@@ -725,6 +730,7 @@
 				D2E65CA918626890007D0B1F /* vec4.c in Sources */,
 				D2E65C541862647B007D0B1F /* cpSpaceHash.c in Sources */,
 				D2E65C4E1862647B007D0B1F /* cpShape.c in Sources */,
+				CEBD8EC1188ED0C00084A1EF /* GameFinishLayer.m in Sources */,
 				D2E65C4C1862647B007D0B1F /* cpRatchetJoint.c in Sources */,
 				D2E65C4F1862647B007D0B1F /* cpSimpleMotor.c in Sources */,
 				D2E65CA518626890007D0B1F /* ray2.c in Sources */,
