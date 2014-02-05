@@ -43,6 +43,8 @@
 		CEB37C5A18793C09007F2157 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEB37C5918793C09007F2157 /* StoreKit.framework */; };
 		CEB37C5C18793C14007F2157 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEB37C5B18793C14007F2157 /* SystemConfiguration.framework */; };
 		CEBD8EC1188ED0C00084A1EF /* GameFinishLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = CEBD8EC0188ED0C00084A1EF /* GameFinishLayer.m */; };
+		CEFA9C15189E888E00FBA1FD /* GameDataHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = CEFA9C14189E888E00FBA1FD /* GameDataHandler.m */; };
+		CEFA9C1818A1DCCF00FBA1FD /* errorEffect.wav in Resources */ = {isa = PBXBuildFile; fileRef = CEFA9C1718A1DCCF00FBA1FD /* errorEffect.wav */; };
 		D2E65C3C1862647B007D0B1F /* chipmunk.c in Sources */ = {isa = PBXBuildFile; fileRef = D2E65C1E1862647B007D0B1F /* chipmunk.c */; };
 		D2E65C3D1862647B007D0B1F /* CMakeLists.txt in Resources */ = {isa = PBXBuildFile; fileRef = D2E65C1F1862647B007D0B1F /* CMakeLists.txt */; };
 		D2E65C3E1862647B007D0B1F /* cpArbiter.c in Sources */ = {isa = PBXBuildFile; fileRef = D2E65C201862647B007D0B1F /* cpArbiter.c */; };
@@ -170,6 +172,10 @@
 		CEB37C5B18793C14007F2157 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		CEBD8EBF188ED0C00084A1EF /* GameFinishLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameFinishLayer.h; sourceTree = "<group>"; };
 		CEBD8EC0188ED0C00084A1EF /* GameFinishLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameFinishLayer.m; sourceTree = "<group>"; };
+		CEFA9C13189E888E00FBA1FD /* GameDataHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GameDataHandler.h; path = Source/DataHandler/GameDataHandler.h; sourceTree = "<group>"; };
+		CEFA9C14189E888E00FBA1FD /* GameDataHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GameDataHandler.m; path = Source/DataHandler/GameDataHandler.m; sourceTree = "<group>"; };
+		CEFA9C1718A1DCCF00FBA1FD /* errorEffect.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = errorEffect.wav; sourceTree = "<group>"; };
+		CEFA9C1A18A1EDD200FBA1FD /* SoundDef.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SoundDef.h; path = Source/SoundDef/SoundDef.h; sourceTree = "<group>"; };
 		D2E65C1E1862647B007D0B1F /* chipmunk.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = chipmunk.c; path = "Source/libs/cocos2d-iphone/external/Chipmunk/src/chipmunk.c"; sourceTree = "<group>"; };
 		D2E65C1F1862647B007D0B1F /* CMakeLists.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = CMakeLists.txt; path = "Source/libs/cocos2d-iphone/external/Chipmunk/src/CMakeLists.txt"; sourceTree = "<group>"; };
 		D2E65C201862647B007D0B1F /* cpArbiter.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = cpArbiter.c; path = "Source/libs/cocos2d-iphone/external/Chipmunk/src/cpArbiter.c"; sourceTree = "<group>"; };
@@ -285,6 +291,8 @@
 		B737893C1807616C0076A88C /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				CEFA9C1918A1ED8700FBA1FD /* SoundDef */,
+				CEFA9C09189E851E00FBA1FD /* DataHandler */,
 				CEB37C5118793AE1007F2157 /* numberPuzzleArithmetic */,
 				CEB37C3218793A6F007F2157 /* admob */,
 				CEB37C3E18793A6F007F2157 /* Objects */,
@@ -367,6 +375,7 @@
 		B77F1B4617B978D7009739AE /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				CEFA9C1618A1DCCF00FBA1FD /* sound */,
 				CEB2BAF01882C96D003621D0 /* myRes.plist */,
 				CEB2BAF11882C96D003621D0 /* myRes.png */,
 				B73789911807667A0076A88C /* Icons */,
@@ -464,6 +473,32 @@
 			);
 			name = numberPuzzleArithmetic;
 			path = ../../../../study/arithmetic/numberPuzzleArithmetic;
+			sourceTree = "<group>";
+		};
+		CEFA9C09189E851E00FBA1FD /* DataHandler */ = {
+			isa = PBXGroup;
+			children = (
+				CEFA9C13189E888E00FBA1FD /* GameDataHandler.h */,
+				CEFA9C14189E888E00FBA1FD /* GameDataHandler.m */,
+			);
+			name = DataHandler;
+			sourceTree = "<group>";
+		};
+		CEFA9C1618A1DCCF00FBA1FD /* sound */ = {
+			isa = PBXGroup;
+			children = (
+				CEFA9C1718A1DCCF00FBA1FD /* errorEffect.wav */,
+			);
+			name = sound;
+			path = Source/Resources/sound;
+			sourceTree = SOURCE_ROOT;
+		};
+		CEFA9C1918A1ED8700FBA1FD /* SoundDef */ = {
+			isa = PBXGroup;
+			children = (
+				CEFA9C1A18A1EDD200FBA1FD /* SoundDef.h */,
+			);
+			name = SoundDef;
 			sourceTree = "<group>";
 		};
 		D2E65BDD1862643A007D0B1F /* libs */ = {
@@ -711,6 +746,7 @@
 				B7378975180762440076A88C /* Default-568h@2x.png in Resources */,
 				B737897A180762440076A88C /* Icon-Small-50.png in Resources */,
 				B7378979180762440076A88C /* Icon-72.png in Resources */,
+				CEFA9C1818A1DCCF00FBA1FD /* errorEffect.wav in Resources */,
 				D2E65C9C18626890007D0B1F /* ChangeLog in Resources */,
 				B737897D180762440076A88C /* Icon.png in Resources */,
 				B7378977180762440076A88C /* Default.png in Resources */,
@@ -733,6 +769,7 @@
 				CEBD8EC1188ED0C00084A1EF /* GameFinishLayer.m in Sources */,
 				D2E65C4C1862647B007D0B1F /* cpRatchetJoint.c in Sources */,
 				D2E65C4F1862647B007D0B1F /* cpSimpleMotor.c in Sources */,
+				CEFA9C15189E888E00FBA1FD /* GameDataHandler.m in Sources */,
 				D2E65CA518626890007D0B1F /* ray2.c in Sources */,
 				D2E65C3F1862647B007D0B1F /* cpArray.c in Sources */,
 				D2E65CA718626890007D0B1F /* vec2.c in Sources */,
@@ -866,6 +903,7 @@
 					"Source/libs/cocos2d-iphone/external/Chipmunk/objectivec/include",
 					"Source/libs/cocos2d-iphone/external/Chipmunk/include",
 					"\"Source/libs/cocos2d-iphone/cocos2d-ui\"/**",
+					"Source/libs/cocos2d-iphone/external/ObjectAL/**",
 				);
 				INFOPLIST_FILE = Source/Resources/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
@@ -901,6 +939,7 @@
 					"Source/libs/cocos2d-iphone/external/Chipmunk/objectivec/include",
 					"Source/libs/cocos2d-iphone/external/Chipmunk/include",
 					"\"Source/libs/cocos2d-iphone/cocos2d-ui\"/**",
+					"Source/libs/cocos2d-iphone/external/ObjectAL/**",
 				);
 				INFOPLIST_FILE = Source/Resources/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;

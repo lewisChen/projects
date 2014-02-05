@@ -9,7 +9,7 @@
 #ifndef NumberPuzzle_FontRelateDef_h
 #define NumberPuzzle_FontRelateDef_h
 
-#define FontNameNormal (@"Arial")
-#define FontSizeNormal (24)
+#define kFontNameNormal (@"Arial")
+#define kFontSizeNormal (24)
 
 #endif

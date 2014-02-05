@@ -38,7 +38,7 @@
         //[self addChild:itemBackground z:1 tag:kBackgroundTag];
         
         
-        m_lable = [CCLabelTTF labelWithString:@"0" fontName:FontNameNormal fontSize:FontSizeNormal];
+        m_lable = [CCLabelTTF labelWithString:@"0" fontName:kFontNameNormal fontSize:kFontSizeNormal];
         m_labelNmber = m_lable.string.integerValue;
         m_lable.fontColor = [CCColor colorWithCcColor3b:ccBLACK];
         //m_lable.color = ccBLACK;

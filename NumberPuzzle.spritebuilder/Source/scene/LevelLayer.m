@@ -11,6 +11,9 @@
 #include "CCBReader.h"
 #include "../UiConstDef/FontRelateDef.h"
 #include "NumberArithmetic.h"
+#import "GameDataHandler.h"
+#include "../libs/cocos2d-iphone/external/ObjectAL/OALSimpleAudio.h"
+#import "../SoundDef/SoundDef.h"
 
 #define kMaxCountSectionItem (9)
 #define MAX_ITEM_COUNT_X (9)
@@ -18,17 +21,28 @@
 #define FIRST_BLOCK_INDEX (3)//first block edge
 #define SECOND_BLOCK_INDEX (6)//second blog edge
 #define kBtnPositionOffset (5)
+#define kZOrderTop (100)
 
 
 @implementation LevelLayer
 
 - (void) didLoadFromCCB
 {
+    
     m_btnArray = [NSMutableArray arrayWithObjects:m_btn1,m_btn2,m_btn3,m_btn4,m_btn5,m_btn6,m_btn7,m_btn8,m_btn9, nil];
+    
+    m_errorTips = [CCLabelTTF labelWithString:@"Miss" fontName:kFontNameNormal fontSize:kFontSizeNormal];
+    m_errorTips.fontColor = [CCColor colorWithCcColor3b:ccRED];
+    m_errorTips.zOrder = kZOrderTop;
+    //m_errorTips.position = ccp([CCDirector sharedDirector].viewSize.width/2, [CCDirector sharedDirector].viewSize.height/2);
+    [self addChild:m_errorTips];
+    
     self.currentSelectIndexString = @"-1";
+    
     [self initLayer];
     [self setLevel:1];//create level;
     [self setEnabled:YES];//enable touch event
+    [self initSoundEgine];
     //[[[CCDirector sharedDirector] touchDispatcher] addTargetedDelegate:self priority:0 swallowsTouches:NO];
 }
 
@@ -46,7 +60,7 @@
             for (unsigned char indexY = 0; indexY<MAX_ITEM_COUNT_Y; indexY++)
             {
                 NumberItem *numberItem = [NumberItem node];
-                [numberItem setNumberLabel:[CCLabelTTF labelWithString:(NSString*)[array objectAtIndex:(indexX*MAX_ITEM_COUNT_X+indexY)] fontName:FontNameNormal fontSize:FontSizeNormal]];
+                [numberItem setNumberLabel:[CCLabelTTF labelWithString:(NSString*)[array objectAtIndex:(indexX*MAX_ITEM_COUNT_X+indexY)] fontName:kFontNameNormal fontSize:kFontSizeNormal]];
                 numberItem.anchorPoint = ccp(0.5, 0.5);
                 
                 //determind x offset
@@ -224,6 +238,22 @@
             CCAction *action = [CCActionSequence actionWithArray:actionsArray];
             [btn runAction:action];
         }
+        else
+        {
+            //error count increase
+            [[OALSimpleAudio sharedInstance] playEffect:kEffectError];
+            CGPoint tipsStartPos = ccp([CCDirector sharedDirector].viewSize.width/2, [CCDirector sharedDirector].viewSize.height/2);
+            m_errorTips.position = tipsStartPos;
+            NSArray *errorActionsArray = [NSArray arrayWithObjects:
+                                          [CCActionShow action],
+                                          [CCActionMoveTo actionWithDuration:1.0 position:ccp(tipsStartPos.x, tipsStartPos.y+40)],
+                                          [CCActionMoveTo actionWithDuration:0.0 position:tipsStartPos],
+                                          [CCActionHide action],
+                                          nil];
+            CCAction *errorAction = [CCActionSequence actionWithArray:errorActionsArray];
+            [m_errorTips runAction: errorAction];
+            
+        }
     }
 }
 
@@ -386,8 +416,11 @@
         [finishLayer runAction:moveAction];
         //CCLOG(@"You win");
     }
+}
 
-    
+-(void)initSoundEgine
+{
+    [[OALSimpleAudio sharedInstance] preloadEffect:kEffectError];
 }
 
 @end

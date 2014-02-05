@@ -21,6 +21,8 @@
     CCButton *m_btn8;
     CCButton *m_btn9;
     NSMutableArray *m_btnArray;
+    CCLabelTTF *m_errorTips;
+
 }
 
 @property(readwrite)NSString* currentSelectIndexString;
@@ -31,6 +33,7 @@
 - (BOOL)isSectionFinish:(NSUInteger)xIndex :(NSUInteger)yIndex;
 - (void)buttonVisblaHandle:(NSString*)itemString;
 - (void)levelFinishHandle;
+- (void)initSoundEgine;
 
 - (void)touchBegan:(UITouch *)touch withEvent:(UIEvent *)event;
 - (void)touchEnded:(UITouch *)touch withEvent:(UIEvent *)event;
