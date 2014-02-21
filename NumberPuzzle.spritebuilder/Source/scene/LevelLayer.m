@@ -23,13 +23,18 @@
 #define kBtnPositionOffset (5)
 #define kZOrderTop (100)
 
-
 @implementation LevelLayer
 
 - (void) didLoadFromCCB
 {
+    GameDataHandler *dataHandler = [GameDataHandler sharedGameDataHandler];
     
+    CCNode *node = NULL;
     m_btnArray = [NSMutableArray arrayWithObjects:m_btn1,m_btn2,m_btn3,m_btn4,m_btn5,m_btn6,m_btn7,m_btn8,m_btn9, nil];
+    for (node in m_btnArray)
+    {
+        node.zOrder = 2;
+    }
     
     m_errorTips = [CCLabelTTF labelWithString:@"Miss" fontName:kFontNameNormal fontSize:kFontSizeNormal];
     m_errorTips.fontColor = [CCColor colorWithCcColor3b:ccRED];
@@ -40,8 +45,10 @@
     self.currentSelectIndexString = @"-1";
     
     [self initLayer];
-    [self setLevel:1];//create level;
-    [self setEnabled:YES];//enable touch event
+    [self setGameLevel:dataHandler.level];//create level;
+    [self setUserInteractionEnabled:YES];
+    [self setMultipleTouchEnabled:YES];
+    //[self setEnabled:YES];//enable touch event
     [self initSoundEgine];
     //[[[CCDirector sharedDirector] touchDispatcher] addTargetedDelegate:self priority:0 swallowsTouches:NO];
 }
@@ -95,7 +102,7 @@
                 
                 indexString = [NSString stringWithFormat:@"%d",indexX*MAX_ITEM_COUNT_X+indexY];
                 numberItem.position = ccp(numberItem.contentSize.width+xOffset, (self.contentSize.height*3/4)+ yOffset);
-                [self addChild:numberItem z:1 name:indexString];
+                [self addChild:numberItem z:0 name:indexString];
                 numberItem.indexX = indexX;
                 numberItem.indexY = indexY;
                 numberItem.currentIndexString = indexString;
@@ -106,7 +113,7 @@
     //return self;
 }
 
--(void)setLevel:(NSUInteger)level
+-(void)setGameLevel:(NSUInteger)level
 {
     BOOL isShow = NO;
     NSInteger randomNumber = 0;
@@ -117,8 +124,8 @@
     NumberItem *numberItem = NULL;
     for (node in childrenArray)
     {
-        randomNumber = random()%2;
-        isShow = randomNumber>0?YES:NO;
+        randomNumber = random()%3;
+        isShow = randomNumber>level?YES:NO;
         if ([node isKindOfClass:[NumberItem class]])
         {
             numberItem = (NumberItem*)node;
@@ -210,6 +217,7 @@
 
 -(void)buttonReturn:(id)sender
 {
+    [[OALSimpleAudio sharedInstance] playEffect:kEffectClickButton];
     CCScene *scene = [CCBReader loadAsScene:@"MainScene.ccbi"];
     [[CCDirector sharedDirector] replaceScene:scene];
 

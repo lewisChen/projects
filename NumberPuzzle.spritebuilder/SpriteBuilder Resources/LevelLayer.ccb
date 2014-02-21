@@ -54,7 +54,7 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>0.0</real>
+							<real>-2</real>
 							<real>0.0</real>
 							<integer>0</integer>
 							<integer>0</integer>
@@ -105,9 +105,9 @@
 						<string>Color3</string>
 						<key>value</key>
 						<array>
-							<real>0.89789384603500366</real>
-							<real>0.7837374210357666</real>
-							<real>0.71847361326217651</real>
+							<real>0.57623064517974854</real>
+							<real>0.47436505556106567</real>
+							<real>0.32575643062591553</real>
 							<real>1</real>
 						</array>
 					</dict>

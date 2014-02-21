@@ -10,5 +10,6 @@
 #define NumberPuzzle_SoundDef_h
 
 #define kEffectError @"errorEffect.wav"
+#define kEffectClickButton @"buttonClick.mp3"
 
 #endif

@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
 
-@interface LevelLayer:CCControl
+@interface LevelLayer:CCScene
 {
     CCButton *m_btn1;
     CCButton *m_btn2;
@@ -28,7 +28,7 @@
 @property(readwrite)NSString* currentSelectIndexString;
 
 - (void)initLayer;
-- (void)setLevel:(NSUInteger)level;
+- (void)setGameLevel:(NSUInteger)level;
 - (void)selectRightFunction;
 - (BOOL)isSectionFinish:(NSUInteger)xIndex :(NSUInteger)yIndex;
 - (void)buttonVisblaHandle:(NSString*)itemString;
