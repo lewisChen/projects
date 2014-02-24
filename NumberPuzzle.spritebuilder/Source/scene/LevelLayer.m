@@ -23,6 +23,7 @@
 #define kBtnPositionOffset (5)
 #define kZOrderTop (100)
 
+
 @implementation LevelLayer
 
 - (void) didLoadFromCCB
@@ -68,7 +69,7 @@
             for (unsigned char indexY = 0; indexY<MAX_ITEM_COUNT_Y; indexY++)
             {
                 NumberItem *numberItem = [NumberItem node];
-                [numberItem setNumberLabel:[CCLabelTTF labelWithString:(NSString*)[array objectAtIndex:(indexX*MAX_ITEM_COUNT_X+indexY)] fontName:kFontNameNormal fontSize:kFontSizeNormal]];
+//                [numberItem setNumberLabel:[CCLabelTTF labelWithString:(NSString*)[array objectAtIndex:(indexX*MAX_ITEM_COUNT_X+indexY)] fontName:kFontNameNormal fontSize:kFontSizeNormal]];
                 numberItem.anchorPoint = ccp(0.5, 0.5);
                 
                 NSInteger type = [(NSString*)[array objectAtIndex:(indexX*MAX_ITEM_COUNT_X+indexY)] integerValue];
@@ -155,7 +156,8 @@
     NSArray *childrenArray = [self children];
     CCNode *node = NULL;
     NumberItem *numberItem = NULL;
-    NSString *currentTouchNumberString = @"";
+   // NSString *currentTouchNumberString = @"";
+    enum EItemType currentTouchItemTpye = eItemType0;
     BOOL isHightLightSameNumber = NO;
     
     for (node in childrenArray)
@@ -171,9 +173,9 @@
                     self.currentSelectIndexString = numberItem.currentIndexString;
                     break;
                 }
-                currentTouchNumberString = [numberItem numberLabel].string;
+                currentTouchItemTpye = [numberItem getItemType];
+                //currentTouchNumberString = [numberItem numberLabel].string;
                 break;
-                //[numberItem setNumberLabel:[CCLabelTTF labelWithString:@"1" fontName:FontNameNormal fontSize:FontSizeNormal]];
             }
         }
 
@@ -188,7 +190,7 @@
             if ([node isKindOfClass:[NumberItem class]])
             {
                 numberItem = (NumberItem*)node;
-                if ((currentTouchNumberString == numberItem.numberLabel.string)
+                if ((currentTouchItemTpye == [numberItem getItemType])
                     &&(numberItem.numberLabelVisable))
                 {
                     //[numberItem runAction:rotateAction];
@@ -243,7 +245,7 @@
         CGPoint toPosition = currentNumberItem.position;
         CGPoint currentPos = btn.position;
         
-        if (currentNumberItem.labelNumber == btnTitle.intValue)
+        if (currentNumberItem.getItemType == (enum EItemType)btnTitle.intValue)
         {
             CCActionCallFunc* callFunc = [CCActionCallFunc actionWithTarget:self selector:@selector(selectRightFunction)];
 
@@ -282,7 +284,7 @@
     [currentNumberItem setItemSelect:NO];
     
     //hide button if kinds of item reach 9
-    [self buttonVisblaHandle:currentNumberItem.numberLabel.string];
+    [self buttonVisblaHandle:currentNumberItem.getItemType];
     //run effect if one section finish
     [self isSectionFinish:currentNumberItem.indexX :currentNumberItem.indexY];
     //reset current select
@@ -291,7 +293,7 @@
     [self levelFinishHandle];
 }
 
--(void)buttonVisblaHandle:(NSString *)itemString
+-(void)buttonVisblaHandle:(enum EItemType)itemTpye//(NSString *)itemString
 {
     NSArray *childrenArray = [self children];
     CCNode *node = NULL;
@@ -303,7 +305,7 @@
         if ([node isKindOfClass:[NumberItem class]])
         {
             numberItem = (NumberItem*)node;
-            if ((numberItem.numberLabelVisable)&&(numberItem.labelNumber == itemString.intValue))
+            if ((numberItem.numberLabelVisable)&&(numberItem.getItemType == itemTpye))//itemString.intValue))
             {
                 finishCount++;
             }
@@ -311,7 +313,7 @@
     }
     if (kMaxCountSectionItem==finishCount)
     {
-        CCButton *btn = [m_btnArray objectAtIndex:itemString.intValue-1];
+        CCButton *btn = [m_btnArray objectAtIndex:((NSInteger)itemTpye)-1];//itemString.intValue-1];
         btn.visible = NO;
     }
     

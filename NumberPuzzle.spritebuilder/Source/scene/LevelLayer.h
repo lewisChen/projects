@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
+#import "../Objects/objectDef/ObjectDef.h"
 
 @interface LevelLayer:CCScene
 {
@@ -31,7 +32,7 @@
 - (void)setGameLevel:(NSUInteger)level;
 - (void)selectRightFunction;
 - (BOOL)isSectionFinish:(NSUInteger)xIndex :(NSUInteger)yIndex;
-- (void)buttonVisblaHandle:(NSString*)itemString;
+- (void)buttonVisblaHandle:(enum EItemType)itemTpye;//(NSString*)itemString;
 - (void)levelFinishHandle;
 - (void)initSoundEgine;
 

@@ -24,10 +24,8 @@
 
 @implementation NumberItem
 
-//@synthesize numberLabel = m_lable;
 @synthesize indexX = m_indexX;
 @synthesize indexY = m_indexY;
-@synthesize labelNumber =m_labelNmber;
 
 inline static NSString* getIcon(enum EItemType type)
 {
@@ -90,32 +88,11 @@ inline static NSString* getIcon(enum EItemType type)
         [selectEffect setContentSize:CGSizeMake(34,34)];
         selectEffect.position = ccp(self.contentSize.width/2, self.contentSize.height/2);
         [self addChild:selectEffect z:kEffectZorder name:kNameEffect];
-
-        
-        m_lable = [CCLabelTTF labelWithString:@"0" fontName:kFontNameNormal fontSize:kFontSizeNormal];
-        m_labelNmber = m_lable.string.integerValue;
-        m_lable.fontColor = [CCColor colorWithCcColor3b:ccBLACK];
-        //m_lable.color = ccBLACK;
-        m_lable.anchorPoint = ccp(0.5, 0.5);
-        m_lable.position = ccp(itemBackground.contentSize.width/2, itemBackground.contentSize.height/2);
-        [itemBackground addChild:m_lable];
-        
         
     }
     return self;
 }
 
--(void)setNumberLabel:(CCLabelTTF *)numberLabel
-{
-    m_lable.string = numberLabel.string;
-    m_labelNmber = numberLabel.string.integerValue;
-    
-}
-
--(CCLabelTTF*)numberLabel
-{
-    return m_lable;
-}
 
 -(void)setItemColor:(ccColor3B)color
 {
@@ -135,7 +112,7 @@ inline static NSString* getIcon(enum EItemType type)
 
 -(void)setNumberLabelVisable:(BOOL)isVisable
 {
-    m_lable.visible = isVisable;
+    //m_lable.visible = isVisable;
     _numberVisiable = isVisable;
     if (isVisable)
     {

@@ -19,18 +19,14 @@
 
 @interface NumberItem : CCSprite
 {
-    CCLabelTTF *m_lable;
     NSUInteger m_indexX;
     NSUInteger m_indexY;
-    NSUInteger m_labelNmber;
     enum EItemType m_type;
 }
 
-@property (readwrite,assign) CCLabelTTF* numberLabel;
 @property (readwrite) NSUInteger indexX;
 @property (readwrite) NSUInteger indexY;
 @property (readwrite) NSString* currentIndexString;
-@property (readonly) NSUInteger labelNumber;
 
 -(void)setItemColor:(ccColor3B) color;
 -(void)setItemSelect:(BOOL)value;
