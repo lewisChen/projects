@@ -40,6 +40,12 @@ static GameDataHandler* _sharedGameDataHandler = nil;
     return nil;
 }
 
+-(void)initResource
+{
+    CCSpriteFrameCache *spriteCache = [CCSpriteFrameCache sharedSpriteFrameCache];
+    [spriteCache addSpriteFramesWithFile:@"numberItemTex.plist" textureFilename:@"numberItemTex.png"];
+}
+
 -(void)loadData
 {
     

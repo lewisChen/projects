@@ -35,7 +35,7 @@
 	<key>publishAudioQuality_android</key>
 	<integer>1</integer>
 	<key>publishAudioQuality_ios</key>
-	<integer>1</integer>
+	<integer>8</integer>
 	<key>publishDirectory</key>
 	<string>Source/Resources/Published-iOS</string>
 	<key>publishDirectoryAndroid</key>
@@ -63,7 +63,7 @@
 	<key>publishResolution_android_tablethd</key>
 	<false/>
 	<key>publishResolution_ios_phone</key>
-	<false/>
+	<true/>
 	<key>publishResolution_ios_phonehd</key>
 	<true/>
 	<key>publishResolution_ios_tablet</key>
@@ -73,7 +73,7 @@
 	<key>publishToZipFile</key>
 	<false/>
 	<key>resourceAutoScaleFactor</key>
-	<integer>4</integer>
+	<integer>2</integer>
 	<key>resourcePaths</key>
 	<array>
 		<dict>
@@ -82,10 +82,60 @@
 		</dict>
 	</array>
 	<key>resourceProperties</key>
-	<dict/>
+	<dict>
+		<key>NumberItem</key>
+		<dict/>
+		<key>NumberItem/eight.png</key>
+		<dict>
+			<key>scaleFrom</key>
+			<integer>1</integer>
+		</dict>
+		<key>NumberItem/five.png</key>
+		<dict>
+			<key>scaleFrom</key>
+			<integer>1</integer>
+		</dict>
+		<key>NumberItem/four.png</key>
+		<dict>
+			<key>scaleFrom</key>
+			<integer>1</integer>
+		</dict>
+		<key>NumberItem/nine.png</key>
+		<dict>
+			<key>scaleFrom</key>
+			<integer>1</integer>
+		</dict>
+		<key>NumberItem/one.png</key>
+		<dict>
+			<key>scaleFrom</key>
+			<integer>1</integer>
+		</dict>
+		<key>NumberItem/seven.png</key>
+		<dict>
+			<key>isDirty</key>
+			<true/>
+			<key>scaleFrom</key>
+			<integer>1</integer>
+		</dict>
+		<key>NumberItem/six.png</key>
+		<dict>
+			<key>scaleFrom</key>
+			<integer>1</integer>
+		</dict>
+		<key>NumberItem/three.png</key>
+		<dict>
+			<key>scaleFrom</key>
+			<integer>1</integer>
+		</dict>
+		<key>NumberItem/two.png</key>
+		<dict>
+			<key>scaleFrom</key>
+			<integer>1</integer>
+		</dict>
+	</dict>
 	<key>versionStr</key>
-	<string>Version: 1.0.0.beta.0
-GitHub: 30d09beb81
+	<string>Version: 1.0.3
+GitHub: 9026dcdd50
 </string>
 </dict>
 </plist>

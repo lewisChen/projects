@@ -41,6 +41,8 @@
 		CEBD8EC1188ED0C00084A1EF /* GameFinishLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = CEBD8EC0188ED0C00084A1EF /* GameFinishLayer.m */; };
 		CEFA9C15189E888E00FBA1FD /* GameDataHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = CEFA9C14189E888E00FBA1FD /* GameDataHandler.m */; };
 		CEFA9C1818A1DCCF00FBA1FD /* errorEffect.wav in Resources */ = {isa = PBXBuildFile; fileRef = CEFA9C1718A1DCCF00FBA1FD /* errorEffect.wav */; };
+		CEFBB97818B7771D00090657 /* numberItemTex.plist in Resources */ = {isa = PBXBuildFile; fileRef = CEFBB97618B7771D00090657 /* numberItemTex.plist */; };
+		CEFBB97918B7771D00090657 /* numberItemTex.png in Resources */ = {isa = PBXBuildFile; fileRef = CEFBB97718B7771D00090657 /* numberItemTex.png */; };
 		D2E65C3C1862647B007D0B1F /* chipmunk.c in Sources */ = {isa = PBXBuildFile; fileRef = D2E65C1E1862647B007D0B1F /* chipmunk.c */; };
 		D2E65C3D1862647B007D0B1F /* CMakeLists.txt in Resources */ = {isa = PBXBuildFile; fileRef = D2E65C1F1862647B007D0B1F /* CMakeLists.txt */; };
 		D2E65C3E1862647B007D0B1F /* cpArbiter.c in Sources */ = {isa = PBXBuildFile; fileRef = D2E65C201862647B007D0B1F /* cpArbiter.c */; };
@@ -168,6 +170,8 @@
 		CEFA9C14189E888E00FBA1FD /* GameDataHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GameDataHandler.m; path = Source/DataHandler/GameDataHandler.m; sourceTree = "<group>"; };
 		CEFA9C1718A1DCCF00FBA1FD /* errorEffect.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = errorEffect.wav; sourceTree = "<group>"; };
 		CEFA9C1A18A1EDD200FBA1FD /* SoundDef.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SoundDef.h; path = Source/SoundDef/SoundDef.h; sourceTree = "<group>"; };
+		CEFBB97618B7771D00090657 /* numberItemTex.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = numberItemTex.plist; path = Source/Resources/numberItemTex.plist; sourceTree = SOURCE_ROOT; };
+		CEFBB97718B7771D00090657 /* numberItemTex.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = numberItemTex.png; path = Source/Resources/numberItemTex.png; sourceTree = SOURCE_ROOT; };
 		D2E65C1E1862647B007D0B1F /* chipmunk.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = chipmunk.c; path = "Source/libs/cocos2d-iphone/external/Chipmunk/src/chipmunk.c"; sourceTree = "<group>"; };
 		D2E65C1F1862647B007D0B1F /* CMakeLists.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = CMakeLists.txt; path = "Source/libs/cocos2d-iphone/external/Chipmunk/src/CMakeLists.txt"; sourceTree = "<group>"; };
 		D2E65C201862647B007D0B1F /* cpArbiter.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = cpArbiter.c; path = "Source/libs/cocos2d-iphone/external/Chipmunk/src/cpArbiter.c"; sourceTree = "<group>"; };
@@ -361,6 +365,8 @@
 		B77F1B4617B978D7009739AE /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				CEFBB97618B7771D00090657 /* numberItemTex.plist */,
+				CEFBB97718B7771D00090657 /* numberItemTex.png */,
 				CE40C57E18B4C07500BF3820 /* Images.xcassets */,
 				CEFA9C1618A1DCCF00FBA1FD /* sound */,
 				CEB2BAF01882C96D003621D0 /* myRes.plist */,
@@ -729,11 +735,13 @@
 				CE40C57F18B4C07500BF3820 /* Images.xcassets in Resources */,
 				CEB2BAF21882C96D003621D0 /* myRes.plist in Resources */,
 				D2E65C9D18626890007D0B1F /* CMakeLists.txt in Resources */,
+				CEFBB97818B7771D00090657 /* numberItemTex.plist in Resources */,
 				B7378976180762440076A88C /* Default-Landscape~ipad.png in Resources */,
 				B7378975180762440076A88C /* Default-568h@2x.png in Resources */,
 				CEFA9C1818A1DCCF00FBA1FD /* errorEffect.wav in Resources */,
 				D2E65C9C18626890007D0B1F /* ChangeLog in Resources */,
 				B7378977180762440076A88C /* Default.png in Resources */,
+				CEFBB97918B7771D00090657 /* numberItemTex.png in Resources */,
 				CEB70A9218B3860100B631B2 /* buttonClick.mp3 in Resources */,
 				D2E65C3D1862647B007D0B1F /* CMakeLists.txt in Resources */,
 			);

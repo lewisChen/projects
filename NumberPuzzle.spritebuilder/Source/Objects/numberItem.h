@@ -8,7 +8,9 @@
 
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
-#import "../Objects/objectDef/ObjectDef.h"
+//#import "../Objects/objectDef/ObjectDef.h"
+#import "objectDef/ObjectDef.h"
+
 
 #define kItemwidth (32.0)
 #define kItemHight (32.0)
@@ -21,6 +23,7 @@
     NSUInteger m_indexX;
     NSUInteger m_indexY;
     NSUInteger m_labelNmber;
+    enum EItemType m_type;
 }
 
 @property (readwrite,assign) CCLabelTTF* numberLabel;
@@ -30,8 +33,11 @@
 @property (readonly) NSUInteger labelNumber;
 
 -(void)setItemColor:(ccColor3B) color;
+-(void)setItemSelect:(BOOL)value;
 -(void)setNumberLabelVisable:(BOOL)isVisable;
 -(BOOL)numberLabelVisable;
+-(void)setItemType:(enum EItemType) type;
+-(enum EItemType)getItemType;
 -(id)init;
 
 @end

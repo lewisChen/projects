@@ -172,7 +172,7 @@ FindPOTScale(CGFloat size, CGFloat fixedSize)
 #endif
 	
 	// set FPS at 60
-	NSTimeInterval animationInterval = [(config[CCSetupAnimationInterval] ?: @(1.0/60)) doubleValue];
+	NSTimeInterval animationInterval = [(config[CCSetupAnimationInterval] ?: @(1.0/20)) doubleValue];
 	[director setAnimationInterval:animationInterval];
 	
 	// attach the openglView to the director

@@ -28,6 +28,7 @@
 - (void) didLoadFromCCB
 {
     GameDataHandler *dataHandler = [GameDataHandler sharedGameDataHandler];
+    [dataHandler initResource];
     
     CCNode *node = NULL;
     m_btnArray = [NSMutableArray arrayWithObjects:m_btn1,m_btn2,m_btn3,m_btn4,m_btn5,m_btn6,m_btn7,m_btn8,m_btn9, nil];
@@ -70,6 +71,9 @@
                 [numberItem setNumberLabel:[CCLabelTTF labelWithString:(NSString*)[array objectAtIndex:(indexX*MAX_ITEM_COUNT_X+indexY)] fontName:kFontNameNormal fontSize:kFontSizeNormal]];
                 numberItem.anchorPoint = ccp(0.5, 0.5);
                 
+                NSInteger type = [(NSString*)[array objectAtIndex:(indexX*MAX_ITEM_COUNT_X+indexY)] integerValue];
+                [numberItem setItemType:type];
+                
                 //determind x offset
                 if (indexX<FIRST_BLOCK_INDEX)
                 {
@@ -77,11 +81,11 @@
                 }
                 else if (FIRST_BLOCK_INDEX<=indexX && indexX<SECOND_BLOCK_INDEX)
                 {
-                    xOffset = numberItem.contentSize.width*indexX+2;
+                    xOffset = numberItem.contentSize.width*indexX+3;
                 }
                 else if (indexX>=SECOND_BLOCK_INDEX)
                 {
-                    xOffset = numberItem.contentSize.width*indexX+4;
+                    xOffset = numberItem.contentSize.width*indexX+6;
                 }
                 
                 //determind y offset
@@ -91,12 +95,12 @@
                 }
                 else if (FIRST_BLOCK_INDEX<=indexY && indexY<SECOND_BLOCK_INDEX)
                 {
-                    yOffset = -numberItem.contentSize.height*indexY-2;
+                    yOffset = -numberItem.contentSize.height*indexY-3;
                     
                 }
                 else if (indexY>=SECOND_BLOCK_INDEX)
                 {
-                    yOffset = -numberItem.contentSize.height*indexY-4;
+                    yOffset = -numberItem.contentSize.height*indexY-6;
                 }
                 
                 
@@ -188,12 +192,14 @@
                     &&(numberItem.numberLabelVisable))
                 {
                     //[numberItem runAction:rotateAction];
-                    [numberItem setItemColor:ccGRAY];
+                    //[numberItem setItemColor:ccGRAY];
+                    [numberItem setItemSelect:YES];
                 }
                 
                 else
                 {
-                    [numberItem setItemColor:myItemColor];
+                    //[numberItem setItemColor:myItemColor];
+                    [numberItem setItemSelect:NO];
                 }
             }
         }
@@ -205,11 +211,14 @@
             if ([node isKindOfClass:[NumberItem class]])
             {
                 numberItem = (NumberItem*)node;
-                [numberItem setItemColor:myItemColor];
+                //[numberItem setItemColor:myItemColor];
+                [numberItem setItemSelect:NO];
+                
             }
         }
         numberItem = (NumberItem*)[self getChildByName:self.currentSelectIndexString recursively:NO];
-        [numberItem setItemColor:ccGRAY];
+        //[numberItem setItemColor:ccGRAY];
+        [numberItem setItemSelect:YES];
 
     }
 }
@@ -269,7 +278,8 @@
 {
     NumberItem *currentNumberItem = (NumberItem*)[self getChildByName:self.currentSelectIndexString recursively:NO];
     [currentNumberItem setNumberLabelVisable:YES];
-    [currentNumberItem setItemColor:myItemColor];
+    //[currentNumberItem setItemColor:myItemColor];
+    [currentNumberItem setItemSelect:NO];
     
     //hide button if kinds of item reach 9
     [self buttonVisblaHandle:currentNumberItem.numberLabel.string];

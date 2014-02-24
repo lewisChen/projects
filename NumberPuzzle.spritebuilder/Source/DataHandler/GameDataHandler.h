@@ -23,5 +23,6 @@
 +(id)alloc;
 -(void)saveData;
 -(void)loadData;
+-(void)initResource;
 
 @end
