@@ -12,17 +12,20 @@
 {
     NSInteger m_level;
     NSInteger m_errorCount;
-    Float32 m_useTime;
+    double m_useTime;
+    NSInteger m_starCount;
 }
 
 @property(nonatomic,readwrite) NSInteger level;
 @property(nonatomic,readwrite) NSInteger errorCount;
-@property(nonatomic,readwrite) Float32 useTime;
+@property(nonatomic,readwrite) double useTime;
+@property(nonatomic,readwrite) NSInteger starCount;
 
 +(GameDataHandler*)sharedGameDataHandler;
 +(id)alloc;
 -(void)saveData;
 -(void)loadData;
 -(void)initResource;
+-(NSString*)getUseTimeString;
 
 @end

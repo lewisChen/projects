@@ -25,6 +25,7 @@
 		B77F1B4017B978D7009739AE /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B77F1B3F17B978D7009739AE /* CoreGraphics.framework */; };
 		B77F1B4217B978D7009739AE /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B77F1B4117B978D7009739AE /* CoreText.framework */; };
 		CE40C57F18B4C07500BF3820 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE40C57E18B4C07500BF3820 /* Images.xcassets */; };
+		CEA09C0418BDE2DF00A04383 /* starSound.wav in Resources */ = {isa = PBXBuildFile; fileRef = CEA09C0318BDE2DF00A04383 /* starSound.wav */; };
 		CEB2BAF21882C96D003621D0 /* myRes.plist in Resources */ = {isa = PBXBuildFile; fileRef = CEB2BAF01882C96D003621D0 /* myRes.plist */; };
 		CEB2BAF31882C96D003621D0 /* myRes.png in Resources */ = {isa = PBXBuildFile; fileRef = CEB2BAF11882C96D003621D0 /* myRes.png */; };
 		CEB37C4A18793A6F007F2157 /* libGoogleAdMobAds.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CEB37C3C18793A6F007F2157 /* libGoogleAdMobAds.a */; };
@@ -136,6 +137,7 @@
 		B77F1B4117B978D7009739AE /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
 		B7B3713D180358F1007369CC /* libObjectiveChipmunk.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libObjectiveChipmunk.a; path = "../libs/cocos2d-iphone/external/Chipmunk/xcode/build/Debug-iphoneos/libObjectiveChipmunk.a"; sourceTree = "<group>"; };
 		CE40C57E18B4C07500BF3820 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = NumberPuzzle/Images.xcassets; sourceTree = SOURCE_ROOT; };
+		CEA09C0318BDE2DF00A04383 /* starSound.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = starSound.wav; sourceTree = "<group>"; };
 		CEB2BAF01882C96D003621D0 /* myRes.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = myRes.plist; path = Source/Resources/myRes.plist; sourceTree = SOURCE_ROOT; };
 		CEB2BAF11882C96D003621D0 /* myRes.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = myRes.png; path = Source/Resources/myRes.png; sourceTree = SOURCE_ROOT; };
 		CEB37C3318793A6F007F2157 /* GADAdMobExtras.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADAdMobExtras.h; sourceTree = "<group>"; };
@@ -480,6 +482,7 @@
 		CEFA9C1618A1DCCF00FBA1FD /* sound */ = {
 			isa = PBXGroup;
 			children = (
+				CEA09C0318BDE2DF00A04383 /* starSound.wav */,
 				CEB70A9118B3860100B631B2 /* buttonClick.mp3 */,
 				CEFA9C1718A1DCCF00FBA1FD /* errorEffect.wav */,
 			);
@@ -736,6 +739,7 @@
 				CEB2BAF21882C96D003621D0 /* myRes.plist in Resources */,
 				D2E65C9D18626890007D0B1F /* CMakeLists.txt in Resources */,
 				CEFBB97818B7771D00090657 /* numberItemTex.plist in Resources */,
+				CEA09C0418BDE2DF00A04383 /* starSound.wav in Resources */,
 				B7378976180762440076A88C /* Default-Landscape~ipad.png in Resources */,
 				B7378975180762440076A88C /* Default-568h@2x.png in Resources */,
 				CEFA9C1818A1DCCF00FBA1FD /* errorEffect.wav in Resources */,
@@ -913,7 +917,7 @@
 				);
 				PRODUCT_NAME = NumberPuzzle;
 				PROVISIONING_PROFILE = "";
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -951,7 +955,7 @@
 				);
 				PRODUCT_NAME = NumberPuzzle;
 				PROVISIONING_PROFILE = "";
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;
 			};

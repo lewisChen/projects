@@ -8,11 +8,16 @@
 
 #import "GameDataHandler.h"
 
+@interface GameDataHandler ()
+@property double startTime;
+@end
+
 @implementation GameDataHandler
 
 @synthesize level = m_level;
 @synthesize errorCount = m_errorCount;
 @synthesize useTime = m_useTime;
+@synthesize starCount = m_starCount;
 
 static GameDataHandler* _sharedGameDataHandler = nil;
 
@@ -44,6 +49,7 @@ static GameDataHandler* _sharedGameDataHandler = nil;
 {
     CCSpriteFrameCache *spriteCache = [CCSpriteFrameCache sharedSpriteFrameCache];
     [spriteCache addSpriteFramesWithFile:@"numberItemTex.plist" textureFilename:@"numberItemTex.png"];
+    _sharedGameDataHandler.startTime = CACurrentMediaTime();
 }
 
 -(void)loadData
@@ -54,6 +60,27 @@ static GameDataHandler* _sharedGameDataHandler = nil;
 -(void)saveData
 {
     
+}
+
+-(NSString*)getUseTimeString
+{
+    NSString *timeString = @"00:00:00";
+    
+    double currentTime = CACurrentMediaTime();
+    double secs = MAX(0, currentTime - [self startTime]);
+    double intPart = 0;
+    double fractPart = modf(secs, &intPart);
+    int isecs = (int)intPart;
+    int min = isecs / 60;
+    int sec = isecs % 60;
+    int hund = (int) (fractPart * 100);
+    timeString = [NSString stringWithFormat:@"%02d:%02d:%02d",min, sec, hund];
+    
+    //record use time
+    self.useTime = min;
+    
+    return timeString;
+
 }
 
 

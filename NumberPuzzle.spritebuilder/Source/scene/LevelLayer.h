@@ -21,6 +21,7 @@
     CCButton *m_btn7;
     CCButton *m_btn8;
     CCButton *m_btn9;
+    CCLabelTTF *m_labelTime;
     NSMutableArray *m_btnArray;
     CCLabelTTF *m_errorTips;
 
@@ -38,6 +39,7 @@
 
 - (void)touchBegan:(UITouch *)touch withEvent:(UIEvent *)event;
 - (void)touchEnded:(UITouch *)touch withEvent:(UIEvent *)event;
+-(void)draw;
 
 
 @end

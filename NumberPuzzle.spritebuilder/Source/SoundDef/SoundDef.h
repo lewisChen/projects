@@ -11,5 +11,6 @@
 
 #define kEffectError @"errorEffect.wav"
 #define kEffectClickButton @"buttonClick.mp3"
+#define kEffectStar @"starSound.wav"
 
 #endif

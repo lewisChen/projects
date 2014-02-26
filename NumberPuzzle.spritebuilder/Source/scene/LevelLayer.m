@@ -38,6 +38,8 @@
         node.zOrder = 2;
     }
     
+    [m_labelTime setString:dataHandler.getUseTimeString];
+    
     m_errorTips = [CCLabelTTF labelWithString:@"Miss" fontName:kFontNameNormal fontSize:kFontSizeNormal];
     m_errorTips.fontColor = [CCColor colorWithCcColor3b:ccRED];
     m_errorTips.zOrder = kZOrderTop;
@@ -416,7 +418,7 @@
         }
     }
     
-    if (visableCount == MAX_ITEM_COUNT_X*MAX_ITEM_COUNT_Y)
+    if (visableCount >1)//== MAX_ITEM_COUNT_X*MAX_ITEM_COUNT_Y)
     {
         CCAction *rotateAction = nil;
         for (node in childrenArray)
@@ -441,6 +443,15 @@
 -(void)initSoundEgine
 {
     [[OALSimpleAudio sharedInstance] preloadEffect:kEffectError];
+    
+}
+
+-(void)draw
+{
+    [super draw];
+    GameDataHandler *dataHandler = [GameDataHandler sharedGameDataHandler];
+    [m_labelTime setString:dataHandler.getUseTimeString];
+    
 }
 
 @end
