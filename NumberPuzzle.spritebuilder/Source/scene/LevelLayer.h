@@ -28,6 +28,7 @@
 }
 
 @property(readwrite)NSString* currentSelectIndexString;
+@property(nonatomic,readwrite) CCLabelTTF* errorTips;
 
 - (void)initLayer;
 - (void)setGameLevel:(NSUInteger)level;

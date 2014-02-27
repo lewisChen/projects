@@ -24,7 +24,14 @@
 #define kZOrderTop (100)
 
 
+@interface LevelLayer ()
+@property BOOL isTimerStart;
+@end
+
 @implementation LevelLayer
+
+@synthesize currentSelectIndexString;
+@synthesize errorTips = m_errorTips;
 
 - (void) didLoadFromCCB
 {
@@ -40,11 +47,12 @@
     
     [m_labelTime setString:dataHandler.getUseTimeString];
     
-    m_errorTips = [CCLabelTTF labelWithString:@"Miss" fontName:kFontNameNormal fontSize:kFontSizeNormal];
-    m_errorTips.fontColor = [CCColor colorWithCcColor3b:ccRED];
-    m_errorTips.zOrder = kZOrderTop;
-    //m_errorTips.position = ccp([CCDirector sharedDirector].viewSize.width/2, [CCDirector sharedDirector].viewSize.height/2);
-    [self addChild:m_errorTips];
+    self.errorTips = [CCLabelTTF labelWithString:@"Miss" fontName:kFontNameNormal fontSize:kFontSizeNormal];
+    self.errorTips.fontColor = [CCColor colorWithCcColor3b:ccRED];
+    self.errorTips.zOrder = kZOrderTop;
+    self.errorTips.position = ccp([CCDirector sharedDirector].viewSize.width/2, [CCDirector sharedDirector].viewSize.height/2);
+    self.errorTips.visible = NO;
+    [self addChild:self.errorTips];
     
     self.currentSelectIndexString = @"-1";
     
@@ -54,6 +62,7 @@
     [self setMultipleTouchEnabled:YES];
     //[self setEnabled:YES];//enable touch event
     [self initSoundEgine];
+    [self setIsTimerStart:YES];
     //[[[CCDirector sharedDirector] touchDispatcher] addTargetedDelegate:self priority:0 swallowsTouches:NO];
 }
 
@@ -431,6 +440,7 @@
             }
         }
         //show finish layer
+        self.isTimerStart = NO;//stop timer
         CCNode *finishLayer = [CCBReader load:@"GameFinishLayer.ccbi"];
         finishLayer.position = ccp(0.0, self.contentSize.height);
         [self addChild:finishLayer z:2];
@@ -449,9 +459,11 @@
 -(void)draw
 {
     [super draw];
-    GameDataHandler *dataHandler = [GameDataHandler sharedGameDataHandler];
-    [m_labelTime setString:dataHandler.getUseTimeString];
-    
+    if (self.isTimerStart)
+    {
+        GameDataHandler *dataHandler = [GameDataHandler sharedGameDataHandler];
+        [m_labelTime setString:dataHandler.getUseTimeString];
+    }
 }
 
 @end
