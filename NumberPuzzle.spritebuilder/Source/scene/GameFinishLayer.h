@@ -20,7 +20,7 @@
 
 @property(nonatomic,readwrite) NSInteger starCount;
 
-
+-(void)initResource;
 -(void)handleShowScore;
 -(void)starActionHandle:(NSInteger)starCount;
 -(void)playStarSound;

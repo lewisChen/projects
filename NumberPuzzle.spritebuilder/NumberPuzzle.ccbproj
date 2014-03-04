@@ -35,7 +35,7 @@
 	<key>publishAudioQuality_android</key>
 	<integer>1</integer>
 	<key>publishAudioQuality_ios</key>
-	<integer>8</integer>
+	<integer>1</integer>
 	<key>publishDirectory</key>
 	<string>Source/Resources/Published-iOS</string>
 	<key>publishDirectoryAndroid</key>
@@ -112,8 +112,6 @@
 		</dict>
 		<key>NumberItem/seven.png</key>
 		<dict>
-			<key>isDirty</key>
-			<true/>
 			<key>scaleFrom</key>
 			<integer>1</integer>
 		</dict>
@@ -128,6 +126,55 @@
 			<integer>1</integer>
 		</dict>
 		<key>NumberItem/two.png</key>
+		<dict>
+			<key>scaleFrom</key>
+			<integer>1</integer>
+		</dict>
+		<key>button</key>
+		<dict/>
+		<key>button/backButton.png</key>
+		<dict>
+			<key>scaleFrom</key>
+			<integer>1</integer>
+		</dict>
+		<key>button/back_grey.png</key>
+		<dict>
+			<key>scaleFrom</key>
+			<integer>1</integer>
+		</dict>
+		<key>button/nextLevel.png</key>
+		<dict>
+			<key>scaleFrom</key>
+			<integer>1</integer>
+		</dict>
+		<key>button/retry.png</key>
+		<dict>
+			<key>scaleFrom</key>
+			<integer>1</integer>
+		</dict>
+		<key>button/retryBtn.png</key>
+		<dict>
+			<key>scaleFrom</key>
+			<integer>1</integer>
+		</dict>
+		<key>font/FinishFont.png</key>
+		<dict>
+			<key>scaleFrom</key>
+			<integer>1</integer>
+		</dict>
+		<key>grey_sliderLeft.png</key>
+		<dict>
+			<key>scaleFrom</key>
+			<integer>1</integer>
+		</dict>
+		<key>star</key>
+		<dict/>
+		<key>star/StarNotSelect.png</key>
+		<dict>
+			<key>scaleFrom</key>
+			<integer>1</integer>
+		</dict>
+		<key>star/StarYellow.png</key>
 		<dict>
 			<key>scaleFrom</key>
 			<integer>1</integer>

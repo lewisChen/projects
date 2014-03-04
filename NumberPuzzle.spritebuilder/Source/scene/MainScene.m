@@ -14,13 +14,6 @@
 #import "../SoundDef/SoundDef.h"
 
 
-enum eLevel
-{
-    eLevelEasy = 0,
-    eLevelNormal,
-    eLevelHard,
-};
-
 @implementation MainScene
 
 - (void) didLoadFromCCB
@@ -31,7 +24,7 @@ enum eLevel
 -(void)buttonPress:(id)sender
 {
     GameDataHandler *dataHandler = [GameDataHandler sharedGameDataHandler];
-    dataHandler.level = eLevelEasy;
+    dataHandler.difficultLevel = eDifficultLevelEasy;
     
     [[OALSimpleAudio sharedInstance] playEffect:kEffectClickButton];
 
@@ -42,7 +35,7 @@ enum eLevel
 -(void)buttonPressSimple:(id)sender
 {
     GameDataHandler *dataHandler = [GameDataHandler sharedGameDataHandler];
-    dataHandler.level = eLevelNormal;
+    dataHandler.difficultLevel = eDifficultLevelNormal;
     
     [[OALSimpleAudio sharedInstance] playEffect:kEffectClickButton];
     

@@ -44,25 +44,16 @@
     {
         node.zOrder = 2;
     }
-    
-    [m_labelTime setString:dataHandler.getUseTimeString];
-    
-    self.errorTips = [CCLabelTTF labelWithString:@"Miss" fontName:kFontNameNormal fontSize:kFontSizeNormal];
-    self.errorTips.fontColor = [CCColor colorWithCcColor3b:ccRED];
-    self.errorTips.zOrder = kZOrderTop;
-    self.errorTips.position = ccp([CCDirector sharedDirector].viewSize.width/2, [CCDirector sharedDirector].viewSize.height/2);
-    self.errorTips.visible = NO;
-    [self addChild:self.errorTips];
-    
     self.currentSelectIndexString = @"-1";
-    
+    [m_labelTime setString:dataHandler.getUseTimeString];
     [self initLayer];
-    [self setGameLevel:dataHandler.level];//create level;
+    [self setGameLevel:dataHandler.difficultLevel];//create level;
     [self setUserInteractionEnabled:YES];
     [self setMultipleTouchEnabled:YES];
     //[self setEnabled:YES];//enable touch event
     [self initSoundEgine];
     [self setIsTimerStart:YES];
+    [m_lableLevel setString:[NSString stringWithFormat:@"%d",dataHandler.level]];
     //[[[CCDirector sharedDirector] touchDispatcher] addTargetedDelegate:self priority:0 swallowsTouches:NO];
 }
 
@@ -80,7 +71,6 @@
             for (unsigned char indexY = 0; indexY<MAX_ITEM_COUNT_Y; indexY++)
             {
                 NumberItem *numberItem = [NumberItem node];
-//                [numberItem setNumberLabel:[CCLabelTTF labelWithString:(NSString*)[array objectAtIndex:(indexX*MAX_ITEM_COUNT_X+indexY)] fontName:kFontNameNormal fontSize:kFontSizeNormal]];
                 numberItem.anchorPoint = ccp(0.5, 0.5);
                 
                 NSInteger type = [(NSString*)[array objectAtIndex:(indexX*MAX_ITEM_COUNT_X+indexY)] integerValue];
@@ -125,6 +115,13 @@
                 
             }
         }
+        
+        self.errorTips = [CCLabelTTF labelWithString:@"Miss" fontName:kFontNameNormal fontSize:kFontSizeNormal];
+        self.errorTips.fontColor = [CCColor colorWithCcColor3b:ccRED];
+        self.errorTips.zOrder = kZOrderTop;
+        self.errorTips.position = ccp([CCDirector sharedDirector].viewSize.width/2, [CCDirector sharedDirector].viewSize.height/2);
+        self.errorTips.visible = NO;
+        [self addChild:self.errorTips];
     }
     //return self;
 }
@@ -147,10 +144,7 @@
             numberItem = (NumberItem*)node;
             [numberItem setNumberLabelVisable:isShow];
         }
-        
     }
-    
-    
 }
 
 -(void)touchBegan:(UITouch *)touch withEvent:(UIEvent *)event
@@ -440,12 +434,7 @@
             }
         }
         //show finish layer
-        self.isTimerStart = NO;//stop timer
-        CCNode *finishLayer = [CCBReader load:@"GameFinishLayer.ccbi"];
-        finishLayer.position = ccp(0.0, self.contentSize.height);
-        [self addChild:finishLayer z:2];
-        CCAction *moveAction = [CCActionMoveTo actionWithDuration:0.5 position:ccp(0.0, 0.0)];
-        [finishLayer runAction:moveAction];
+        [self showFinishLayer];
         //CCLOG(@"You win");
     }
 }
@@ -456,13 +445,27 @@
     
 }
 
+-(void)showFinishLayer
+{
+    self.isTimerStart = NO;//stop timer
+    CCNode *finishLayer = [CCBReader load:@"GameFinishLayer.ccbi"];
+    finishLayer.position = ccp(0.0, self.contentSize.height);
+    [self addChild:finishLayer z:2];
+    CCAction *moveAction = [CCActionMoveTo actionWithDuration:0.5 position:ccp(0.0, 0.0)];
+    [finishLayer runAction:moveAction];
+}
+
 -(void)draw
 {
     [super draw];
     if (self.isTimerStart)
     {
         GameDataHandler *dataHandler = [GameDataHandler sharedGameDataHandler];
-        [m_labelTime setString:dataHandler.getUseTimeString];
+        if (0==dataHandler.timeLeft)
+        {
+            [self showFinishLayer];
+        }
+        [m_labelTime setString:dataHandler.getLeftTimeString];//getUseTimeString];
     }
 }
 

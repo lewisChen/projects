@@ -10,6 +10,7 @@
 #include "CCBReader.h"
 #include "../libs/cocos2d-iphone/external/ObjectAL/OALSimpleAudio.h"
 #import "../SoundDef/SoundDef.h"
+#import "GameDataHandler.h"
 
 enum Estar
 {
@@ -24,9 +25,12 @@ enum Estar
 
 - (void) didLoadFromCCB
 {
+    GameDataHandler *dataHandler = [GameDataHandler sharedGameDataHandler];
+    [dataHandler saveData];
+    [self initResource];
     m_arraySprite = [NSMutableArray arrayWithObjects:m_star1,m_star2,m_star3,nil];
-    [[OALSimpleAudio sharedInstance] preloadEffect:kEffectStar];
-
+    
+    
     [self handleShowScore];
 }
 
@@ -38,13 +42,23 @@ enum Estar
 
 -(void)nextButtonPress:(id)sender
 {
+    GameDataHandler *dataHandler = [GameDataHandler sharedGameDataHandler];
+    dataHandler.level = dataHandler.level+1;
+    [dataHandler saveData];
     
+    CCScene *scene = [CCBReader loadAsScene:@"LevelLayer.ccbi"];
+    [[CCDirector sharedDirector] replaceScene:scene];
+}
+
+-(void)initResource
+{
+    [[OALSimpleAudio sharedInstance] preloadEffect:kEffectStar];
 }
 
 -(void)handleShowScore
 {
-    [self starActionHandle:2];
-    self.starCount = 2;
+    self.starCount = 3;
+    [self starActionHandle:self.starCount];
 }
 
 -(void)starActionHandle:(NSInteger)starCount

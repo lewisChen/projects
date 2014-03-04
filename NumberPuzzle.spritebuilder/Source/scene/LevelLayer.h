@@ -22,6 +22,7 @@
     CCButton *m_btn8;
     CCButton *m_btn9;
     CCLabelTTF *m_labelTime;
+    CCLabelTTF *m_lableLevel;
     NSMutableArray *m_btnArray;
     CCLabelTTF *m_errorTips;
 
@@ -37,6 +38,7 @@
 - (void)buttonVisblaHandle:(enum EItemType)itemTpye;//(NSString*)itemString;
 - (void)levelFinishHandle;
 - (void)initSoundEgine;
+- (void)showFinishLayer;
 
 - (void)touchBegan:(UITouch *)touch withEvent:(UIEvent *)event;
 - (void)touchEnded:(UITouch *)touch withEvent:(UIEvent *)event;
