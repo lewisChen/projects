@@ -47,7 +47,7 @@ inline static id getSavaDataByDifficultLevel(enum eDifficultLevel difficultLevel
 
 @interface GameDataHandler ()
 @property double startTime;
-@property double timeLimit;
+//@property double timeLimit;
 @end
 
 @implementation GameDataHandler
@@ -57,6 +57,7 @@ inline static id getSavaDataByDifficultLevel(enum eDifficultLevel difficultLevel
 @synthesize errorCount = m_errorCount;
 @synthesize useTime = m_useTime;
 @synthesize timeLeft = m_timeLeft;
+@synthesize timeLimit = m_timeLimit;
 @synthesize starCount = m_starCount;
 
 static GameDataHandler* _sharedGameDataHandler = nil;

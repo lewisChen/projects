@@ -57,8 +57,28 @@ enum Estar
 
 -(void)handleShowScore
 {
-    self.starCount = 3;
+    self.starCount = self.getStarCount;
     [self starActionHandle:self.starCount];
+}
+
+-(NSInteger)getStarCount
+{
+    NSInteger result = 0;
+    GameDataHandler *dataHandler = [GameDataHandler sharedGameDataHandler];
+    double factor = dataHandler.timeLeft/dataHandler.timeLimit;
+    if (factor>=0.8)
+    {
+        result = 3;
+    }
+    else if(factor>=0.5)
+    {
+        result = 2;
+    }
+    else if (factor>=0.2)
+    {
+        result = 1;
+    }
+    return result;
 }
 
 -(void)starActionHandle:(NSInteger)starCount
@@ -148,5 +168,6 @@ enum Estar
     [[OALSimpleAudio sharedInstance] playEffect:kEffectStar];
     
 }
+
 
 @end

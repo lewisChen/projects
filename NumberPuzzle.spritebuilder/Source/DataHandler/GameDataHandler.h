@@ -25,6 +25,7 @@ enum eDifficultLevel
     NSInteger m_errorCount;
     double m_useTime;
     double m_timeLeft;
+    double m_timeLimit;
     NSInteger m_starCount;
 }
 
@@ -33,7 +34,9 @@ enum eDifficultLevel
 @property(nonatomic,readwrite) NSInteger errorCount;
 @property(nonatomic,readwrite) double useTime;
 @property(nonatomic,readwrite) double timeLeft;
+@property(nonatomic,readwrite) double timeLimit;
 @property(nonatomic,readwrite) NSInteger starCount;
+
 
 +(GameDataHandler*)sharedGameDataHandler;
 +(id)alloc;

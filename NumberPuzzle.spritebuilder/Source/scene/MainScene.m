@@ -32,10 +32,21 @@
     [[CCDirector sharedDirector] replaceScene:scene];
 }
 
--(void)buttonPressSimple:(id)sender
+-(void)buttonPressNormal:(id)sender
 {
     GameDataHandler *dataHandler = [GameDataHandler sharedGameDataHandler];
     dataHandler.difficultLevel = eDifficultLevelNormal;
+    
+    [[OALSimpleAudio sharedInstance] playEffect:kEffectClickButton];
+    
+    CCScene *scene = [CCBReader loadAsScene:@"LevelLayer.ccbi"];
+    [[CCDirector sharedDirector] replaceScene:scene];
+}
+
+-(void)buttonPressHard:(id)sender
+{
+    GameDataHandler *dataHandler = [GameDataHandler sharedGameDataHandler];
+    dataHandler.difficultLevel = eDifficultLevelHard;
     
     [[OALSimpleAudio sharedInstance] playEffect:kEffectClickButton];
     

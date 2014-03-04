@@ -22,6 +22,7 @@
 
 -(void)initResource;
 -(void)handleShowScore;
+-(NSInteger)getStarCount;
 -(void)starActionHandle:(NSInteger)starCount;
 -(void)playStarSound;
 -(void)starTwoAction;

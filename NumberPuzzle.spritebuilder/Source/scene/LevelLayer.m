@@ -137,7 +137,7 @@
     NumberItem *numberItem = NULL;
     for (node in childrenArray)
     {
-        randomNumber = random()%3;
+        randomNumber = random()%4;
         isShow = randomNumber>level?YES:NO;
         if ([node isKindOfClass:[NumberItem class]])
         {
@@ -448,7 +448,7 @@
 -(void)showFinishLayer
 {
     self.isTimerStart = NO;//stop timer
-    CCNode *finishLayer = [CCBReader load:@"GameFinishLayer.ccbi"];
+    CCNode *finishLayer = [CCBReader load:@"GameFinishLayer.ccbi" owner:self];//[CCBReader load:@"GameFinishLayer.ccbi"];
     finishLayer.position = ccp(0.0, self.contentSize.height);
     [self addChild:finishLayer z:2];
     CCAction *moveAction = [CCActionMoveTo actionWithDuration:0.5 position:ccp(0.0, 0.0)];
