@@ -107,7 +107,7 @@
                 
                 
                 indexString = [NSString stringWithFormat:@"%d",indexX*MAX_ITEM_COUNT_X+indexY];
-                numberItem.position = ccp(numberItem.contentSize.width+xOffset, (self.contentSize.height*3/4)+ yOffset);
+                numberItem.position = ccp(numberItem.contentSize.width*0.9+xOffset, (self.contentSize.height*2.97/4)+ yOffset);
                 [self addChild:numberItem z:0 name:indexString];
                 numberItem.indexX = indexX;
                 numberItem.indexY = indexY;

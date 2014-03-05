@@ -196,6 +196,7 @@ static GameDataHandler* _sharedGameDataHandler = nil;
     
     //record use time
     self.timeLeft = secs;
+    self.useTime = self.timeLimit-secs;
     
     return timeString;
 

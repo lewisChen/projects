@@ -130,6 +130,13 @@
 			<key>scaleFrom</key>
 			<integer>1</integer>
 		</dict>
+		<key>background/grid.png</key>
+		<dict>
+			<key>isDirty</key>
+			<true/>
+			<key>scaleFrom</key>
+			<integer>1</integer>
+		</dict>
 		<key>button</key>
 		<dict/>
 		<key>button/backButton.png</key>
