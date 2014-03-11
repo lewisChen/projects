@@ -59,6 +59,7 @@ inline static id getSavaDataByDifficultLevel(enum eDifficultLevel difficultLevel
 @synthesize timeLeft = m_timeLeft;
 @synthesize timeLimit = m_timeLimit;
 @synthesize starCount = m_starCount;
+@synthesize isWin = m_isWin;
 
 static GameDataHandler* _sharedGameDataHandler = nil;
 
@@ -92,6 +93,7 @@ static GameDataHandler* _sharedGameDataHandler = nil;
     [spriteCache addSpriteFramesWithFile:@"numberItemTex.plist" textureFilename:@"numberItemTex.png"];
     _sharedGameDataHandler.startTime = CACurrentMediaTime();
     self.timeLimit = self.getTimeLimit;
+    self.errorCount = 0;
     [self initSaveData];
     [self loadData];
 }
@@ -119,6 +121,12 @@ static GameDataHandler* _sharedGameDataHandler = nil;
     
     tempData = getSavaDataByDifficultLevel(eDifficultLevelHard);
     tempData = getSavaDataByDifficultLevel(eDifficultLevelNormal);
+}
+
+-(void)resetSaveData
+{
+    NSUserDefaults *saveDefaults = [NSUserDefaults standardUserDefaults];
+    [saveDefaults removeObjectForKey:kGameSaveData];
 }
 
 -(void)saveData

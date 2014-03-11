@@ -23,6 +23,7 @@
     CCButton *m_btn9;
     CCLabelTTF *m_labelTime;
     CCLabelTTF *m_lableLevel;
+    CCLabelTTF *m_lableError;
     NSMutableArray *m_btnArray;
     CCLabelTTF *m_errorTips;
 
@@ -34,11 +35,13 @@
 - (void)initLayer;
 - (void)setGameLevel:(NSUInteger)level;
 - (void)selectRightFunction;
+- (void)matchRightFunctionCall;
 - (BOOL)isSectionFinish:(NSUInteger)xIndex :(NSUInteger)yIndex;
 - (void)buttonVisblaHandle:(enum EItemType)itemTpye;//(NSString*)itemString;
 - (void)levelFinishHandle;
 - (void)initSoundEgine;
 - (void)showFinishLayer;
+- (void)setResultWin:(BOOL)result;
 
 - (void)touchBegan:(UITouch *)touch withEvent:(UIEvent *)event;
 - (void)touchEnded:(UITouch *)touch withEvent:(UIEvent *)event;

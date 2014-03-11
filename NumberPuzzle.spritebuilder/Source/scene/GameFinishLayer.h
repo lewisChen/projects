@@ -16,6 +16,7 @@
     
     NSMutableArray *m_arraySprite;
     NSInteger m_starCount;
+    CCLabelBMFont *m_labelResult;
 }
 
 @property(nonatomic,readwrite) NSInteger starCount;
@@ -28,5 +29,6 @@
 -(void)starTwoAction;
 -(void)starThreeAction;
 -(CCAction*)getStarAction;
+-(void)showIsWinLabel:(BOOL)value;
 
 @end

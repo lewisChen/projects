@@ -107,11 +107,14 @@
                 
                 
                 indexString = [NSString stringWithFormat:@"%d",indexX*MAX_ITEM_COUNT_X+indexY];
-                numberItem.position = ccp(numberItem.contentSize.width*0.9+xOffset, (self.contentSize.height*2.97/4)+ yOffset);
+                CGPoint pos = ccp(numberItem.contentSize.width*0.9+xOffset, (self.contentSize.height*2.97/4)+ yOffset);
+                numberItem.position = ccp(self.contentSize.width/2, self.contentSize.height/2);
                 [self addChild:numberItem z:0 name:indexString];
                 numberItem.indexX = indexX;
                 numberItem.indexY = indexY;
                 numberItem.currentIndexString = indexString;
+                CCAction *moveAction = [CCActionMoveTo actionWithDuration:0.5 position:pos];
+                [numberItem runAction:moveAction];
                 
             }
         }
@@ -170,7 +173,8 @@
         if ([node isKindOfClass:[NumberItem class]])
         {
             numberItem = (NumberItem*)node;
-            if (ccpDistanceSQ(currentPosition, numberItem.position)<(kItemwidth*kItemHight/4))
+            //if (ccpDistanceSQ(currentPosition, numberItem.position)<(kItemwidth*kItemHight/4))
+            if([numberItem hitTestWithWorldPos:currentPosition])
             {
                 isHightLightSameNumber = numberItem.numberLabelVisable?YES:NO;
                 if (!isHightLightSameNumber)
@@ -276,10 +280,14 @@
                                           nil];
             CCAction *errorAction = [CCActionSequence actionWithArray:errorActionsArray];
             [m_errorTips runAction: errorAction];
+            [GameDataHandler sharedGameDataHandler].errorCount = [GameDataHandler sharedGameDataHandler].errorCount+1;
+            [m_lableError setString:[NSString stringWithFormat:@"%d",[GameDataHandler sharedGameDataHandler].errorCount]];
             
         }
     }
 }
+
+
 
 -(void)selectRightFunction
 {
@@ -288,14 +296,28 @@
     //[currentNumberItem setItemColor:myItemColor];
     [currentNumberItem setItemSelect:NO];
     
+    CCActionCallFunc* callFunc = [CCActionCallFunc actionWithTarget:self selector:@selector(matchRightFunctionCall)];
+    NSArray *actionArray = @[[CCActionScaleTo actionWithDuration:0.1 scale:1.2],[CCActionScaleTo actionWithDuration:0.3 scale:1],callFunc];
+    CCAction *actionMatch = [CCActionSequence actionWithArray:actionArray];
+    [currentNumberItem runAction:actionMatch];
+    
+}
+
+-(void)matchRightFunctionCall
+{
+    [[OALSimpleAudio sharedInstance] playEffect:kEffectMatch];
+    
+    NumberItem *currentNumberItem = (NumberItem*)[self getChildByName:self.currentSelectIndexString recursively:NO];
     //hide button if kinds of item reach 9
     [self buttonVisblaHandle:currentNumberItem.getItemType];
     //run effect if one section finish
     [self isSectionFinish:currentNumberItem.indexX :currentNumberItem.indexY];
     //reset current select
     self.currentSelectIndexString = @"-1";
+    
     //level finish effect
     [self levelFinishHandle];
+
 }
 
 -(void)buttonVisblaHandle:(enum EItemType)itemTpye//(NSString *)itemString
@@ -421,7 +443,7 @@
         }
     }
     
-    if (visableCount >1)//== MAX_ITEM_COUNT_X*MAX_ITEM_COUNT_Y)
+    if (visableCount == MAX_ITEM_COUNT_X*MAX_ITEM_COUNT_Y)
     {
         CCAction *rotateAction = nil;
         for (node in childrenArray)
@@ -434,14 +456,17 @@
             }
         }
         //show finish layer
+        [self setResultWin:YES];
         [self showFinishLayer];
         //CCLOG(@"You win");
+        
     }
 }
 
 -(void)initSoundEgine
 {
     [[OALSimpleAudio sharedInstance] preloadEffect:kEffectError];
+    [[OALSimpleAudio sharedInstance] preloadEffect:kEffectMatch];
     
 }
 
@@ -455,6 +480,11 @@
     [finishLayer runAction:moveAction];
 }
 
+-(void)setResultWin:(BOOL)result
+{
+    [GameDataHandler sharedGameDataHandler].isWin = result;
+}
+
 -(void)draw
 {
     [super draw];
@@ -463,6 +493,7 @@
         GameDataHandler *dataHandler = [GameDataHandler sharedGameDataHandler];
         if (0==dataHandler.timeLeft)
         {
+            [self setResultWin:NO];
             [self showFinishLayer];
         }
         [m_labelTime setString:dataHandler.getLeftTimeString];//getUseTimeString];

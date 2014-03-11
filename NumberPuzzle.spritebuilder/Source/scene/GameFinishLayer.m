@@ -27,10 +27,15 @@ enum Estar
 {
     GameDataHandler *dataHandler = [GameDataHandler sharedGameDataHandler];
     [dataHandler saveData];
+    self.contentSize = [CCDirector sharedDirector].viewSize;
+    
+    m_labelResult = [CCLabelBMFont labelWithString:@"" fntFile:@"FinishFont.fnt"];
+    m_labelResult.position = ccp(self.contentSize.width/2, self.contentSize.height*3/4);
+    [self addChild:m_labelResult];
+
+    
     [self initResource];
     m_arraySprite = [NSMutableArray arrayWithObjects:m_star1,m_star2,m_star3,nil];
-    
-    
     [self handleShowScore];
 }
 
@@ -57,6 +62,9 @@ enum Estar
 
 -(void)handleShowScore
 {
+    GameDataHandler *dataHandler = [GameDataHandler sharedGameDataHandler];
+    [self showIsWinLabel:dataHandler.isWin];
+    
     self.starCount = self.getStarCount;
     [self starActionHandle:self.starCount];
 }
@@ -161,6 +169,21 @@ enum Estar
     NSArray *actionArray = @[[CCActionScaleTo actionWithDuration:0.5 scale:1],callFunc];
     action = [CCActionSequence actionWithArray:actionArray];
     return action;
+}
+
+-(void)showIsWinLabel:(BOOL)value
+{
+    NSString *temString = @"";
+    if (value==YES)
+    {
+        temString = @"YOU WIN!";
+    }
+    else
+    {
+        temString =@"YOu LOSE!";
+    }
+    [m_labelResult setString:temString];
+    
 }
 
 -(void)playStarSound

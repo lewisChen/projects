@@ -54,4 +54,10 @@
     [[CCDirector sharedDirector] replaceScene:scene];
 }
 
+-(void)buttonPressReset:(id)sender
+{
+    GameDataHandler *dataHandler = [GameDataHandler sharedGameDataHandler];
+    [dataHandler resetSaveData];
+}
+
 @end
