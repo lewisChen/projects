@@ -15,6 +15,8 @@
 #include "../libs/cocos2d-iphone/external/ObjectAL/OALSimpleAudio.h"
 #import "../SoundDef/SoundDef.h"
 
+
+#define kTagNameSpark (@"spark")
 #define kMaxCountSectionItem (9)
 #define MAX_ITEM_COUNT_X (9)
 #define MAX_ITEM_COUNT_Y (9)
@@ -55,6 +57,11 @@
     [self setIsTimerStart:YES];
     [m_lableLevel setString:[NSString stringWithFormat:@"%d",dataHandler.level]];
     //[[[CCDirector sharedDirector] touchDispatcher] addTargetedDelegate:self priority:0 swallowsTouches:NO];
+    
+    CCNode *sparkNode = [CCBReader load:@"spark.ccbi"];
+    [self addChild:sparkNode z:0 name:kTagNameSpark];
+    sparkNode.visible = NO;
+    
 }
 
 - (void)initLayer
@@ -113,7 +120,7 @@
                 numberItem.indexX = indexX;
                 numberItem.indexY = indexY;
                 numberItem.currentIndexString = indexString;
-                CCAction *moveAction = [CCActionMoveTo actionWithDuration:0.5 position:pos];
+                CCAction *moveAction = [CCActionMoveTo actionWithDuration:0.3 position:pos];
                 [numberItem runAction:moveAction];
                 
             }
@@ -133,7 +140,7 @@
 {
     BOOL isShow = NO;
     NSInteger randomNumber = 0;
-    srandom(time(NULL));
+    srandom((unsigned)time(NULL));
     NSArray *childrenArray = [self children];
 
     CCNode *node = NULL;
@@ -176,6 +183,7 @@
             //if (ccpDistanceSQ(currentPosition, numberItem.position)<(kItemwidth*kItemHight/4))
             if([numberItem hitTestWithWorldPos:currentPosition])
             {
+                [[OALSimpleAudio sharedInstance] playEffect:kEffectTouched];
                 isHightLightSameNumber = numberItem.numberLabelVisable?YES:NO;
                 if (!isHightLightSameNumber)
                 {
@@ -274,10 +282,11 @@
             m_errorTips.position = tipsStartPos;
             NSArray *errorActionsArray = [NSArray arrayWithObjects:
                                           [CCActionShow action],
-                                          [CCActionMoveTo actionWithDuration:1.0 position:ccp(tipsStartPos.x, tipsStartPos.y+40)],
-                                          [CCActionMoveTo actionWithDuration:0.0 position:tipsStartPos],
-                                          [CCActionHide action],
-                                          nil];
+                                          [CCActionScaleTo actionWithDuration:0.2 scale:5],
+                                          [CCActionScaleTo actionWithDuration:0.05 scale:1],
+                                          //[CCActionMoveTo actionWithDuration:0.5 position:ccp(tipsStartPos.x, tipsStartPos.y+40)],
+                                          //[CCActionMoveTo actionWithDuration:0.0 position:tipsStartPos],
+                                          [CCActionHide action],nil];
             CCAction *errorAction = [CCActionSequence actionWithArray:errorActionsArray];
             [m_errorTips runAction: errorAction];
             [GameDataHandler sharedGameDataHandler].errorCount = [GameDataHandler sharedGameDataHandler].errorCount+1;
@@ -308,6 +317,18 @@
     [[OALSimpleAudio sharedInstance] playEffect:kEffectMatch];
     
     NumberItem *currentNumberItem = (NumberItem*)[self getChildByName:self.currentSelectIndexString recursively:NO];
+    CGPoint toPosition = currentNumberItem.position;
+    CCParticleSystemBase *sparkNode = (CCParticleSystemBase*)[self getChildByName:kTagNameSpark recursively:NO];
+    if (sparkNode)
+    {
+        [sparkNode resetSystem];
+        sparkNode.visible = YES;
+        sparkNode.position = toPosition;
+    }
+    //CCNode *sparkNode = [CCBReader load:@"spark.ccbi"];
+    //sparkNode.position = toPosition;
+    //[self addChild:sparkNode z:0 name:kTagNameSpark];
+    
     //hide button if kinds of item reach 9
     [self buttonVisblaHandle:currentNumberItem.getItemType];
     //run effect if one section finish
@@ -317,6 +338,8 @@
     
     //level finish effect
     [self levelFinishHandle];
+    
+    //[self removeChildByName:kTagNameSpark];
 
 }
 
@@ -467,6 +490,7 @@
 {
     [[OALSimpleAudio sharedInstance] preloadEffect:kEffectError];
     [[OALSimpleAudio sharedInstance] preloadEffect:kEffectMatch];
+    [[OALSimpleAudio sharedInstance] preloadEffect:kEffectTouched];
     
 }
 

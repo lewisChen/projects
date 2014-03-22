@@ -24,11 +24,14 @@
 		B77F1B3E17B978D7009739AE /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B77F1B3D17B978D7009739AE /* Foundation.framework */; };
 		B77F1B4017B978D7009739AE /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B77F1B3F17B978D7009739AE /* CoreGraphics.framework */; };
 		B77F1B4217B978D7009739AE /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B77F1B4117B978D7009739AE /* CoreText.framework */; };
+		CE3E677918DC8F4A00107FC5 /* itemTouched.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CE3E677818DC8F4A00107FC5 /* itemTouched.mp3 */; };
 		CE40C57F18B4C07500BF3820 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE40C57E18B4C07500BF3820 /* Images.xcassets */; };
 		CEA09C0418BDE2DF00A04383 /* starSound.wav in Resources */ = {isa = PBXBuildFile; fileRef = CEA09C0318BDE2DF00A04383 /* starSound.wav */; };
 		CEB0C85418CDB14E003CED6D /* FinishFont.fnt in Resources */ = {isa = PBXBuildFile; fileRef = CEB0C85218CDB14E003CED6D /* FinishFont.fnt */; };
 		CEB0C85518CDB14E003CED6D /* FinishFont.png in Resources */ = {isa = PBXBuildFile; fileRef = CEB0C85318CDB14E003CED6D /* FinishFont.png */; };
 		CEB0C85718CE15D7003CED6D /* match.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CEB0C85618CE15D7003CED6D /* match.mp3 */; };
+		CEB0C85918CF0EA0003CED6D /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEB0C85818CF0EA0003CED6D /* StoreKit.framework */; };
+		CEB0C85C18D004AD003CED6D /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEB0C85B18D004AD003CED6D /* GameKit.framework */; };
 		CEB2BAF21882C96D003621D0 /* myRes.plist in Resources */ = {isa = PBXBuildFile; fileRef = CEB2BAF01882C96D003621D0 /* myRes.plist */; };
 		CEB2BAF31882C96D003621D0 /* myRes.png in Resources */ = {isa = PBXBuildFile; fileRef = CEB2BAF11882C96D003621D0 /* myRes.png */; };
 		CEB37C4A18793A6F007F2157 /* libGoogleAdMobAds.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CEB37C3C18793A6F007F2157 /* libGoogleAdMobAds.a */; };
@@ -39,7 +42,6 @@
 		CEB37C5418793AE1007F2157 /* NumberArithmetic.m in Sources */ = {isa = PBXBuildFile; fileRef = CEB37C5318793AE1007F2157 /* NumberArithmetic.m */; };
 		CEB37C5618793BDD007F2157 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEB37C5518793BDD007F2157 /* AdSupport.framework */; };
 		CEB37C5818793BFF007F2157 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEB37C5718793BFF007F2157 /* MessageUI.framework */; };
-		CEB37C5A18793C09007F2157 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEB37C5918793C09007F2157 /* StoreKit.framework */; };
 		CEB37C5C18793C14007F2157 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEB37C5B18793C14007F2157 /* SystemConfiguration.framework */; };
 		CEB70A9218B3860100B631B2 /* buttonClick.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CEB70A9118B3860100B631B2 /* buttonClick.mp3 */; };
 		CEBD8EC1188ED0C00084A1EF /* GameFinishLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = CEBD8EC0188ED0C00084A1EF /* GameFinishLayer.m */; };
@@ -139,11 +141,15 @@
 		B77F1B3F17B978D7009739AE /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		B77F1B4117B978D7009739AE /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
 		B7B3713D180358F1007369CC /* libObjectiveChipmunk.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libObjectiveChipmunk.a; path = "../libs/cocos2d-iphone/external/Chipmunk/xcode/build/Debug-iphoneos/libObjectiveChipmunk.a"; sourceTree = "<group>"; };
+		CE3E677818DC8F4A00107FC5 /* itemTouched.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = itemTouched.mp3; sourceTree = "<group>"; };
 		CE40C57E18B4C07500BF3820 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = NumberPuzzle/Images.xcassets; sourceTree = SOURCE_ROOT; };
 		CEA09C0318BDE2DF00A04383 /* starSound.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = starSound.wav; sourceTree = "<group>"; };
 		CEB0C85218CDB14E003CED6D /* FinishFont.fnt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = FinishFont.fnt; path = Source/Resources/font/FinishFont.fnt; sourceTree = SOURCE_ROOT; };
 		CEB0C85318CDB14E003CED6D /* FinishFont.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = FinishFont.png; path = Source/Resources/font/FinishFont.png; sourceTree = SOURCE_ROOT; };
 		CEB0C85618CE15D7003CED6D /* match.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = match.mp3; sourceTree = "<group>"; };
+		CEB0C85818CF0EA0003CED6D /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		CEB0C85A18CF5AD1003CED6D /* NumberPuzzle.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = NumberPuzzle.entitlements; path = NumberPuzzle/NumberPuzzle.entitlements; sourceTree = "<group>"; };
+		CEB0C85B18D004AD003CED6D /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
 		CEB2BAF01882C96D003621D0 /* myRes.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = myRes.plist; path = Source/Resources/myRes.plist; sourceTree = SOURCE_ROOT; };
 		CEB2BAF11882C96D003621D0 /* myRes.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = myRes.png; path = Source/Resources/myRes.png; sourceTree = SOURCE_ROOT; };
 		CEB37C3318793A6F007F2157 /* GADAdMobExtras.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADAdMobExtras.h; sourceTree = "<group>"; };
@@ -169,7 +175,6 @@
 		CEB37C5318793AE1007F2157 /* NumberArithmetic.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NumberArithmetic.m; sourceTree = "<group>"; };
 		CEB37C5518793BDD007F2157 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
 		CEB37C5718793BFF007F2157 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
-		CEB37C5918793C09007F2157 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		CEB37C5B18793C14007F2157 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		CEB70A9118B3860100B631B2 /* buttonClick.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = buttonClick.mp3; sourceTree = "<group>"; };
 		CEBD8EBF188ED0C00084A1EF /* GameFinishLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameFinishLayer.h; sourceTree = "<group>"; };
@@ -272,7 +277,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				CEB37C5C18793C14007F2157 /* SystemConfiguration.framework in Frameworks */,
-				CEB37C5A18793C09007F2157 /* StoreKit.framework in Frameworks */,
 				CEB37C5818793BFF007F2157 /* MessageUI.framework in Frameworks */,
 				B77F1B4017B978D7009739AE /* CoreGraphics.framework in Frameworks */,
 				B77F1B3A17B978D7009739AE /* AVFoundation.framework in Frameworks */,
@@ -284,8 +288,10 @@
 				B77F1B3617B978D7009739AE /* OpenAL.framework in Frameworks */,
 				CEB37C4A18793A6F007F2157 /* libGoogleAdMobAds.a in Frameworks */,
 				B77F1B3C17B978D7009739AE /* UIKit.framework in Frameworks */,
+				CEB0C85918CF0EA0003CED6D /* StoreKit.framework in Frameworks */,
 				B77F1B3E17B978D7009739AE /* Foundation.framework in Frameworks */,
 				B77F1B4217B978D7009739AE /* CoreText.framework in Frameworks */,
+				CEB0C85C18D004AD003CED6D /* GameKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -332,6 +338,7 @@
 		B77F1B2517B978D7009739AE = {
 			isa = PBXGroup;
 			children = (
+				CEB0C85A18CF5AD1003CED6D /* NumberPuzzle.entitlements */,
 				B737893C1807616C0076A88C /* Source */,
 				B77F1B4617B978D7009739AE /* Resources */,
 				B77F1B5E17B978D7009739AE /* libs */,
@@ -352,8 +359,9 @@
 		B77F1B3017B978D7009739AE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				CEB0C85B18D004AD003CED6D /* GameKit.framework */,
+				CEB0C85818CF0EA0003CED6D /* StoreKit.framework */,
 				CEB37C5B18793C14007F2157 /* SystemConfiguration.framework */,
-				CEB37C5918793C09007F2157 /* StoreKit.framework */,
 				CEB37C5718793BFF007F2157 /* MessageUI.framework */,
 				CEB37C5518793BDD007F2157 /* AdSupport.framework */,
 				B7B3713D180358F1007369CC /* libObjectiveChipmunk.a */,
@@ -498,6 +506,7 @@
 		CEFA9C1618A1DCCF00FBA1FD /* sound */ = {
 			isa = PBXGroup;
 			children = (
+				CE3E677818DC8F4A00107FC5 /* itemTouched.mp3 */,
 				CEB0C85618CE15D7003CED6D /* match.mp3 */,
 				CEA09C0318BDE2DF00A04383 /* starSound.wav */,
 				CEB70A9118B3860100B631B2 /* buttonClick.mp3 */,
@@ -697,6 +706,12 @@
 						DevelopmentTeam = JBWATZTRU3;
 						SystemCapabilities = {
 							com.apple.GameCenter = {
+								enabled = 1;
+							};
+							com.apple.InAppPurchase = {
+								enabled = 1;
+							};
+							com.apple.iCloud = {
 								enabled = 0;
 							};
 						};
@@ -760,6 +775,7 @@
 				CEA09C0418BDE2DF00A04383 /* starSound.wav in Resources */,
 				B7378976180762440076A88C /* Default-Landscape~ipad.png in Resources */,
 				B7378975180762440076A88C /* Default-568h@2x.png in Resources */,
+				CE3E677918DC8F4A00107FC5 /* itemTouched.mp3 in Resources */,
 				CEFA9C1818A1DCCF00FBA1FD /* errorEffect.wav in Resources */,
 				D2E65C9C18626890007D0B1F /* ChangeLog in Resources */,
 				B7378977180762440076A88C /* Default.png in Resources */,

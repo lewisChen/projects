@@ -19,6 +19,7 @@ enum eLevelRecordTag
     eLevelRecordEasy = 0,
     eLevelRecordNormal,
     eLevelRecordHard,
+    eStarCount,
 };
 
 NSString* const kGameSaveData = @"kGameSaveData";
@@ -42,6 +43,21 @@ inline static id getSavaDataByDifficultLevel(enum eDifficultLevel difficultLevel
         default:
             break;
     }
+    return tempData;
+}
+
+inline static id getStarCount(void)
+{
+    id tempData = 0;
+    NSUserDefaults *saveDefaults = [NSUserDefaults standardUserDefaults];
+    NSArray* saveArray = [saveDefaults objectForKey:kGameSaveData];
+    
+    if (saveArray)
+    {
+        tempData = [saveArray objectAtIndex:eStarCount];
+
+    }
+    
     return tempData;
 }
 
@@ -108,6 +124,7 @@ static GameDataHandler* _sharedGameDataHandler = nil;
         saveArray = [NSArray arrayWithObjects:[NSNumber numberWithInteger:0],
                                               [NSNumber numberWithInteger:0],
                                               [NSNumber numberWithInteger:0],
+                                              [NSNumber numberWithInteger:0],
                                               nil];
         [self saveDataArray:saveArray withKey:kGameSaveData];
     }
@@ -119,8 +136,8 @@ static GameDataHandler* _sharedGameDataHandler = nil;
     self.level = [(NSNumber*)tempData integerValue];
     self.timeLeft = self.getTimeLimit;
     
-    tempData = getSavaDataByDifficultLevel(eDifficultLevelHard);
-    tempData = getSavaDataByDifficultLevel(eDifficultLevelNormal);
+//    tempData = getSavaDataByDifficultLevel(eDifficultLevelHard);
+//    tempData = getSavaDataByDifficultLevel(eDifficultLevelNormal);
 }
 
 -(void)resetSaveData
@@ -135,24 +152,30 @@ static GameDataHandler* _sharedGameDataHandler = nil;
     NSArray* saveArray = [saveDefaults objectForKey:kGameSaveData];
     NSArray *newArray = nil;
     
+    id starCountAlready = getStarCount();
+    self.starCount = [(NSNumber*)starCountAlready integerValue] + self.starCount;
+    
     switch (self.difficultLevel)
     {
         case eDifficultLevelEasy:
             newArray = [NSArray arrayWithObjects:[NSNumber numberWithInteger:self.level],
                                                 [saveArray objectAtIndex:eLevelRecordNormal],
                                                 [saveArray objectAtIndex:eLevelRecordHard],
+                                                [NSNumber numberWithInteger:self.starCount],
                                                 nil];
             break;
         case eDifficultLevelNormal:
             newArray = [NSArray arrayWithObjects:[saveArray objectAtIndex:eLevelRecordEasy],
                                                 [NSNumber numberWithInteger:self.level],
                                                 [saveArray objectAtIndex:eLevelRecordHard],
+                                                [NSNumber numberWithInteger:self.starCount],
                                                 nil];
             break;
         case eDifficultLevelHard:
             newArray = [NSArray arrayWithObjects:[saveArray objectAtIndex:eLevelRecordEasy],
                                                  [saveArray objectAtIndex:eLevelRecordNormal],
                                                  [NSNumber numberWithInteger:self.level],
+                                                [NSNumber numberWithInteger:self.starCount],
                                                  nil];
             break;
         default:

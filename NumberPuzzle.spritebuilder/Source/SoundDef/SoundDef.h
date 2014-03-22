@@ -13,5 +13,6 @@
 #define kEffectClickButton @"buttonClick.mp3"
 #define kEffectStar @"starSound.wav"
 #define kEffectMatch (@"match.mp3")
+#define kEffectTouched (@"itemTouched.mp3")
 
 #endif

@@ -132,8 +132,6 @@
 		</dict>
 		<key>background/grid.png</key>
 		<dict>
-			<key>isDirty</key>
-			<true/>
 			<key>scaleFrom</key>
 			<integer>1</integer>
 		</dict>
@@ -150,6 +148,11 @@
 			<integer>1</integer>
 		</dict>
 		<key>button/nextLevel.png</key>
+		<dict>
+			<key>scaleFrom</key>
+			<integer>1</integer>
+		</dict>
+		<key>button/resetButton.png</key>
 		<dict>
 			<key>scaleFrom</key>
 			<integer>1</integer>
@@ -188,8 +191,8 @@
 		</dict>
 	</dict>
 	<key>versionStr</key>
-	<string>Version: 1.0.3
-GitHub: 9026dcdd50
+	<string>Version: 1.0.4
+GitHub: 00a3af1cfa
 </string>
 </dict>
 </plist>

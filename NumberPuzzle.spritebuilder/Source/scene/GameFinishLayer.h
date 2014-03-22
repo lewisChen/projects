@@ -17,6 +17,7 @@
     NSMutableArray *m_arraySprite;
     NSInteger m_starCount;
     CCLabelBMFont *m_labelResult;
+    CCLabelTTF *m_labelLevel;
 }
 
 @property(nonatomic,readwrite) NSInteger starCount;

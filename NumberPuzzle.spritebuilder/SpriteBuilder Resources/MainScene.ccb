@@ -82,7 +82,7 @@
 							<real>1</real>
 							<real>1</real>
 							<false/>
-							<integer>0</integer>
+							<integer>1</integer>
 						</array>
 					</dict>
 					<dict>
@@ -149,7 +149,7 @@
 						<key>value</key>
 						<array>
 							<real>0.50937497615814209</real>
-							<real>0.69542253017425537</real>
+							<real>0.72542256116867065</real>
 							<integer>0</integer>
 							<integer>2</integer>
 							<integer>2</integer>
@@ -173,10 +173,10 @@
 						<string>ScaleLock</string>
 						<key>value</key>
 						<array>
-							<real>1.2441049814224243</real>
-							<real>0.95619422197341919</real>
+							<real>1.1801304817199707</real>
+							<real>0.94088464975357056</real>
 							<false/>
-							<integer>0</integer>
+							<integer>1</integer>
 						</array>
 					</dict>
 					<dict>
@@ -267,8 +267,8 @@ Puzzle
 						<key>value</key>
 						<array>
 							<real>1</real>
-							<real>1</real>
-							<real>1</real>
+							<real>0.80000001192092896</real>
+							<real>0.40000000596046448</real>
 							<real>1</real>
 						</array>
 					</dict>
@@ -369,10 +369,10 @@ Puzzle
 						<key>value</key>
 						<array>
 							<real>160.00001525878906</real>
-							<real>205.99998474121094</real>
+							<real>226</real>
 							<integer>0</integer>
-							<integer>0</integer>
-							<integer>0</integer>
+							<integer>1</integer>
+							<integer>1</integer>
 						</array>
 					</dict>
 					<dict>
@@ -693,10 +693,10 @@ Puzzle
 						<key>value</key>
 						<array>
 							<real>160</real>
-							<real>147</real>
+							<real>167</real>
 							<integer>0</integer>
-							<integer>0</integer>
-							<integer>0</integer>
+							<integer>1</integer>
+							<integer>1</integer>
 						</array>
 					</dict>
 					<dict>
@@ -1017,10 +1017,10 @@ Puzzle
 						<key>value</key>
 						<array>
 							<real>160</real>
-							<real>88</real>
+							<real>108</real>
 							<integer>0</integer>
-							<integer>0</integer>
-							<integer>0</integer>
+							<integer>1</integer>
+							<integer>1</integer>
 						</array>
 					</dict>
 					<dict>
