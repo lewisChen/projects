@@ -14,6 +14,7 @@
 #import "GameDataHandler.h"
 #include "../libs/cocos2d-iphone/external/ObjectAL/OALSimpleAudio.h"
 #import "../SoundDef/SoundDef.h"
+#include "../UiConstDef/uiPostionDef.h"
 
 
 #define kTagNameSpark (@"spark")
@@ -62,6 +63,7 @@
     [self addChild:sparkNode z:0 name:kTagNameSpark];
     sparkNode.visible = NO;
     
+    [self positionArragement];
 }
 
 - (void)initLayer
@@ -114,7 +116,11 @@
                 
                 
                 indexString = [NSString stringWithFormat:@"%d",indexX*MAX_ITEM_COUNT_X+indexY];
-                CGPoint pos = ccp(numberItem.contentSize.width*0.9+xOffset, (self.contentSize.height*2.97/4)+ yOffset);
+                CGPoint pos = ccp(numberItem.contentSize.width*0.9,self.contentSize.height*2.97/4);
+                pos = getUiPosition(pos);//convert pos to differenet device
+                pos.x = pos.x +xOffset;
+                pos.y = pos.y +yOffset;
+                
                 numberItem.position = ccp(self.contentSize.width/2, self.contentSize.height/2);
                 [self addChild:numberItem z:0 name:indexString];
                 numberItem.indexX = indexX;
@@ -521,6 +527,18 @@
             [self showFinishLayer];
         }
         [m_labelTime setString:dataHandler.getLeftTimeString];//getUseTimeString];
+    }
+}
+
+-(void)positionArragement
+{
+    if (!IS_IPHONE_5)
+    {
+        m_backArrow.position = ccp(m_backArrow.position.x, m_backArrow.position.y-55);
+        m_backButton.position = ccp(m_backButton.position.x,m_backButton.position.y-55);
+        m_lableTimeTitle.position = ccp(m_lableTimeTitle.position.x,m_lableTimeTitle.position.y-55);
+        m_labelTime.position = ccp(m_labelTime.position.x,m_labelTime.position.y-55);
+
     }
 }
 

@@ -26,6 +26,11 @@
     CCLabelTTF *m_lableError;
     NSMutableArray *m_btnArray;
     CCLabelTTF *m_errorTips;
+    
+    CCButton *m_backArrow;
+    CCButton *m_backButton;
+    CCLabelTTF *m_levelTitle;
+    CCLabelTTF *m_lableTimeTitle;
 
 }
 
@@ -46,6 +51,6 @@
 - (void)touchBegan:(UITouch *)touch withEvent:(UIEvent *)event;
 - (void)touchEnded:(UITouch *)touch withEvent:(UIEvent *)event;
 -(void)draw;
-
+-(void)positionArragement;
 
 @end

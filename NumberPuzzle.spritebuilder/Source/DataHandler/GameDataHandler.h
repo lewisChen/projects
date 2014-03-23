@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 
 #define kTimeLimit (4*60.0)
-#define kTimeMin (60)
+#define kTimeMin (30)
 
 enum eDifficultLevel
 {

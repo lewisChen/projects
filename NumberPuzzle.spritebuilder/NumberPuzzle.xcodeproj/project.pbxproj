@@ -142,6 +142,7 @@
 		B77F1B4117B978D7009739AE /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
 		B7B3713D180358F1007369CC /* libObjectiveChipmunk.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libObjectiveChipmunk.a; path = "../libs/cocos2d-iphone/external/Chipmunk/xcode/build/Debug-iphoneos/libObjectiveChipmunk.a"; sourceTree = "<group>"; };
 		CE3E677818DC8F4A00107FC5 /* itemTouched.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = itemTouched.mp3; sourceTree = "<group>"; };
+		CE3E677B18DED2B300107FC5 /* uiPostionDef.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = uiPostionDef.h; sourceTree = "<group>"; };
 		CE40C57E18B4C07500BF3820 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = NumberPuzzle/Images.xcassets; sourceTree = SOURCE_ROOT; };
 		CEA09C0318BDE2DF00A04383 /* starSound.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = starSound.wav; sourceTree = "<group>"; };
 		CEB0C85218CDB14E003CED6D /* FinishFont.fnt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = FinishFont.fnt; path = Source/Resources/font/FinishFont.fnt; sourceTree = SOURCE_ROOT; };
@@ -479,6 +480,7 @@
 			isa = PBXGroup;
 			children = (
 				CEB37C4918793A6F007F2157 /* FontRelateDef.h */,
+				CE3E677B18DED2B300107FC5 /* uiPostionDef.h */,
 			);
 			name = UiConstDef;
 			path = Source/UiConstDef;

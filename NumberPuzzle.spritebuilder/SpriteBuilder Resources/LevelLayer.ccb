@@ -82,7 +82,7 @@
 							<real>1</real>
 							<real>1</real>
 							<false/>
-							<integer>0</integer>
+							<integer>1</integer>
 						</array>
 					</dict>
 					<dict>
@@ -121,9 +121,9 @@
 				<key>displayName</key>
 				<string>CCButton</string>
 				<key>memberVarAssignmentName</key>
-				<string></string>
+				<string>m_backArrow</string>
 				<key>memberVarAssignmentType</key>
-				<integer>0</integer>
+				<integer>1</integer>
 				<key>properties</key>
 				<array>
 					<dict>
@@ -141,11 +141,11 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>37.240005493164062</real>
-							<real>526</real>
+							<real>30</real>
+							<real>520</real>
 							<integer>0</integer>
-							<integer>0</integer>
-							<integer>0</integer>
+							<integer>1</integer>
+							<integer>1</integer>
 						</array>
 					</dict>
 					<dict>
@@ -2162,8 +2162,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>226.75</real>
-							<real>86.666671752929688</real>
+							<real>230.35000610351562</real>
+							<real>87.866668701171875</real>
 							<integer>0</integer>
 							<integer>0</integer>
 							<integer>0</integer>
@@ -3504,9 +3504,9 @@
 				<key>displayName</key>
 				<string>CCLabelTTF</string>
 				<key>memberVarAssignmentName</key>
-				<string></string>
+				<string>m_lableTimeTitle</string>
 				<key>memberVarAssignmentType</key>
-				<integer>0</integer>
+				<integer>1</integer>
 				<key>properties</key>
 				<array>
 					<dict>
@@ -3524,11 +3524,11 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>226</real>
-							<real>526</real>
+							<real>220</real>
+							<real>520</real>
 							<integer>0</integer>
-							<integer>0</integer>
-							<integer>0</integer>
+							<integer>1</integer>
+							<integer>1</integer>
 						</array>
 					</dict>
 					<dict>
@@ -3729,11 +3729,11 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>250</real>
-							<real>526</real>
+							<real>244</real>
+							<real>520</real>
 							<integer>0</integer>
-							<integer>0</integer>
-							<integer>0</integer>
+							<integer>1</integer>
+							<integer>1</integer>
 						</array>
 					</dict>
 					<dict>
@@ -3914,9 +3914,9 @@
 				<key>displayName</key>
 				<string>CCButton</string>
 				<key>memberVarAssignmentName</key>
-				<string></string>
+				<string>m_backButton</string>
 				<key>memberVarAssignmentType</key>
-				<integer>0</integer>
+				<integer>1</integer>
 				<key>properties</key>
 				<array>
 					<dict>
@@ -3934,8 +3934,8 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>81</real>
-							<real>527</real>
+							<real>74.800003051757812</real>
+							<real>520</real>
 							<integer>0</integer>
 							<integer>1</integer>
 							<integer>1</integer>
@@ -4211,8 +4211,6 @@
 						</array>
 					</dict>
 				</array>
-				<key>selected</key>
-				<true/>
 			</dict>
 			<dict>
 				<key>baseClass</key>
@@ -4244,11 +4242,11 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>185</real>
-							<real>485</real>
+							<real>180</real>
+							<real>465</real>
 							<integer>0</integer>
-							<integer>0</integer>
-							<integer>0</integer>
+							<integer>1</integer>
+							<integer>1</integer>
 						</array>
 					</dict>
 					<dict>
@@ -4429,9 +4427,9 @@
 				<key>displayName</key>
 				<string>CCLabelTTF</string>
 				<key>memberVarAssignmentName</key>
-				<string></string>
+				<string>m_levelTitle</string>
 				<key>memberVarAssignmentType</key>
-				<integer>0</integer>
+				<integer>1</integer>
 				<key>properties</key>
 				<array>
 					<dict>
@@ -4449,11 +4447,11 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>160</real>
-							<real>485</real>
+							<real>155</real>
+							<real>465</real>
 							<integer>0</integer>
-							<integer>0</integer>
-							<integer>0</integer>
+							<integer>1</integer>
+							<integer>1</integer>
 						</array>
 					</dict>
 					<dict>
@@ -4657,8 +4655,8 @@
 							<real>160</real>
 							<real>290</real>
 							<integer>0</integer>
-							<integer>0</integer>
-							<integer>0</integer>
+							<integer>1</integer>
+							<integer>1</integer>
 						</array>
 					</dict>
 					<dict>
@@ -4695,7 +4693,7 @@
 							<real>1</real>
 							<real>1</real>
 							<false/>
-							<integer>0</integer>
+							<integer>1</integer>
 						</array>
 					</dict>
 					<dict>
@@ -4786,11 +4784,11 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>228</real>
-							<real>502</real>
+							<real>147.91110229492188</real>
+							<real>126.69440460205078</real>
 							<integer>0</integer>
-							<integer>0</integer>
-							<integer>0</integer>
+							<integer>1</integer>
+							<integer>1</integer>
 						</array>
 					</dict>
 					<dict>
@@ -4991,11 +4989,11 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>256</real>
-							<real>501</real>
+							<real>176.13888549804688</real>
+							<real>126.69999694824219</real>
 							<integer>0</integer>
-							<integer>0</integer>
-							<integer>0</integer>
+							<integer>1</integer>
+							<integer>1</integer>
 						</array>
 					</dict>
 					<dict>
