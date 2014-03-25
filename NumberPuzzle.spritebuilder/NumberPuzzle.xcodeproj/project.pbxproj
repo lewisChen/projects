@@ -26,6 +26,7 @@
 		B77F1B4217B978D7009739AE /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B77F1B4117B978D7009739AE /* CoreText.framework */; };
 		CE3E677918DC8F4A00107FC5 /* itemTouched.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CE3E677818DC8F4A00107FC5 /* itemTouched.mp3 */; };
 		CE40C57F18B4C07500BF3820 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE40C57E18B4C07500BF3820 /* Images.xcassets */; };
+		CE841F2918E029D500A2A081 /* GameKitHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = CE841F2818E029D500A2A081 /* GameKitHelper.m */; };
 		CEA09C0418BDE2DF00A04383 /* starSound.wav in Resources */ = {isa = PBXBuildFile; fileRef = CEA09C0318BDE2DF00A04383 /* starSound.wav */; };
 		CEB0C85418CDB14E003CED6D /* FinishFont.fnt in Resources */ = {isa = PBXBuildFile; fileRef = CEB0C85218CDB14E003CED6D /* FinishFont.fnt */; };
 		CEB0C85518CDB14E003CED6D /* FinishFont.png in Resources */ = {isa = PBXBuildFile; fileRef = CEB0C85318CDB14E003CED6D /* FinishFont.png */; };
@@ -144,6 +145,8 @@
 		CE3E677818DC8F4A00107FC5 /* itemTouched.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = itemTouched.mp3; sourceTree = "<group>"; };
 		CE3E677B18DED2B300107FC5 /* uiPostionDef.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = uiPostionDef.h; sourceTree = "<group>"; };
 		CE40C57E18B4C07500BF3820 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = NumberPuzzle/Images.xcassets; sourceTree = SOURCE_ROOT; };
+		CE841F2718E029D500A2A081 /* GameKitHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GameKitHelper.h; path = Source/DataHandler/GameKitHelper.h; sourceTree = "<group>"; };
+		CE841F2818E029D500A2A081 /* GameKitHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GameKitHelper.m; path = Source/DataHandler/GameKitHelper.m; sourceTree = "<group>"; };
 		CEA09C0318BDE2DF00A04383 /* starSound.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = starSound.wav; sourceTree = "<group>"; };
 		CEB0C85218CDB14E003CED6D /* FinishFont.fnt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = FinishFont.fnt; path = Source/Resources/font/FinishFont.fnt; sourceTree = SOURCE_ROOT; };
 		CEB0C85318CDB14E003CED6D /* FinishFont.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = FinishFont.png; path = Source/Resources/font/FinishFont.png; sourceTree = SOURCE_ROOT; };
@@ -501,6 +504,8 @@
 			children = (
 				CEFA9C13189E888E00FBA1FD /* GameDataHandler.h */,
 				CEFA9C14189E888E00FBA1FD /* GameDataHandler.m */,
+				CE841F2718E029D500A2A081 /* GameKitHelper.h */,
+				CE841F2818E029D500A2A081 /* GameKitHelper.m */,
 			);
 			name = DataHandler;
 			sourceTree = "<group>";
@@ -814,6 +819,7 @@
 				D2E65C471862647B007D0B1F /* cpGrooveJoint.c in Sources */,
 				D2E65C411862647B007D0B1F /* cpBody.c in Sources */,
 				D2E65CA218626890007D0B1F /* neon_matrix_impl.c in Sources */,
+				CE841F2918E029D500A2A081 /* GameKitHelper.m in Sources */,
 				CEB37C5418793AE1007F2157 /* NumberArithmetic.m in Sources */,
 				D2E65C461862647B007D0B1F /* cpGearJoint.c in Sources */,
 				D2E65C511862647B007D0B1F /* cpSpace.c in Sources */,

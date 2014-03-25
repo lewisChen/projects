@@ -12,6 +12,7 @@
 #import "GameDataHandler.h"
 #include "../libs/cocos2d-iphone/external/ObjectAL/OALSimpleAudio.h"
 #import "../SoundDef/SoundDef.h"
+#import "GameKitHelper.h"
 
 
 @implementation MainScene
@@ -19,6 +20,7 @@
 - (void) didLoadFromCCB
 {
     [[OALSimpleAudio sharedInstance] preloadEffect:kEffectClickButton];
+    [[GameKitHelper sharedGameKitHelper] authenticateLocalPlayer];
 }
 
 -(void)buttonPress:(id)sender

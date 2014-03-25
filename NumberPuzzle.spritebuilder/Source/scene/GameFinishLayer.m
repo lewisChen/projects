@@ -11,6 +11,7 @@
 #include "../libs/cocos2d-iphone/external/ObjectAL/OALSimpleAudio.h"
 #import "../SoundDef/SoundDef.h"
 #import "GameDataHandler.h"
+#import "GameKitHelper.h"
 
 enum Estar
 {
@@ -39,6 +40,7 @@ enum Estar
     [self handleShowScore];
     
     [dataHandler saveData];
+    [[GameKitHelper sharedGameKitHelper] submitScore:dataHandler.starCount category:kHighScoreBoardIdentifier];
 }
 
 -(void)retryButtonPress:(id)sender
