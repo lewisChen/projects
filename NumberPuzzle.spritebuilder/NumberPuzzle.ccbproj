@@ -147,6 +147,11 @@
 			<key>scaleFrom</key>
 			<integer>1</integer>
 		</dict>
+		<key>button/gameCenterBtn.png</key>
+		<dict>
+			<key>scaleFrom</key>
+			<integer>1</integer>
+		</dict>
 		<key>button/nextLevel.png</key>
 		<dict>
 			<key>scaleFrom</key>

@@ -948,7 +948,7 @@
 					"Source/libs/cocos2d-iphone/external/ObjectAL/**",
 				);
 				INFOPLIST_FILE = Source/Resources/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/user/Documents/Projects/gitSource/projects/NumberPuzzle.spritebuilder/Source/admob,
@@ -987,7 +987,7 @@
 					"Source/libs/cocos2d-iphone/external/ObjectAL/**",
 				);
 				INFOPLIST_FILE = Source/Resources/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/user/Documents/Projects/gitSource/projects/NumberPuzzle.spritebuilder/Source/admob,

@@ -34,5 +34,10 @@
 
 // Scores
 -(void)submitScore:(int64_t)score category:(NSString*)identifier;
+//show leaderboard
+- (void)showLeaderboard : (NSString*)leaderboard;
+
+//GKGameCenterControllerDelegate
+- (void)gameCenterViewControllerDidFinish:(GKGameCenterViewController *)gameCenterViewController;
 
 @end

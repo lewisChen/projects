@@ -62,4 +62,10 @@
     [dataHandler resetSaveData];
 }
 
+-(void)btnGameCenterPress:(id)sender
+{
+    [[GameKitHelper sharedGameKitHelper] showLeaderboard:kHighScoreBoardIdentifier];
+
+}
+
 @end

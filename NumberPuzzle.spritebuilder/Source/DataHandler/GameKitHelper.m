@@ -122,4 +122,22 @@
     
 }
 
+- (void)showLeaderboard : (NSString*)leaderboard
+{
+    if (!_gameCenterFeaturesEnabled)
+        return;
+    UIViewController* rootVC = [self getRootViewController];
+    GKGameCenterViewController *gameCenterViewController = [[GKGameCenterViewController alloc] init];
+    gameCenterViewController.leaderboardIdentifier = leaderboard;
+    gameCenterViewController.viewState = GKGameCenterViewControllerStateLeaderboards;
+    gameCenterViewController.gameCenterDelegate = self;
+    [rootVC presentViewController:gameCenterViewController animated:YES completion:nil];
+}
+
+-(void)gameCenterViewControllerDidFinish:(GKGameCenterViewController *)gameCenterViewController
+{
+    [gameCenterViewController dismissViewControllerAnimated:YES completion:^(void){}];
+}
+
+
 @end
