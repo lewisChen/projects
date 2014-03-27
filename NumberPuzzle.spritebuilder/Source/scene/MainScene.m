@@ -64,6 +64,7 @@
 
 -(void)btnGameCenterPress:(id)sender
 {
+    [[OALSimpleAudio sharedInstance] playEffect:kEffectClickButton];
     [[GameKitHelper sharedGameKitHelper] showLeaderboard:kHighScoreBoardIdentifier];
 
 }
