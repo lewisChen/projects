@@ -67,9 +67,9 @@
 	<key>publishResolution_ios_phonehd</key>
 	<true/>
 	<key>publishResolution_ios_tablet</key>
-	<false/>
+	<true/>
 	<key>publishResolution_ios_tablethd</key>
-	<false/>
+	<true/>
 	<key>publishToZipFile</key>
 	<false/>
 	<key>resourceAutoScaleFactor</key>
@@ -83,6 +83,8 @@
 	</array>
 	<key>resourceProperties</key>
 	<dict>
+		<key>MainScene.ccbi</key>
+		<dict/>
 		<key>NumberItem</key>
 		<dict/>
 		<key>NumberItem/eight.png</key>

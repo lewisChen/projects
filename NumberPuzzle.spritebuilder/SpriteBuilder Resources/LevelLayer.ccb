@@ -579,7 +579,7 @@
 						<key>value</key>
 						<array>
 							<string></string>
-							<string>ccbResources/ccbButtonHighlighted.png</string>
+							<string>NumberItem/two.png</string>
 						</array>
 					</dict>
 					<dict>
@@ -616,7 +616,7 @@
 						<key>value</key>
 						<array>
 							<string></string>
-							<string>ccbResources/ccbButtonNormal.png</string>
+							<string>NumberItem/two.png</string>
 						</array>
 					</dict>
 					<dict>
@@ -643,7 +643,7 @@
 						<key>value</key>
 						<array>
 							<string></string>
-							<string>ccbResources/ccbButtonNormal.png</string>
+							<string>NumberItem/two.png</string>
 						</array>
 					</dict>
 					<dict>
@@ -904,14 +904,6 @@
 							<string>4</string>
 							<false/>
 						</array>
-					</dict>
-					<dict>
-						<key>name</key>
-						<string>zoomWhenHighlighted</string>
-						<key>type</key>
-						<string>Check</string>
-						<key>value</key>
-						<true/>
 					</dict>
 					<dict>
 						<key>name</key>
@@ -1244,14 +1236,6 @@
 							<string>5</string>
 							<false/>
 						</array>
-					</dict>
-					<dict>
-						<key>name</key>
-						<string>zoomWhenHighlighted</string>
-						<key>type</key>
-						<string>Check</string>
-						<key>value</key>
-						<true/>
 					</dict>
 					<dict>
 						<key>name</key>
@@ -1919,14 +1903,6 @@
 					</dict>
 					<dict>
 						<key>name</key>
-						<string>zoomWhenHighlighted</string>
-						<key>type</key>
-						<string>Check</string>
-						<key>value</key>
-						<true/>
-					</dict>
-					<dict>
-						<key>name</key>
 						<string>backgroundSpriteFrame|Normal</string>
 						<key>type</key>
 						<string>SpriteFrame</string>
@@ -2162,7 +2138,7 @@
 						<string>Position</string>
 						<key>value</key>
 						<array>
-							<real>230.35000610351562</real>
+							<real>228.39999389648438</real>
 							<real>87.866668701171875</real>
 							<integer>0</integer>
 							<integer>0</integer>
@@ -3183,10 +3159,10 @@
 						<string>ScaleLock</string>
 						<key>value</key>
 						<array>
-							<real>0.86799997091293335</real>
-							<real>0.86799997091293335</real>
+							<real>0.82764095067977905</real>
+							<real>0.84536051750183105</real>
 							<false/>
-							<integer>1</integer>
+							<integer>0</integer>
 						</array>
 					</dict>
 					<dict>
@@ -3215,8 +3191,8 @@
 						<string>Size</string>
 						<key>value</key>
 						<array>
-							<real>32</real>
-							<real>32</real>
+							<real>33</real>
+							<real>33</real>
 							<integer>0</integer>
 							<integer>0</integer>
 						</array>
@@ -3252,14 +3228,6 @@
 							<string>1</string>
 							<false/>
 						</array>
-					</dict>
-					<dict>
-						<key>name</key>
-						<string>zoomWhenHighlighted</string>
-						<key>type</key>
-						<string>Check</string>
-						<key>value</key>
-						<true/>
 					</dict>
 					<dict>
 						<key>name</key>
@@ -3493,6 +3461,8 @@
 						</array>
 					</dict>
 				</array>
+				<key>selected</key>
+				<true/>
 			</dict>
 			<dict>
 				<key>baseClass</key>

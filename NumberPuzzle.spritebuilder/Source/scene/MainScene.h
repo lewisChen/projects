@@ -11,7 +11,7 @@
 
 @interface MainScene : CCNode
 {
-    CCButton *m_gameCenterBtn;
+    
 }
 
 @end

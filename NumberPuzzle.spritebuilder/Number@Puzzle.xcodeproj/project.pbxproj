@@ -27,6 +27,7 @@
 		CE3E677918DC8F4A00107FC5 /* itemTouched.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CE3E677818DC8F4A00107FC5 /* itemTouched.mp3 */; };
 		CE40C57F18B4C07500BF3820 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE40C57E18B4C07500BF3820 /* Images.xcassets */; };
 		CE841F2918E029D500A2A081 /* GameKitHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = CE841F2818E029D500A2A081 /* GameKitHelper.m */; };
+		CE90A8D318EA9A8700BA898F /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE90A8D218EA9A8700BA898F /* CoreTelephony.framework */; };
 		CEA09C0418BDE2DF00A04383 /* starSound.wav in Resources */ = {isa = PBXBuildFile; fileRef = CEA09C0318BDE2DF00A04383 /* starSound.wav */; };
 		CEB0C85418CDB14E003CED6D /* FinishFont.fnt in Resources */ = {isa = PBXBuildFile; fileRef = CEB0C85218CDB14E003CED6D /* FinishFont.fnt */; };
 		CEB0C85518CDB14E003CED6D /* FinishFont.png in Resources */ = {isa = PBXBuildFile; fileRef = CEB0C85318CDB14E003CED6D /* FinishFont.png */; };
@@ -42,7 +43,7 @@
 		CEB37C4E18793A70007F2157 /* MainScene.m in Sources */ = {isa = PBXBuildFile; fileRef = CEB37C4718793A6F007F2157 /* MainScene.m */; };
 		CEB37C5418793AE1007F2157 /* NumberArithmetic.m in Sources */ = {isa = PBXBuildFile; fileRef = CEB37C5318793AE1007F2157 /* NumberArithmetic.m */; };
 		CEB37C5618793BDD007F2157 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEB37C5518793BDD007F2157 /* AdSupport.framework */; };
-		CEB37C5818793BFF007F2157 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEB37C5718793BFF007F2157 /* MessageUI.framework */; };
+		CEB37C5818793BFF007F2157 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEB37C5718793BFF007F2157 /* MessageUI.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		CEB37C5C18793C14007F2157 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEB37C5B18793C14007F2157 /* SystemConfiguration.framework */; };
 		CEB70A9218B3860100B631B2 /* buttonClick.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = CEB70A9118B3860100B631B2 /* buttonClick.mp3 */; };
 		CEBD8EC1188ED0C00084A1EF /* GameFinishLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = CEBD8EC0188ED0C00084A1EF /* GameFinishLayer.m */; };
@@ -104,13 +105,6 @@
 			remoteGlobalIDString = 5018F24D0DFDEAC400C013A5;
 			remoteInfo = cocos2d;
 		};
-		B737894E180761A90076A88C /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = B7378940180761A80076A88C /* cocos2d-ios.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = A04A1FEB13B826B300ABAFB7;
-			remoteInfo = kazmath;
-		};
 		B7378988180764180076A88C /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = B7378940180761A80076A88C /* cocos2d-ios.xcodeproj */;
@@ -141,12 +135,12 @@
 		B77F1B3D17B978D7009739AE /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		B77F1B3F17B978D7009739AE /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		B77F1B4117B978D7009739AE /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
-		B7B3713D180358F1007369CC /* libObjectiveChipmunk.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libObjectiveChipmunk.a; path = "../libs/cocos2d-iphone/external/Chipmunk/xcode/build/Debug-iphoneos/libObjectiveChipmunk.a"; sourceTree = "<group>"; };
 		CE3E677818DC8F4A00107FC5 /* itemTouched.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = itemTouched.mp3; sourceTree = "<group>"; };
 		CE3E677B18DED2B300107FC5 /* uiPostionDef.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = uiPostionDef.h; sourceTree = "<group>"; };
 		CE40C57E18B4C07500BF3820 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = NumberPuzzle/Images.xcassets; sourceTree = SOURCE_ROOT; };
 		CE841F2718E029D500A2A081 /* GameKitHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GameKitHelper.h; path = Source/DataHandler/GameKitHelper.h; sourceTree = "<group>"; };
 		CE841F2818E029D500A2A081 /* GameKitHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GameKitHelper.m; path = Source/DataHandler/GameKitHelper.m; sourceTree = "<group>"; };
+		CE90A8D218EA9A8700BA898F /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 		CEA09C0318BDE2DF00A04383 /* starSound.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = starSound.wav; sourceTree = "<group>"; };
 		CEB0C85218CDB14E003CED6D /* FinishFont.fnt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = FinishFont.fnt; path = Source/Resources/font/FinishFont.fnt; sourceTree = SOURCE_ROOT; };
 		CEB0C85318CDB14E003CED6D /* FinishFont.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = FinishFont.png; path = Source/Resources/font/FinishFont.png; sourceTree = SOURCE_ROOT; };
@@ -280,6 +274,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE90A8D318EA9A8700BA898F /* CoreTelephony.framework in Frameworks */,
 				CEB37C5C18793C14007F2157 /* SystemConfiguration.framework in Frameworks */,
 				CEB37C5818793BFF007F2157 /* MessageUI.framework in Frameworks */,
 				B77F1B4017B978D7009739AE /* CoreGraphics.framework in Frameworks */,
@@ -323,7 +318,6 @@
 			isa = PBXGroup;
 			children = (
 				B737894B180761A90076A88C /* libcocos2d.a */,
-				B737894F180761A90076A88C /* libkazmath.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -363,12 +357,12 @@
 		B77F1B3017B978D7009739AE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				CE90A8D218EA9A8700BA898F /* CoreTelephony.framework */,
 				CEB0C85B18D004AD003CED6D /* GameKit.framework */,
 				CEB0C85818CF0EA0003CED6D /* StoreKit.framework */,
 				CEB37C5B18793C14007F2157 /* SystemConfiguration.framework */,
 				CEB37C5718793BFF007F2157 /* MessageUI.framework */,
 				CEB37C5518793BDD007F2157 /* AdSupport.framework */,
-				B7B3713D180358F1007369CC /* libObjectiveChipmunk.a */,
 				B77F1B3117B978D7009739AE /* QuartzCore.framework */,
 				B77F1B3317B978D7009739AE /* OpenGLES.framework */,
 				B77F1B3517B978D7009739AE /* OpenAL.framework */,
@@ -756,13 +750,6 @@
 			remoteRef = B737894A180761A90076A88C /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		B737894F180761A90076A88C /* libkazmath.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libkazmath.a;
-			remoteRef = B737894E180761A90076A88C /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
 /* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
@@ -874,8 +861,9 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: ZHENYU CHEN (JBWATZTRU3)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: ZHENYU CHEN (JBWATZTRU3)";
+				"CODE_SIGN_ENTITLEMENTS[sdk=*]" = "";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -892,6 +880,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				ONLY_ACTIVE_ARCH = YES;
+				PROVISIONING_PROFILE = "2584664D-4D96-4412-9BBC-5981530B9E33";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				"USER_HEADER_SEARCH_PATHS[arch=*]" = /Users/user/Documents/study/arithmetic;
@@ -907,8 +896,8 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: ZHENYU CHEN (JBWATZTRU3)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: ZHENYU CHEN (JBWATZTRU3)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					NDEBUG,
@@ -923,6 +912,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				ONLY_ACTIVE_ARCH = YES;
+				PROVISIONING_PROFILE = "2584664D-4D96-4412-9BBC-5981530B9E33";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				"USER_HEADER_SEARCH_PATHS[arch=*]" = /Users/user/Documents/study/arithmetic;
@@ -936,7 +926,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: ZHENYU CHEN (JBWATZTRU3)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -951,19 +941,19 @@
 					"Source/libs/cocos2d-iphone/external/ObjectAL/**",
 				);
 				INFOPLIST_FILE = Source/Resources/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/user/Documents/Projects/gitSource/projects/NumberPuzzle.spritebuilder/Source/admob,
 				);
-				ONLY_ACTIVE_ARCH = NO;
+				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = (
 					"-lz",
 					"-lsqlite3",
 					"-ObjC",
 				);
 				PRODUCT_NAME = "Number@Puzzle";
-				PROVISIONING_PROFILE = "6185495C-053B-44A0-A4CE-76926AA46F06";
+				PROVISIONING_PROFILE = "15384E22-ABB6-4924-8AEC-F39F52424C97";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
@@ -976,7 +966,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: ZHENYU CHEN (JBWATZTRU3)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -990,19 +980,19 @@
 					"Source/libs/cocos2d-iphone/external/ObjectAL/**",
 				);
 				INFOPLIST_FILE = Source/Resources/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/user/Documents/Projects/gitSource/projects/NumberPuzzle.spritebuilder/Source/admob,
 				);
-				ONLY_ACTIVE_ARCH = NO;
+				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = (
 					"-lz",
 					"-lsqlite3",
 					"-ObjC",
 				);
 				PRODUCT_NAME = "Number@Puzzle";
-				PROVISIONING_PROFILE = "6185495C-053B-44A0-A4CE-76926AA46F06";
+				PROVISIONING_PROFILE = "15384E22-ABB6-4924-8AEC-F39F52424C97";
 				TARGETED_DEVICE_FAMILY = 1;
 				VALIDATE_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;

@@ -1871,22 +1871,6 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Source/AppDelegate.m"
-            timestampString = "417235671.199036"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "58"
-            endingLineNumber = "58"
-            landmarkName = "-application:didFinishLaunchingWithOptions:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "Source/scene/LevelLayer.m"
             timestampString = "417260566.340986"
             startingColumnNumber = "9223372036854775807"
@@ -1973,7 +1957,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "68"
             endingLineNumber = "68"
-            landmarkName = "-btnGameCenterPress:"
+            landmarkName = "-btnGameCenter:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -2045,13 +2029,13 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Source/AppDelegate.m"
-            timestampString = "417578031.087291"
+            filePath = "Source/libs/cocos2d-iphone/cocos2d/Platforms/iOS/CCAppDelegate.m"
+            timestampString = "417578270.098939"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "52"
-            endingLineNumber = "52"
-            landmarkName = "-application:didFinishLaunchingWithOptions:"
+            startingLineNumber = "101"
+            endingLineNumber = "101"
+            landmarkName = "-directorDidReshapeProjection:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -2061,13 +2045,91 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Source/libs/cocos2d-iphone/cocos2d/Platforms/iOS/CCAppDelegate.m"
-            timestampString = "417578270.098939"
+            filePath = "Source/libs/cocos2d-iphone/cocos2d-ui/CCControl.h"
+            timestampString = "418016520.957961"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "101"
-            endingLineNumber = "101"
-            landmarkName = "-directorDidReshapeProjection:"
+            startingLineNumber = "108"
+            endingLineNumber = "108"
+            landmarkName = "@property (nonatomic,copy) void(^block)(id sender);"
+            landmarkType = "19">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[CCControl block]"
+                  moduleName = "Number@Puzzle"
+                  urlString = "file:///Users/user/Documents/Projects/gitSource/projects/NumberPuzzle.spritebuilder/Source/libs/cocos2d-iphone/cocos2d-ui/CCControl.h"
+                  timestampString = "418016520.994409"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "108"
+                  endingLineNumber = "108"
+                  offsetFromSymbolStart = "28">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[CCControl setBlock:]"
+                  moduleName = "Number@Puzzle"
+                  urlString = "file:///Users/user/Documents/Projects/gitSource/projects/NumberPuzzle.spritebuilder/Source/libs/cocos2d-iphone/cocos2d-ui/CCControl.h"
+                  timestampString = "418016520.995234"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "108"
+                  endingLineNumber = "108"
+                  offsetFromSymbolStart = "36">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Source/libs/cocos2d-iphone/cocos2d-ui/CCBReader/CCBReader.m"
+            timestampString = "418017733.801628"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "982"
+            endingLineNumber = "982"
+            landmarkName = "-readNodeGraphParent:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Source/scene/MainScene.m"
+            timestampString = "418023660.371644"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "67"
+            endingLineNumber = "67"
+            landmarkName = "-btnGameCenter:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Source/libs/cocos2d-iphone/cocos2d-ui/CCBReader/CCBReader.m"
+            timestampString = "418023743.335934"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "667"
+            endingLineNumber = "667"
+            landmarkName = "-readPropertyForNode:parent:isExtraProp:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

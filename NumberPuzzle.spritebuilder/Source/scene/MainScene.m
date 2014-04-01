@@ -62,7 +62,7 @@
     [dataHandler resetSaveData];
 }
 
--(void)btnGameCenterPress:(id)sender
+-(void)btnGameCenter:(id)sender
 {
     [[OALSimpleAudio sharedInstance] playEffect:kEffectClickButton];
     [[GameKitHelper sharedGameKitHelper] showLeaderboard:kHighScoreBoardIdentifier];
