@@ -9,13 +9,43 @@
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
 
+
+
 @interface PlayScene : CCNode
 {
-    CCSprite *m_spriteBall;   
+    CCSprite *m_background;
+    CCSprite *m_spriteBall;
+    CCSprite *m_buttomBody;
+    CCNode *m_mouseJointNode;
+    CCPhysicsJoint *m_mouseJoint;
+    
+    CCPhysicsJoint *m_jointLeft;
+    CCPhysicsJoint *m_jointRight;
+    //CCPhysicsJoint *m_jointUp;
+    //CCPhysicsJoint *m_jointDown;
+    CCSprite *m_objLeftPin;
+    CCSprite *m_objMiddlePin;
+    CCSprite *m_objRightPin;
+    
+    //CCSprite *m_objUpPin;
+    //CCSprite *m_objDownPin;
+    
+    CGPoint m_pointAim;
+    CGPoint m_startPosition;
+    
 }
 
+@property(readwrite)CGPoint aimPoint;
+@property(readwrite)CGPoint startPosition;
+
+- (void)releaseJoint;
+- (void)initWeapon;
+- (void)resetWeapon;
 - (void)touchBegan:(UITouch *)touch withEvent:(UIEvent *)event;
 - (void)touchEnded:(UITouch *)touch withEvent:(UIEvent *)event;
-
+- (void)touchCancelled:(UITouch *)touch withEvent:(UIEvent *)event;
+- (void)drawLine;
+- (void)draw;
+- (void)update:(CCTime)delta;
 
 @end
