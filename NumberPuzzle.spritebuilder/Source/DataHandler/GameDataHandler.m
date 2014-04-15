@@ -236,10 +236,29 @@ static GameDataHandler* _sharedGameDataHandler = nil;
 -(double)getTimeLimit
 {
     NSInteger gameLevel = [self getGameLevel:self.difficultLevel];
-    double timeLimit = kTimeLimit-gameLevel*20;
-    if (timeLimit< kTimeMin)
+    double timeLimit = kTimeLimit-gameLevel*10;
+    
+    switch (self.difficultLevel)
     {
-        timeLimit = kTimeMin;
+        case eDifficultLevelEasy:
+            if (timeLimit< kTimeMinEasy)
+            {
+                timeLimit = kTimeMinEasy;
+            }
+            break;
+        case eDifficultLevelNormal:
+            if (timeLimit< kTimeMinNormal)
+            {
+                timeLimit = kTimeMinNormal;
+            }
+            break;
+        case eDifficultLevelHard:
+            if (timeLimit< kTimeMinHard)
+            {
+                timeLimit = kTimeMinHard;
+            }
+        default:
+            break;
     }
     return timeLimit;
 }
