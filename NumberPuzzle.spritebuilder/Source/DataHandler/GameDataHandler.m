@@ -235,7 +235,7 @@ static GameDataHandler* _sharedGameDataHandler = nil;
 
 -(double)getTimeLimit
 {
-    NSInteger gameLevel = [self getGameLevel:self.difficultLevel];
+    NSInteger gameLevel = [self getGameLevel:(enum eDifficultLevel)self.difficultLevel];
     double timeLimit = kTimeLimit-gameLevel*10;
     
     switch (self.difficultLevel)
