@@ -31,9 +31,13 @@
     m_objLeftPin.physicsBody.collisionMask = @[];
     m_objRightPin.physicsBody.collisionMask =@[];
     
+    m_spriteBall.physicsBody.collisionType = @"ball1";
     self.startPosition = m_spriteBall.position;
     m_background.zOrder = -1;
     
+    m_objMiddlePin.physicsBody.collisionType =@"ball2";
+    
+    m_physicsNodeWorld.collisionDelegate = self;
     //[self initWeapon];
 }
 
@@ -139,7 +143,6 @@
             
             [[m_spriteBall physicsBody] applyForce:ccp(force.x, force.y)];
             self.isStarControlBall = YES;
-
         }
         else if(m_spriteBall.position.y>self.startPosition.y)
         {
@@ -158,7 +161,7 @@
 
 -(void)drawLine
 {
-    if (m_spriteBall.position.y<(self.startPosition.y+m_spriteBall.contentSize.height/2))
+    if (m_spriteBall.position.y<=self.startPosition.y)
     {
         CHECK_GL_ERROR_DEBUG();
         
@@ -167,12 +170,17 @@
         ccDrawColor4B(255,255,255,80);
         ccDrawLine(m_spriteBall.position,m_objLeftPin.position);
         ccDrawLine(m_spriteBall.position,m_objRightPin.position);
-        
-        ccDrawColor4B(255,0,0,80);
-        ccDrawLine(m_spriteBall.position,ccp(m_spriteBall.position.x+self.forceLine.x, m_spriteBall.position.y+self.forceLine.y));
 
+    }
+    
+    if (m_spriteBall.position.y<self.startPosition.y)
+    {
         CHECK_GL_ERROR_DEBUG();
-
+        glLineWidth( 3.0f );
+        ccDrawColor4B(255,255,255,80);
+        ccDrawLine(ccp(m_spriteBall.position.x+1.5, m_spriteBall.position.y),ccp(m_spriteBall.position.x+self.forceLine.x, m_spriteBall.position.y+self.forceLine.y));
+        ccDrawLine(m_spriteBall.position,ccp(m_spriteBall.position.x+self.forceLine.x, m_spriteBall.position.y+self.forceLine.y));
+        ccDrawLine(ccp(m_spriteBall.position.x-1.5, m_spriteBall.position.y),ccp(m_spriteBall.position.x+self.forceLine.x, m_spriteBall.position.y+self.forceLine.y));
     }
 }
 
@@ -180,15 +188,15 @@
 {
     [super draw];
     [self drawLine];
-    if (m_spriteBall.position.y<=0)
-    {
-        m_spriteBall.physicsBody.velocity = ccp(0.0, 0.0);
-        m_spriteBall.position = self.startPosition;//ccp(m_spriteBall.position.x, m_spriteBall.position.y+m_spriteBall.contentSize.height/2);
-    }
 }
 
 -(void)update:(CCTime)delta
 {
+    if (m_spriteBall.position.y<=0)
+    {
+        [self resetWeapon];
+    }
+    
     self.updateCount = self.updateCount+1;
     if ((self.updateCount>300)&&self.isStarControlBall)
     {
@@ -196,6 +204,19 @@
         self.isStarControlBall = NO;
         self.updateCount = 0;
     }
+    
+}
+
+-(BOOL)ccPhysicsCollisionBegin:(CCPhysicsCollisionPair *)pair ball1:(CCNode *)nodeA ball2:(CCNode *)nodeB
+{
+    CCLOG(@"collsiion begin");
+
+    return YES;
+}
+
+-(void)ccPhysicsCollisionPostSolve:(CCPhysicsCollisionPair *)pair ball1:(CCNode *)nodeA ball2:(CCNode *)nodeB
+{
+    CCLOG(@"collsiion happen");
 }
 
 @end

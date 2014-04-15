@@ -13,6 +13,8 @@
 #import "GameDataHandler.h"
 #import "GameKitHelper.h"
 
+#define kMaxError (30)
+
 enum Estar
 {
     eStar1,
@@ -40,7 +42,10 @@ enum Estar
     [self handleShowScore];
     
     [dataHandler saveData];
-    [[GameKitHelper sharedGameKitHelper] submitScore:dataHandler.starCount category:kHighScoreBoardIdentifier];
+    if (YES == dataHandler.isWin)
+    {
+        [[GameKitHelper sharedGameKitHelper] submitScore:dataHandler.starCount category:kHighScoreBoardIdentifier];
+    }
 }
 
 -(void)retryButtonPress:(id)sender
@@ -55,7 +60,15 @@ enum Estar
     [[OALSimpleAudio sharedInstance] playEffect:kEffectClickButton];
 
     GameDataHandler *dataHandler = [GameDataHandler sharedGameDataHandler];
-    dataHandler.level = dataHandler.level+1;
+    if (dataHandler.isWin == YES)
+    {
+        dataHandler.level = dataHandler.level+1;
+    }
+    else
+    {
+        dataHandler.level = dataHandler.level;
+    }
+    
     [dataHandler saveData];
     
     CCScene *scene = [CCBReader loadAsScene:@"LevelLayer.ccbi"];
@@ -82,17 +95,20 @@ enum Estar
     NSInteger result = 0;
     GameDataHandler *dataHandler = [GameDataHandler sharedGameDataHandler];
     double factor = dataHandler.timeLeft/dataHandler.timeLimit;
-    if (factor>=0.8)
+    if (dataHandler.errorCount<=kMaxError)
     {
-        result = 3;
-    }
-    else if(factor>=0.5)
-    {
-        result = 2;
-    }
-    else if (factor>=0.2)
-    {
-        result = 1;
+        if (factor>=0.8)
+        {
+            result = 3;
+        }
+        else if(factor>=0.5)
+        {
+            result = 2;
+        }
+        else if (factor>=0.2)
+        {
+            result = 1;
+        }
     }
     return result;
 }

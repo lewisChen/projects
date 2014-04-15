@@ -11,9 +11,12 @@
 
 
 
-@interface PlayScene : CCNode
+@interface PlayScene : CCNode<CCPhysicsCollisionDelegate>
 {
     CCSprite *m_background;
+    
+    CCPhysicsNode *m_physicsNodeWorld;
+    
     CCSprite *m_spriteBall;
     CCSprite *m_buttomBody;
     CCNode *m_mouseJointNode;
@@ -21,14 +24,10 @@
     
     CCPhysicsJoint *m_jointLeft;
     CCPhysicsJoint *m_jointRight;
-    //CCPhysicsJoint *m_jointUp;
-    //CCPhysicsJoint *m_jointDown;
+    
     CCSprite *m_objLeftPin;
     CCSprite *m_objMiddlePin;
     CCSprite *m_objRightPin;
-    
-    //CCSprite *m_objUpPin;
-    //CCSprite *m_objDownPin;
     
     CGPoint m_pointAim;
     CGPoint m_startPosition;
