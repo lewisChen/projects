@@ -7,24 +7,34 @@
 
 #import "PlayScene.h"
 #import "../obj/BlockObj.h"
+#import "../admob/GADAdSize.h"
+#import "../Def/SoundDef.h"
+#include "../libs/cocos2d-iphone/external/ObjectAL/OALSimpleAudio.h"
+#import "../AppDelegate.h"
+#import "../DataHandler/GameDataHandler.h"
 
 
 #define kRowOfItemCount (9)
 #define kCollumOfItemCount (5)
+#define kZorderScore (10)
 
 @interface PlayScene ()
-
 @property NSInteger _updateStasticCount;
-
 @end
 
 @implementation PlayScene
+
+@synthesize currentBlockType = m_currentBlockType;
 
 - (void) didLoadFromCCB
 {
     m_blockArray = [NSMutableArray array];
     [self placeAllBlock];
     [self setUserInteractionEnabled:YES];
+    [self initSoundEgine];
+    m_scorePanel.zOrder = kZorderScore;
+    self.currentBlockType = [GameDataHandler sharedGameDataHandler].blockTypeSelect;
+    [m_targetItem setType:self.currentBlockType];
 }
 
 
@@ -41,7 +51,7 @@
             [obj setType:(eBlockType)typeString.integerValue];
             obj.colIndex = collum;
             obj.rowIndex = row;
-            obj.position = ccp(obj.contentSize.width*collum, obj.contentSize.height*row);
+            obj.position = ccp(obj.contentSize.width*collum,obj.contentSize.height*row);
             [self addChild:obj];
             [m_blockArray addObject:obj];
         }
@@ -143,7 +153,20 @@
             BlockObj *obj = (BlockObj*)node;
             if ([node hitTestWithWorldPos:currentPosition])
             {
-                NSString *string = [NSString stringWithFormat:@"row = %d,collum = %d",obj.rowIndex,obj.colIndex];
+                if (self.currentBlockType == obj.blockType)
+                {
+                    [[OALSimpleAudio sharedInstance] playEffect:kEffectTouched];
+                    [m_lableRightTapCount setString:[NSString stringWithFormat:@"%d",m_lableRightTapCount.string.integerValue+1]];
+
+                }
+                else
+                {
+                    CCScene *scene = [CCBReader loadAsScene:@"StartPlayScene"];
+                    [[CCDirector sharedDirector] replaceScene:scene withTransition:[CCTransition transitionMoveInWithDirection:CCTransitionDirectionDown duration:0.5]];
+                    CCLOG(@"GameOver");
+                }
+                 NSString *string = [NSString stringWithFormat:@"row = %d,collum = %d",obj.rowIndex,obj.colIndex];
+                
                 CCLOG(string);
                 [self moveBlocks];
             }
@@ -153,7 +176,8 @@
 
 -(void)touchEnded:(UITouch *)touch withEvent:(UIEvent *)event
 {
-    
+//    NSNotificationCenter *notiCenter = [NSNotificationCenter defaultCenter];
+//    [notiCenter postNotificationName:kShowAdMessage object:nil];
 }
 
 - (void)update:(CCTime)delta
@@ -165,5 +189,11 @@
         self._updateStasticCount = 0;
     }
 }
+
+-(void)initSoundEgine
+{
+    [[OALSimpleAudio sharedInstance] preloadEffect:kEffectTouched];
+}
+
 
 @end

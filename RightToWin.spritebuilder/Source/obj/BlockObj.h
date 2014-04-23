@@ -14,7 +14,9 @@ typedef enum : NSUInteger
     eBlockType2,
     eBlockType3,
     eBlockType4,
-    eBlockType5
+    eBlockType5,
+    
+    eBlockTypeUnknow
     
 } eBlockType;
 

@@ -7,11 +7,20 @@
 
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
+#import "BlockObj.h"
+
 
 @interface PlayScene : CCNode
 {
     NSMutableArray *m_blockArray;
+    CCSprite9Slice *m_scorePanel;
+    BlockObj *m_targetItem;
+    CCLabelTTF *m_lableRightTapCount;
+    CCLabelTTF *m_labelLevel;
+    eBlockType m_currentBlockType;
 }
+
+@property(readwrite,nonatomic) eBlockType currentBlockType;
 
 - (void)placeAllBlock;
 - (void)moveBlocks;
@@ -20,6 +29,7 @@
 - (void)touchBegan:(UITouch *)touch withEvent:(UIEvent *)event;
 - (void)touchEnded:(UITouch *)touch withEvent:(UIEvent *)event;
 - (void)update:(CCTime)delta;
+- (void)initSoundEgine;
 
 
 @end
