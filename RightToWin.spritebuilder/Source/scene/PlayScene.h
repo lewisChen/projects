@@ -24,8 +24,8 @@
 
 - (void)placeAllBlock;
 - (void)moveBlocks;
--(NSMutableArray*)getRandomArray:(NSInteger)arraySize;
-- (bool)isNumberInArray:(NSMutableArray*)array :(NSInteger)number;
+//-(NSMutableArray*)getRandomArray:(NSInteger)arraySize;
+//- (bool)isNumberInArray:(NSMutableArray*)array :(NSInteger)number;
 - (void)touchBegan:(UITouch *)touch withEvent:(UIEvent *)event;
 - (void)touchEnded:(UITouch *)touch withEvent:(UIEvent *)event;
 - (void)update:(CCTime)delta;

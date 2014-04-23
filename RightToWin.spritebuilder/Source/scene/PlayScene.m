@@ -12,6 +12,7 @@
 #include "../libs/cocos2d-iphone/external/ObjectAL/OALSimpleAudio.h"
 #import "../AppDelegate.h"
 #import "../DataHandler/GameDataHandler.h"
+#import "../../../../../tools/RandomArray.h"
 
 
 #define kRowOfItemCount (9)
@@ -42,7 +43,7 @@
 {
     for (NSInteger row = 0; row<kRowOfItemCount; row++)
     {
-        NSArray *typeArray = [self getRandomArray:kCollumOfItemCount];
+        NSArray *typeArray = getRandomArray(kCollumOfItemCount);//[self getRandomArray:kCollumOfItemCount];
         for (NSInteger collum = 0; collum<kCollumOfItemCount; collum++)
         {
             BlockObj *obj = (BlockObj*)[CCBReader load:@"BlockObj.ccbi"];
@@ -71,7 +72,7 @@
         }
         else if((kRowOfItemCount-1) == obj.rowIndex)
         {
-            typeArray = [self getRandomArray:kCollumOfItemCount];
+            typeArray = getRandomArray(kCollumOfItemCount);//[self getRandomArray:kCollumOfItemCount];
             for (NSInteger index = 0; index<typeArray.count; index++)
             {
                 BlockObj *objLastCollum = [m_blockArray objectAtIndex:(obj.rowIndex*kCollumOfItemCount+index)];
@@ -83,62 +84,6 @@
     }
 }
 
-- (bool)isNumberInArray:(NSMutableArray*)array :(NSInteger)number
-{
-    for (NSUInteger index = 0; index<array.count; index++)
-    {
-        if ([(NSString*)[array objectAtIndex:index] integerValue] == number)
-        {
-            return YES;
-        }
-    }
-    return NO;
-    
-}
-
-
--(NSMutableArray*)getRandomArray:(NSInteger)arraySize
-{
-    NSMutableArray *array = [NSMutableArray arrayWithCapacity:arraySize];
-    NSInteger randomNumber = 0;
-    NSString *tempString = NULL;
-    
-    //srandom(time(NULL));//add timeSeed variable for time too fast condiction
-    for (NSInteger i = 0; i<arraySize; i++)
-    {
-        randomNumber =  (arc4random()%arraySize);//random()%arraySize;//
-        tempString = [NSString stringWithFormat:@"%d",randomNumber];
-        
-        while (YES)
-        {
-            BOOL isBreak = NO;
-            if (array.count>0)
-            {
-                if (NO == [self isNumberInArray:array :randomNumber])
-                {
-                    tempString = [NSString stringWithFormat:@"%d",randomNumber];
-                    [array addObject:tempString];
-                    isBreak = YES;
-                }
-                
-            }
-            else
-            {
-                [array addObject:tempString];
-                isBreak = YES;
-            }
-            
-            if (isBreak)
-            {
-                break;
-            }
-            
-            randomNumber = random()%arraySize;
-        }
-    }
-    
-    return array;
-}
 
 -(void)touchBegan:(UITouch *)touch withEvent:(UIEvent *)event
 {
