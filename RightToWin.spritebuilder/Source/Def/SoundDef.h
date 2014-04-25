@@ -11,6 +11,7 @@
 
 #define kEffectTouched (@"itemTouched.mp3")
 #define kEffectLevelUp (@"levelUp.mp3")
+#define kEffectExplosion (@"explosion.wav")
 
 
 #endif

@@ -42,6 +42,14 @@
 
 }
 
+- (void)backPress:(id)sender
+{
+    CCScene *scene = [CCBReader loadAsScene:@"MainScene"];
+    [[CCDirector sharedDirector] replaceScene:scene withTransition:[CCTransition transitionMoveInWithDirection:CCTransitionDirectionDown duration:0.2]];
+    
+}
+
+
 @end
 
 

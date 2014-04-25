@@ -18,9 +18,11 @@
 #define kRowOfItemCount (9)
 #define kCollumOfItemCount (5)
 #define kZorderScore (10)
+#define kLevelParameter (50)
 
 @interface PlayScene ()
 @property NSInteger _updateStasticCount;
+@property NSInteger _tapCountStatistic;
 @end
 
 @implementation PlayScene
@@ -30,10 +32,16 @@
 - (void) didLoadFromCCB
 {
     m_blockArray = [NSMutableArray array];
+    self._tapCountStatistic = 0;
+    self._updateStasticCount = 0;
+    
     [self placeAllBlock];
     [self setUserInteractionEnabled:YES];
     [self initSoundEgine];
+    
     m_scorePanel.zOrder = kZorderScore;
+    m_spriteArrow.zOrder = kZorderScore;
+    
     self.currentBlockType = [GameDataHandler sharedGameDataHandler].blockTypeSelect;
     [m_targetItem setType:self.currentBlockType];
 }
@@ -101,7 +109,9 @@
                 if (self.currentBlockType == obj.blockType)
                 {
                     [[OALSimpleAudio sharedInstance] playEffect:kEffectTouched];
-                    [m_lableRightTapCount setString:[NSString stringWithFormat:@"%d",m_lableRightTapCount.string.integerValue+1]];
+                    [m_lableRightTapCount setString:[NSString stringWithFormat:@"%d",m_lableRightTapCount.string.intValue+1]];
+                    self._tapCountStatistic++;//need to be reseted in the increaseLevel method
+                    [self increaseLevel:self._tapCountStatistic];
 
                 }
                 else
@@ -110,7 +120,7 @@
                     [[CCDirector sharedDirector] replaceScene:scene withTransition:[CCTransition transitionMoveInWithDirection:CCTransitionDirectionDown duration:0.5]];
                     CCLOG(@"GameOver");
                 }
-                 NSString *string = [NSString stringWithFormat:@"row = %d,collum = %d",obj.rowIndex,obj.colIndex];
+                 NSString *string = [NSString stringWithFormat:@"row = %ld,collum = %ld",(long)obj.rowIndex,(long)obj.colIndex];
                 
                 CCLOG(string);
                 [self moveBlocks];
@@ -138,6 +148,44 @@
 -(void)initSoundEgine
 {
     [[OALSimpleAudio sharedInstance] preloadEffect:kEffectTouched];
+    [[OALSimpleAudio sharedInstance] preloadEffect:kEffectLevelUp];
+    [[OALSimpleAudio sharedInstance] preloadEffect:kEffectExplosion];
+
+}
+
+-(void)increaseLevel:(NSInteger)tapCount
+{
+    int currentLevel = m_labelLevel.string.intValue;
+    BOOL isUpLevel = ( tapCount>(currentLevel+1)*kLevelParameter )?YES:NO;
+    if (isUpLevel)
+    {
+        currentLevel = currentLevel +1;
+        [m_labelLevel setString:[NSString stringWithFormat:@"%d",currentLevel]];
+        
+        // the animation manager of each node is stored in the 'userObject' property
+        CCBAnimationManager* animationManager = self.userObject;
+        animationManager.delegate = self;
+        // timelines can be referenced and run by name
+        [animationManager runAnimationsForSequenceNamed:@"levelUp"];
+        [[OALSimpleAudio sharedInstance] playEffect:kEffectLevelUp];
+        
+        //reset tap statistic
+        self._tapCountStatistic = 0;
+
+    }
+}
+
+- (void) completedAnimationSequenceNamed:(NSString*)name;
+{
+    // load particle effect
+    CCParticleSystem *explosion = (CCParticleSystem *)[CCBReader load:@"LevelUpObj"];
+    [[OALSimpleAudio sharedInstance] playEffect:kEffectExplosion];
+    // make the particle effect clean itself up, once it is completed
+    explosion.autoRemoveOnFinish = TRUE;
+    CGSize viewSize = [CCDirector sharedDirector].viewSize;
+    explosion.position = ccp(viewSize.width/2,viewSize.height/2);
+    [self addChild:explosion];
+    
 }
 
 
