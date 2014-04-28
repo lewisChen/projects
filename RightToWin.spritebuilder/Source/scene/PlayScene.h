@@ -34,6 +34,7 @@
 - (void)update:(CCTime)delta;
 - (void)initSoundEgine;
 - (void)increaseLevel:(NSInteger) tapCount;
-- (void) completedAnimationSequenceNamed:(NSString*)name;
+- (void)completedAnimationSequenceNamed:(NSString*)name;
+- (void)playRandomSound;
 
 @end

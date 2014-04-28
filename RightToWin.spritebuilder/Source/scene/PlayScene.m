@@ -13,10 +13,12 @@
 #import "../AppDelegate.h"
 #import "../DataHandler/GameDataHandler.h"
 #import "../../../../../tools/RandomArray.h"
+#import "../Def/uiPostionDef.h"
 
 
 #define kRowOfItemCount (9)
-#define kCollumOfItemCount (5)
+#define kCollumOfItemCount ((UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)?(6):(5))
+
 #define kZorderScore (10)
 #define kLevelParameter (50)
 
@@ -51,7 +53,7 @@
 {
     for (NSInteger row = 0; row<kRowOfItemCount; row++)
     {
-        NSArray *typeArray = getRandomArray(kCollumOfItemCount);//[self getRandomArray:kCollumOfItemCount];
+        NSArray *typeArray = getRandomArray(kCollumOfItemCount);
         for (NSInteger collum = 0; collum<kCollumOfItemCount; collum++)
         {
             BlockObj *obj = (BlockObj*)[CCBReader load:@"BlockObj.ccbi"];
@@ -60,7 +62,7 @@
             [obj setType:(eBlockType)typeString.integerValue];
             obj.colIndex = collum;
             obj.rowIndex = row;
-            obj.position = ccp(obj.contentSize.width*collum,obj.contentSize.height*row);
+            obj.position = ccp((obj.contentSize.width/2)+obj.contentSize.width*collum,(obj.contentSize.height/2)+obj.contentSize.height*row);
             [self addChild:obj];
             [m_blockArray addObject:obj];
         }
@@ -105,25 +107,35 @@
         {
             BlockObj *obj = (BlockObj*)node;
             if ([node hitTestWithWorldPos:currentPosition])
-            {
+            { 
                 if (self.currentBlockType == obj.blockType)
                 {
-                    [[OALSimpleAudio sharedInstance] playEffect:kEffectTouched];
+                    [self playRandomSound];
+                    [obj setBlockDisable];
                     [m_lableRightTapCount setString:[NSString stringWithFormat:@"%d",m_lableRightTapCount.string.intValue+1]];
                     self._tapCountStatistic++;//need to be reseted in the increaseLevel method
                     [self increaseLevel:self._tapCountStatistic];
-
+                    [self moveBlocks];
                 }
                 else
                 {
-                    CCScene *scene = [CCBReader loadAsScene:@"StartPlayScene"];
-                    [[CCDirector sharedDirector] replaceScene:scene withTransition:[CCTransition transitionMoveInWithDirection:CCTransitionDirectionDown duration:0.5]];
+                    [[OALSimpleAudio sharedInstance] playEffect:kEffectError];
+                    NSArray *actionArray = @[[CCActionScaleTo actionWithDuration:0.5 scale:1.1],
+                                             [CCActionScaleTo actionWithDuration:0.5 scale:1],
+                                             [CCActionScaleTo actionWithDuration:0.5 scale:1.1],
+                                             [CCActionScaleTo actionWithDuration:0.5 scale:1]];
+                    CCActionSequence *actions = [CCActionSequence actionWithArray:actionArray];
+                    [obj runAction:actions];
+                    
+//                    CCScene *scene = [CCBReader loadAsScene:@"StartPlayScene"];
+//                    [[CCDirector sharedDirector] replaceScene:scene withTransition:[CCTransition transitionMoveInWithDirection:CCTransitionDirectionDown duration:0.5]];
                     CCLOG(@"GameOver");
+                    NSNotificationCenter *notiCenter = [NSNotificationCenter defaultCenter];
+                    [notiCenter postNotificationName:kShowAdMessage object:nil];
+
                 }
                  NSString *string = [NSString stringWithFormat:@"row = %ld,collum = %ld",(long)obj.rowIndex,(long)obj.colIndex];
-                
                 CCLOG(string);
-                [self moveBlocks];
             }
         }
     }
@@ -150,6 +162,15 @@
     [[OALSimpleAudio sharedInstance] preloadEffect:kEffectTouched];
     [[OALSimpleAudio sharedInstance] preloadEffect:kEffectLevelUp];
     [[OALSimpleAudio sharedInstance] preloadEffect:kEffectExplosion];
+    [[OALSimpleAudio sharedInstance] preloadEffect:kEffectError];
+    [[OALSimpleAudio sharedInstance] preloadEffect:kEffectPianoDo];
+    [[OALSimpleAudio sharedInstance] preloadEffect:kEffectPianoRe];
+    [[OALSimpleAudio sharedInstance] preloadEffect:kEffectPianoMi];
+    [[OALSimpleAudio sharedInstance] preloadEffect:kEffectPianoFa];
+    [[OALSimpleAudio sharedInstance] preloadEffect:kEffectPianoSo];
+    [[OALSimpleAudio sharedInstance] preloadEffect:kEffectPianoLa];
+    [[OALSimpleAudio sharedInstance] preloadEffect:kEffectPianoQi];
+    [[OALSimpleAudio sharedInstance] preloadEffect:kEffectPianoDi];
 
 }
 
@@ -175,18 +196,56 @@
     }
 }
 
-- (void) completedAnimationSequenceNamed:(NSString*)name;
+- (void)completedAnimationSequenceNamed:(NSString*)name;
 {
-    // load particle effect
-    CCParticleSystem *explosion = (CCParticleSystem *)[CCBReader load:@"LevelUpObj"];
-    [[OALSimpleAudio sharedInstance] playEffect:kEffectExplosion];
-    // make the particle effect clean itself up, once it is completed
-    explosion.autoRemoveOnFinish = TRUE;
-    CGSize viewSize = [CCDirector sharedDirector].viewSize;
-    explosion.position = ccp(viewSize.width/2,viewSize.height/2);
-    [self addChild:explosion];
+    if ([name isEqualToString:@"levelUp"])
+    {
+        // load particle effect
+        CCParticleSystem *explosion = (CCParticleSystem *)[CCBReader load:@"LevelUpObj"];
+        [[OALSimpleAudio sharedInstance] playEffect:kEffectExplosion];
+        // make the particle effect clean itself up, once it is completed
+        explosion.autoRemoveOnFinish = TRUE;
+        CGSize viewSize = [CCDirector sharedDirector].viewSize;
+        explosion.position = ccp(viewSize.width/2,viewSize.height/2);
+        [self addChild:explosion];
+
+    }
     
 }
 
+-(void)playRandomSound
+{
+    NSInteger randomNumber = (arc4random()%eRandomSoundMax);
+    switch (randomNumber)
+    {
+        case eRandomSound1:
+            [[OALSimpleAudio sharedInstance] playEffect:kEffectPianoDo];
+            break;
+        case eRandomSound2:
+            [[OALSimpleAudio sharedInstance] playEffect:kEffectPianoRe];
+            break;
+        case eRandomSound3:
+            [[OALSimpleAudio sharedInstance] playEffect:kEffectPianoMi];
+            break;
+        case eRandomSound4:
+            [[OALSimpleAudio sharedInstance] playEffect:kEffectPianoFa];
+            break;
+        case eRandomSound5:
+            [[OALSimpleAudio sharedInstance] playEffect:kEffectPianoSo];
+            break;
+        case eRandomSound6:
+            [[OALSimpleAudio sharedInstance] playEffect:kEffectPianoLa];
+            break;
+        case eRandomSound7:
+            [[OALSimpleAudio sharedInstance] playEffect:kEffectPianoQi];
+            break;
+        case eRandomSound8:
+            [[OALSimpleAudio sharedInstance] playEffect:kEffectPianoDi];
+            break;
+
+        default:
+            break;
+    }
+}
 
 @end

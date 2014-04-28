@@ -28,6 +28,10 @@
 #import "AppDelegate.h"
 #import "CCBuilderReader.h"
 
+@interface AppController ()
+@property CGSize _Adsize;
+@end
+
 @implementation AppController
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
@@ -54,13 +58,26 @@
     
     [self setupCocos2dWithOptions:cocos2dSetup];
     
-    m_admobView = [[GADBannerView alloc] initWithFrame:CGRectMake(0.0,[CCDirector sharedDirector].viewSize.height, kGADAdSizeBanner.size.width, kGADAdSizeBanner.size.height)];
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
+    {
+        self._Adsize = kGADAdSizeBanner.size;
+    }
+    else
+    {
+        self._Adsize = kGADAdSizeLeaderboard.size;
+    }
+    
+    [self registerAdMessage];
+    
+    CGSize winSize = [[UIScreen mainScreen] bounds].size;
+    m_admobView = [[GADBannerView alloc] initWithFrame:CGRectMake(0.0,winSize.height, self._Adsize.width, self._Adsize.height)];
+    m_admobView.center = ccp(winSize.width/2, m_admobView.center.y);
     m_admobView.adUnitID = @"a15355d8e0b278a";
     m_admobView.delegate = self;
     m_admobView.rootViewController = navController_;
     [[[window_ rootViewController] view] addSubview:m_admobView];
     
-    //[m_admobView loadRequest:[GADRequest request]];
+    [m_admobView loadRequest:[GADRequest request]];
     
 //    m_admobView = [[GADInterstitial alloc] init];
 //    m_admobView.adUnitID = @"a15355d8e0b278a";
@@ -99,26 +116,42 @@
 
 -(void)showAdView
 {
-    [m_admobView loadRequest:[GADRequest request]];
+    CGSize winSize = [[UIScreen mainScreen] bounds].size;
+    
+    [UIView animateWithDuration:0.2
+                     animations:^{m_admobView.frame = CGRectMake(0.0,winSize.height-self._Adsize.height, self._Adsize.width, self._Adsize.height);
+                                  m_admobView.center = ccp(winSize.width/2, m_admobView.center.y);
+                                    }
+                     completion:^(BOOL finished){
+                         [UIView animateWithDuration:0.0
+                                               delay:5
+                                             options:UIViewAnimationOptionTransitionNone
+                                          animations:^{m_admobView.frame = CGRectMake(0.0,winSize.height, self._Adsize.width, self._Adsize.height);}
+                                          completion:^(BOOL finish){}];
+                     }];
+
+    //[m_admobView loadRequest:[GADRequest request]];
 }
+
 
 -(void)hideAdView
 {
-    m_admobView.frame = CGRectMake(0.0,[CCDirector sharedDirector].viewSize.height, kGADAdSizeBanner.size.width, kGADAdSizeBanner.size.height);
+    m_admobView.frame = CGRectMake(0.0,[CCDirector sharedDirector].viewSize.height, self._Adsize.width,self._Adsize.height);
 }
 
 -(void)adViewDidReceiveAd:(GADBannerView *)view
 {
-    
-    [UIView animateWithDuration:0.2
-                     animations:^{m_admobView.frame = CGRectMake(0.0,[CCDirector sharedDirector].viewSize.height-kGADAdSizeBanner.size.height, kGADAdSizeBanner.size.width, kGADAdSizeBanner.size.height);}
-                     completion:^(BOOL finished){
-                                                    [UIView animateWithDuration:0.0
-                                                        delay:5
-                                                        options:UIViewAnimationOptionTransitionNone
-                                                        animations:^{m_admobView.frame = CGRectMake(0.0,[CCDirector sharedDirector].viewSize.height, kGADAdSizeBanner.size.width, kGADAdSizeBanner.size.height);}
-                                                        completion:^(BOOL finish){}];
-                                                }];
+//    CGSize winSize = [[UIScreen mainScreen] bounds].size;
+//    
+//    [UIView animateWithDuration:0.2
+//                     animations:^{m_admobView.frame = CGRectMake(0.0,winSize.height-self._Adsize.height, self._Adsize.width, self._Adsize.height);}
+//                     completion:^(BOOL finished){
+//                                                    [UIView animateWithDuration:0.0
+//                                                        delay:5
+//                                                        options:UIViewAnimationOptionTransitionNone
+//                                                        animations:^{m_admobView.frame = CGRectMake(0.0,winSize.height, self._Adsize.width, self._Adsize.height);}
+//                                                        completion:^(BOOL finish){}];
+//                                                }];
     
 }
 

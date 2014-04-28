@@ -7,9 +7,19 @@
 
 #import "StartPlayScene.h"
 #import "../DataHandler/GameDataHandler.h"
+#import "../Def/SoundDef.h"
 
 
 @implementation StartPlayScene
+
+- (void) didLoadFromCCB
+{
+    [[OALSimpleAudio sharedInstance] preloadEffect:kEffectPianoSo];
+    [[OALSimpleAudio sharedInstance] preloadEffect:kEffectPianoLa];
+    [[OALSimpleAudio sharedInstance] preloadEffect:kEffectPianoQi];
+    [[OALSimpleAudio sharedInstance] preloadEffect:kEffectPianoDi];
+}
+
 
 -(void)buttonPress:(id)sender
 {
@@ -18,21 +28,25 @@
     if (sender==m_buttonType1)
     {
         blockType = eBlockType1;
+        [[OALSimpleAudio sharedInstance] playEffect:kEffectPianoSo];
         CCLOG(@"button1");
     }
     else if(sender==m_buttonType2)
     {
         blockType = eBlockType2;
+        [[OALSimpleAudio sharedInstance] playEffect:kEffectPianoLa];
         CCLOG(@"button2");
     }
     else if(sender==m_buttonType3)
     {
         blockType = eBlockType3;
+        [[OALSimpleAudio sharedInstance] playEffect:kEffectPianoQi];
         CCLOG(@"button3");
     }
     else if(sender==m_buttonType4)
     {
         blockType = eBlockType4;
+        [[OALSimpleAudio sharedInstance] playEffect:kEffectPianoDi];
         CCLOG(@"button4");
     }
     //set select type

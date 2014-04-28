@@ -16,7 +16,8 @@ typedef enum : NSUInteger
     eBlockType4,
     eBlockType5,
     
-    eBlockTypeUnknow
+    eBlockTypeUnknow,
+    eBlockTypeDisable
     
 } eBlockType;
 
@@ -27,6 +28,7 @@ typedef enum : NSUInteger
     CCSprite9Slice *m_spriteType3;
     CCSprite9Slice *m_spriteType4;
     CCSprite9Slice *m_spriteType5;
+    CCSprite9Slice *m_spriteType6;
     
     eBlockType m_blockType;
     NSInteger m_rowIndex;
@@ -38,5 +40,7 @@ typedef enum : NSUInteger
 @property (readwrite,nonatomic) NSInteger colIndex;
 
 -(void)setType:(eBlockType)type;
+-(void)setBlockDisable;
+-(void)handleUnknowType;
 
 @end

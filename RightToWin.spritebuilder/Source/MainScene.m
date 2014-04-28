@@ -7,25 +7,44 @@
 //
 
 #import "MainScene.h"
+#import "./DataHandler/GameDataHandler.h"
+#import "Def/SoundDef.h"
 
 @implementation MainScene
+
+- (void) didLoadFromCCB
+{
+    [[OALSimpleAudio sharedInstance] preloadEffect:kEffectPianoDo];
+    [[OALSimpleAudio sharedInstance] preloadEffect:kEffectPianoRe];
+    [[OALSimpleAudio sharedInstance] preloadEffect:kEffectPianoMi];
+    [[OALSimpleAudio sharedInstance] preloadEffect:kEffectPianoFa];
+}
+
+
 -(void)buttonPress:(id)sender
 {
     if (sender==m_buttonType1)
     {
-        CCLOG(@"button1");
+        [GameDataHandler sharedGameDataHandler].gameMode = eGameModeTime;
+        [[OALSimpleAudio sharedInstance] playEffect:kEffectPianoDo];
+        CCLOG(@"Time Mode");
     }
     else if(sender==m_buttonType2)
     {
-        CCLOG(@"button2");
+        [GameDataHandler sharedGameDataHandler].gameMode = eGameModeCount;
+        [[OALSimpleAudio sharedInstance] playEffect:kEffectPianoRe];
+        CCLOG(@"Count Mode");
     }
     else if(sender==m_buttonType3)
     {
-        CCLOG(@"button3");
+        [GameDataHandler sharedGameDataHandler].gameMode = eGameModeCrazy;
+        [[OALSimpleAudio sharedInstance] playEffect:kEffectPianoMi];
+        CCLOG(@"Crazy Mode");
     }
     else if(sender==m_buttonType4)
     {
-        CCLOG(@"button4");
+        [[OALSimpleAudio sharedInstance] playEffect:kEffectPianoFa];
+        CCLOG(@"Game Center");
     }
     //set select type
     //[GameDataHandler sharedGameDataHandler].blockTypeSelect = blockType;

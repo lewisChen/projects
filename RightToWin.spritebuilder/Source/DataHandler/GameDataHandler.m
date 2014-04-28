@@ -68,7 +68,9 @@ inline static id getStarCount(void)
 @implementation GameDataHandler
 
 @synthesize blockTypeSelect = m_blockTypeSelect;
+@synthesize gameMode = m_gameMode;
 @synthesize level = m_level;
+
 @synthesize difficultLevel = m_difficultLevel;
 @synthesize errorCount = m_errorCount;
 @synthesize useTime = m_useTime;
@@ -135,9 +137,6 @@ static GameDataHandler* _sharedGameDataHandler = nil;
     id tempData = getSavaDataByDifficultLevel(self.difficultLevel);
     self.level = [(NSNumber*)tempData integerValue];
     self.timeLeft = self.getTimeLimit;
-    
-//    tempData = getSavaDataByDifficultLevel(eDifficultLevelHard);
-//    tempData = getSavaDataByDifficultLevel(eDifficultLevelNormal);
 }
 
 -(void)resetSaveData

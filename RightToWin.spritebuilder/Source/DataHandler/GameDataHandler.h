@@ -20,9 +20,17 @@ enum eDifficultLevel
     eDifficultLevelHard,
 };
 
+typedef enum : NSUInteger
+{
+    eGameModeTime = 0,
+    eGameModeCount,
+    eGameModeCrazy,
+} eGameMode;
+
 @interface GameDataHandler : NSObject
 {
     eBlockType m_blockTypeSelect;
+    eGameMode m_gameMode;
     NSInteger m_level;
     NSInteger m_difficultLevel;
     NSInteger m_errorCount;
@@ -34,6 +42,7 @@ enum eDifficultLevel
 }
 
 @property(nonatomic,readwrite) eBlockType blockTypeSelect;
+@property(nonatomic,readwrite) eGameMode  gameMode;
 @property(nonatomic,readwrite) NSInteger level;
 @property(nonatomic,readwrite) NSInteger difficultLevel;
 @property(nonatomic,readwrite) NSInteger errorCount;
