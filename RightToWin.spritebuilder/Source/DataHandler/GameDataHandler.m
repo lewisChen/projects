@@ -108,10 +108,10 @@ static GameDataHandler* _sharedGameDataHandler = nil;
 
 -(void)initResource
 {
-    //CCSpriteFrameCache *spriteCache = [CCSpriteFrameCache sharedSpriteFrameCache];
-    //[spriteCache addSpriteFramesWithFile:@"numberItemTex.plist" textureFilename:@"numberItemTex.png"];
     _sharedGameDataHandler.startTime = CACurrentMediaTime();
     self.timeLimit = self.getTimeLimit;
+    self.level = 0;
+    self.tapCount = 0;
 //    self.errorCount = 0;
 //    [self initSaveData];
 //    [self loadData];
@@ -202,7 +202,7 @@ static GameDataHandler* _sharedGameDataHandler = nil;
     int min = isecs / 60;
     int sec = isecs % 60;
     int hund = (int) (fractPart * 100);
-    timeString = [NSString stringWithFormat:@"%02d:%02d:%02d",min, sec, hund];
+    timeString = [NSString stringWithFormat:@"%02d'%02d'%02d",min, sec, hund];
     
     //record use time
     self.useTime = isecs;
@@ -223,7 +223,7 @@ static GameDataHandler* _sharedGameDataHandler = nil;
     int min = isecs / 60;
     int sec = isecs % 60;
     int hund = (int) (fractPart * 100);
-    timeString = [NSString stringWithFormat:@"%02d:%02d:%02d",min, sec, hund];
+    timeString = [NSString stringWithFormat:@"%02d'%02d'%02d",min, sec, hund];
     
     //record use time
     self.timeLeft = secs;
