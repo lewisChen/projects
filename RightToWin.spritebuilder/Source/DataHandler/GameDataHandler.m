@@ -69,6 +69,7 @@ inline static id getStarCount(void)
 
 @synthesize blockTypeSelect = m_blockTypeSelect;
 @synthesize gameMode = m_gameMode;
+@synthesize tapCount = m_tapCount;
 @synthesize level = m_level;
 
 @synthesize difficultLevel = m_difficultLevel;
@@ -107,13 +108,13 @@ static GameDataHandler* _sharedGameDataHandler = nil;
 
 -(void)initResource
 {
-    CCSpriteFrameCache *spriteCache = [CCSpriteFrameCache sharedSpriteFrameCache];
-    [spriteCache addSpriteFramesWithFile:@"numberItemTex.plist" textureFilename:@"numberItemTex.png"];
+    //CCSpriteFrameCache *spriteCache = [CCSpriteFrameCache sharedSpriteFrameCache];
+    //[spriteCache addSpriteFramesWithFile:@"numberItemTex.plist" textureFilename:@"numberItemTex.png"];
     _sharedGameDataHandler.startTime = CACurrentMediaTime();
     self.timeLimit = self.getTimeLimit;
-    self.errorCount = 0;
-    [self initSaveData];
-    [self loadData];
+//    self.errorCount = 0;
+//    [self initSaveData];
+//    [self loadData];
 }
 
 -(void)initSaveData
@@ -234,31 +235,7 @@ static GameDataHandler* _sharedGameDataHandler = nil;
 
 -(double)getTimeLimit
 {
-    NSInteger gameLevel = [self getGameLevel:(enum eDifficultLevel)self.difficultLevel];
-    double timeLimit = kTimeLimit-gameLevel*10;
-    
-    switch (self.difficultLevel)
-    {
-        case eDifficultLevelEasy:
-            if (timeLimit< kTimeMinEasy)
-            {
-                timeLimit = kTimeMinEasy;
-            }
-            break;
-        case eDifficultLevelNormal:
-            if (timeLimit< kTimeMinNormal)
-            {
-                timeLimit = kTimeMinNormal;
-            }
-            break;
-        case eDifficultLevelHard:
-            if (timeLimit< kTimeMinHard)
-            {
-                timeLimit = kTimeMinHard;
-            }
-        default:
-            break;
-    }
+    double timeLimit = kTimeLimit;
     return timeLimit;
 }
 

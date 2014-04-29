@@ -8,10 +8,10 @@
 #import <Foundation/Foundation.h>
 #import "../obj/BlockObj.h"
 
-#define kTimeLimit (6*60.0)
-#define kTimeMinEasy (2*60.0)
-#define kTimeMinNormal (3*60.0)
-#define kTimeMinHard (4*60.0)
+#define kTimeLimit (20.0)
+//#define kTimeMinEasy (2*60.0)
+//#define kTimeMinNormal (3*60.0)
+//#define kTimeMinHard (4*60.0)
 
 enum eDifficultLevel
 {
@@ -31,6 +31,7 @@ typedef enum : NSUInteger
 {
     eBlockType m_blockTypeSelect;
     eGameMode m_gameMode;
+    NSInteger m_tapCount;
     NSInteger m_level;
     NSInteger m_difficultLevel;
     NSInteger m_errorCount;
@@ -43,6 +44,8 @@ typedef enum : NSUInteger
 
 @property(nonatomic,readwrite) eBlockType blockTypeSelect;
 @property(nonatomic,readwrite) eGameMode  gameMode;
+@property(nonatomic,readwrite) NSInteger  tapCount;
+
 @property(nonatomic,readwrite) NSInteger level;
 @property(nonatomic,readwrite) NSInteger difficultLevel;
 @property(nonatomic,readwrite) NSInteger errorCount;
