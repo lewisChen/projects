@@ -36,5 +36,7 @@
 - (void)increaseLevel:(NSInteger) tapCount;
 - (void)completedAnimationSequenceNamed:(NSString*)name;
 - (void)playRandomSound;
+- (void)showFinishLayer;
+- (void)handleModeUiDisplay;
 
 @end

@@ -16,15 +16,18 @@
 #import "../Def/uiPostionDef.h"
 
 
-#define kRowOfItemCount (9)
+#define kRowOfItemCount (10)
 #define kCollumOfItemCount ((UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)?(6):(5))
 
 #define kZorderScore (10)
 #define kLevelParameter (50)
+#define kMoveOffset (5)
 
 @interface PlayScene ()
 @property NSInteger _updateStasticCount;
 @property NSInteger _tapCountStatistic;
+@property eGameMode _gameMode;
+@property GameDataHandler *_dataHandler;
 @end
 
 @implementation PlayScene
@@ -33,6 +36,10 @@
 
 - (void) didLoadFromCCB
 {
+    self._dataHandler = [GameDataHandler sharedGameDataHandler];
+    [self._dataHandler initResource];
+    self._gameMode = self._dataHandler.gameMode;
+    
     m_blockArray = [NSMutableArray array];
     self._tapCountStatistic = 0;
     self._updateStasticCount = 0;
@@ -44,7 +51,7 @@
     m_scorePanel.zOrder = kZorderScore;
     m_spriteArrow.zOrder = kZorderScore;
     
-    self.currentBlockType = [GameDataHandler sharedGameDataHandler].blockTypeSelect;
+    self.currentBlockType = self._dataHandler.blockTypeSelect;
     [m_targetItem setType:self.currentBlockType];
 }
 
@@ -72,24 +79,56 @@
 -(void)moveBlocks
 {
     NSArray *typeArray = nil;
-    for (BlockObj *obj in m_blockArray)
+    NSString *typeString = nil;
+    if (eGameModeTime == self._gameMode)
     {
-        if (obj.rowIndex<(kRowOfItemCount-1))
+        for (BlockObj *obj in m_blockArray)
         {
-            BlockObj *objNextRow = [m_blockArray objectAtIndex:((obj.rowIndex+1)*kCollumOfItemCount+obj.colIndex)];
-            [obj setType:objNextRow.blockType];
-
-        }
-        else if((kRowOfItemCount-1) == obj.rowIndex)
-        {
-            typeArray = getRandomArray(kCollumOfItemCount);//[self getRandomArray:kCollumOfItemCount];
-            for (NSInteger index = 0; index<typeArray.count; index++)
+            if (obj.rowIndex<(kRowOfItemCount-1))
             {
-                BlockObj *objLastCollum = [m_blockArray objectAtIndex:(obj.rowIndex*kCollumOfItemCount+index)];
-                NSString *typeString = [typeArray objectAtIndex:index];
-                [objLastCollum setType:(eBlockType)typeString.integerValue];
+                BlockObj *objNextRow = [m_blockArray objectAtIndex:((obj.rowIndex+1)*kCollumOfItemCount+obj.colIndex)];
+                [obj setType:objNextRow.blockType];
+                
             }
-            break;
+            else if((kRowOfItemCount-1) == obj.rowIndex)
+            {
+                typeArray = getRandomArray(kCollumOfItemCount);//[self getRandomArray:kCollumOfItemCount];
+                for (NSInteger index = 0; index<typeArray.count; index++)
+                {
+                    BlockObj *objLastCollum = [m_blockArray objectAtIndex:(obj.rowIndex*kCollumOfItemCount+index)];
+                    typeString = [typeArray objectAtIndex:index];
+                    [objLastCollum setType:(eBlockType)typeString.integerValue];
+                }
+                break;
+            }
+        }
+    }
+    else//other mode move block method
+    {
+        for (NSInteger rowIndex = 0; rowIndex<kRowOfItemCount; rowIndex++)
+        {
+            BlockObj *currentObj = nil;
+            for (NSInteger collumIndex = 0; collumIndex<kCollumOfItemCount; collumIndex++)
+            {
+                currentObj = [m_blockArray objectAtIndex:rowIndex*kCollumOfItemCount+collumIndex];
+                currentObj.position = ccp(currentObj.position.x, currentObj.position.y-kMoveOffset);
+            }
+            
+            BOOL isOutScene = ( (currentObj.position.y+(currentObj.contentSize.height/2))<0 )?YES:NO;
+            if (isOutScene)
+            {
+                typeArray = getRandomArray(kCollumOfItemCount);
+                for (NSInteger collumIndex = 0; collumIndex<kCollumOfItemCount; collumIndex++)
+                {
+                    currentObj = [m_blockArray objectAtIndex:rowIndex*kCollumOfItemCount+collumIndex];
+                    typeString = [typeArray objectAtIndex:collumIndex];
+                    [currentObj setType:(eBlockType)typeString.integerValue];
+                    
+                    
+                    BlockObj *topObj = [m_blockArray objectAtIndex:(kRowOfItemCount-1)*kCollumOfItemCount + collumIndex];
+                    currentObj.position = ccp(topObj.position.x, topObj.position.y+topObj.contentSize.height- kMoveOffset + topObj.contentSize.height*rowIndex);
+                }
+            }
         }
     }
 }
@@ -120,15 +159,16 @@
                 else
                 {
                     [[OALSimpleAudio sharedInstance] playEffect:kEffectError];
+                    CCActionCallFunc* callFunc = [CCActionCallFunc actionWithTarget:self selector:@selector(showFinishLayer)];
+
                     NSArray *actionArray = @[[CCActionScaleTo actionWithDuration:0.5 scale:1.1],
                                              [CCActionScaleTo actionWithDuration:0.5 scale:1],
                                              [CCActionScaleTo actionWithDuration:0.5 scale:1.1],
-                                             [CCActionScaleTo actionWithDuration:0.5 scale:1]];
+                                             [CCActionScaleTo actionWithDuration:0.5 scale:1],callFunc];
                     CCActionSequence *actions = [CCActionSequence actionWithArray:actionArray];
                     [obj runAction:actions];
                     
-//                    CCScene *scene = [CCBReader loadAsScene:@"StartPlayScene"];
-//                    [[CCDirector sharedDirector] replaceScene:scene withTransition:[CCTransition transitionMoveInWithDirection:CCTransitionDirectionDown duration:0.5]];
+                    [GameDataHandler sharedGameDataHandler].tapCount = m_lableRightTapCount.string.integerValue;
                     CCLOG(@"GameOver");
                     NSNotificationCenter *notiCenter = [NSNotificationCenter defaultCenter];
                     [notiCenter postNotificationName:kShowAdMessage object:nil];
@@ -149,11 +189,18 @@
 
 - (void)update:(CCTime)delta
 {
+    [self handleModeUiDisplay];
     self._updateStasticCount++;
-    if (self._updateStasticCount>30)
+    
+    if (eGameModeCount == self._gameMode)
     {
-        //[self moveBlocks];
-        self._updateStasticCount = 0;
+        
+        [self moveBlocks];
+//        if (self._updateStasticCount>1)
+//        {
+//            [self moveBlocks];
+//            self._updateStasticCount = 0;
+//        }
     }
 }
 
@@ -243,6 +290,30 @@
             [[OALSimpleAudio sharedInstance] playEffect:kEffectPianoDi];
             break;
 
+        default:
+            break;
+    }
+}
+
+-(void)showFinishLayer
+{
+    CCScene *scene = [CCBReader loadAsScene:@"FinishScene"];
+    [[CCDirector sharedDirector] replaceScene:scene withTransition:[CCTransition transitionMoveInWithDirection:CCTransitionDirectionDown duration:0.5]];
+}
+
+- (void)handleModeUiDisplay
+{
+    switch (self._gameMode)
+    {
+        case eGameModeTime:
+            [m_labelTime setString:self._dataHandler.getLeftTimeString];
+            break;
+        case eGameModeCount:
+            [m_labelTime setString:self._dataHandler.getUseTimeString];
+            break;
+        case eGameModeCrazy:
+            [m_labelTime setString:self._dataHandler.getUseTimeString];
+            break;
         default:
             break;
     }

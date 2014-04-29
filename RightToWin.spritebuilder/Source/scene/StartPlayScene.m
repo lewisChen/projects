@@ -14,6 +14,8 @@
 
 - (void) didLoadFromCCB
 {
+    [[OALSimpleAudio sharedInstance] preloadEffect:kEffectTouched];
+
     [[OALSimpleAudio sharedInstance] preloadEffect:kEffectPianoSo];
     [[OALSimpleAudio sharedInstance] preloadEffect:kEffectPianoLa];
     [[OALSimpleAudio sharedInstance] preloadEffect:kEffectPianoQi];
@@ -49,6 +51,7 @@
         [[OALSimpleAudio sharedInstance] playEffect:kEffectPianoDi];
         CCLOG(@"button4");
     }
+    
     //set select type
     [GameDataHandler sharedGameDataHandler].blockTypeSelect = blockType;
     CCScene *scene = [CCBReader loadAsScene:@"PlayScene"];
@@ -58,6 +61,7 @@
 
 - (void)backPress:(id)sender
 {
+    [[OALSimpleAudio sharedInstance] playEffect:kEffectTouched];
     CCScene *scene = [CCBReader loadAsScene:@"MainScene"];
     [[CCDirector sharedDirector] replaceScene:scene withTransition:[CCTransition transitionMoveInWithDirection:CCTransitionDirectionDown duration:0.2]];
     
