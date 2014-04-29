@@ -46,10 +46,15 @@
         [[OALSimpleAudio sharedInstance] playEffect:kEffectPianoFa];
         CCLOG(@"Game Center");
     }
-    //set select type
-    //[GameDataHandler sharedGameDataHandler].blockTypeSelect = blockType;
-    CCScene *scene = [CCBReader loadAsScene:@"StartPlayScene"];
-    [[CCDirector sharedDirector] replaceScene:scene withTransition:[CCTransition transitionMoveInWithDirection:CCTransitionDirectionDown duration:0.2]];
+    
+    if (sender!=m_buttonType4)
+    {
+        //set select type
+        //[GameDataHandler sharedGameDataHandler].blockTypeSelect = blockType;
+        CCScene *scene = [CCBReader loadAsScene:@"StartPlayScene"];
+        [[CCDirector sharedDirector] replaceScene:scene withTransition:[CCTransition transitionMoveInWithDirection:CCTransitionDirectionDown duration:0.2]];
+
+    }
     
 }
 
