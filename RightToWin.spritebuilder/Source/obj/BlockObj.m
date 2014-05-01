@@ -77,7 +77,13 @@
 
 
         default:
-            [self handleUnknowType];
+            m_spriteType1.zOrder = kNormalZorder;
+            m_spriteType2.zOrder = kNormalZorder;
+            m_spriteType3.zOrder = kNormalZorder;
+            m_spriteType4.zOrder = kNormalZorder;
+            m_spriteType5.zOrder = kNormalZorder;
+            m_spriteType6.zOrder = kTopZorder;
+            //[self handleUnknowType];
             break;
     }
 }

@@ -22,4 +22,6 @@
     CCButton *m_buttonBack;
 }
 
+-(void)sumitScore;
+
 @end

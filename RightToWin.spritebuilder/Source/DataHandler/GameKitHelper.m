@@ -133,6 +133,18 @@
     [rootVC presentViewController:gameCenterViewController animated:YES completion:nil];
 }
 
+-(void)showGameCenter
+{
+    GKGameCenterViewController *gameCenterController = [[GKGameCenterViewController alloc] init];
+    UIViewController* rootVC = [self getRootViewController];
+    if (gameCenterController != nil)
+    {
+        gameCenterController.viewState = GKGameCenterViewControllerStateLeaderboards;
+        gameCenterController.gameCenterDelegate = self;
+        [rootVC presentViewController: gameCenterController animated: YES completion:nil];
+    }
+}
+
 -(void)gameCenterViewControllerDidFinish:(GKGameCenterViewController *)gameCenterViewController
 {
     [gameCenterViewController dismissViewControllerAnimated:YES completion:^(void){}];

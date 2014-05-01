@@ -20,14 +20,21 @@
 #define kCollumOfItemCount ((UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)?(6):(5))
 
 #define kZorderScore (10)
-#define kLevelParameter (50)
-#define kMoveOffset (5)
+#define kLevelParameter (10)
+#define kMoveOffset (0.1)
+
+//#define kMaxLevel (10)
+#define kLevelMoveparameter (10)
+#define kLevelMoveparameterCrazy (30)
+#define kStarMoveParameter (60)
 
 @interface PlayScene ()
 @property NSInteger _updateStasticCount;
+@property NSInteger _beepStasticCount;
 @property NSInteger _tapCountStatistic;
 @property eGameMode _gameMode;
 @property GameDataHandler *_dataHandler;
+@property BOOL _isStartGame;
 @end
 
 @implementation PlayScene
@@ -46,13 +53,16 @@
     
     [self placeAllBlock];
     [self setUserInteractionEnabled:YES];
+    [self setMultipleTouchEnabled:NO];
     [self initSoundEgine];
     
     m_scorePanel.zOrder = kZorderScore;
-    m_spriteArrow.zOrder = kZorderScore;
+    m_lableLevelUp.zOrder = kZorderScore;
     
     self.currentBlockType = self._dataHandler.blockTypeSelect;
     [m_targetItem setType:self.currentBlockType];
+    
+    self._isStartGame = YES;
 }
 
 
@@ -69,7 +79,15 @@
             [obj setType:(eBlockType)typeString.integerValue];
             obj.colIndex = collum;
             obj.rowIndex = row;
-            obj.position = ccp((obj.contentSize.width/2)+obj.contentSize.width*collum,(obj.contentSize.height/2)+obj.contentSize.height*row);
+            if (self._gameMode!=eGameModeTime)
+            {
+                obj.position = ccp((obj.contentSize.width/2)+obj.contentSize.width*collum,obj.contentSize.height+(obj.contentSize.height/2)+obj.contentSize.height*row);
+            }
+            else
+            {
+                obj.position = ccp((obj.contentSize.width/2)+obj.contentSize.width*collum,(obj.contentSize.height/2)+obj.contentSize.height*row);
+            }
+            
             [self addChild:obj];
             [m_blockArray addObject:obj];
         }
@@ -117,6 +135,16 @@
             BOOL isOutScene = ( (currentObj.position.y+(currentObj.contentSize.height/2))<0 )?YES:NO;
             if (isOutScene)
             {
+                for (NSInteger collumIndex = 0; collumIndex<kCollumOfItemCount; collumIndex++)
+                {
+                    currentObj = [m_blockArray objectAtIndex:rowIndex*kCollumOfItemCount+collumIndex];
+                    if (self.currentBlockType == currentObj.blockType)
+                    {
+                        [[OALSimpleAudio sharedInstance] playEffect:kEffectError];
+                        [self showFinishLayer];
+                    }
+                }
+                
                 typeArray = getRandomArray(kCollumOfItemCount);
                 for (NSInteger collumIndex = 0; collumIndex<kCollumOfItemCount; collumIndex++)
                 {
@@ -136,6 +164,10 @@
 
 -(void)touchBegan:(UITouch *)touch withEvent:(UIEvent *)event
 {
+    if (self._isStartGame==NO)
+    {
+        return;
+    }
     CGPoint currentPosition = [touch locationInView:touch.view];
     currentPosition = [[CCDirector sharedDirector] convertToGL:currentPosition];
     currentPosition = [self convertToNodeSpace:currentPosition];
@@ -146,61 +178,96 @@
         {
             BlockObj *obj = (BlockObj*)node;
             if ([node hitTestWithWorldPos:currentPosition])
-            { 
-                if (self.currentBlockType == obj.blockType)
+            {
+                if (eBlockTypeDisable != obj.blockType)
                 {
-                    [self playRandomSound];
-                    [obj setBlockDisable];
-                    [m_lableRightTapCount setString:[NSString stringWithFormat:@"%d",m_lableRightTapCount.string.intValue+1]];
-                    self._tapCountStatistic++;//need to be reseted in the increaseLevel method
-                    [self increaseLevel:self._tapCountStatistic];
-                    [self moveBlocks];
+                    if (self.currentBlockType == obj.blockType)
+                    {
+                        [self playRandomSound];
+                        [obj setBlockDisable];
+                        [m_lableRightTapCount setString:[NSString stringWithFormat:@"%d",m_lableRightTapCount.string.intValue+1]];
+                        self._tapCountStatistic++;//need to be reseted in the increaseLevel method
+                        [self increaseLevel:self._tapCountStatistic];
+                        [self moveBlocks];
+                    }
+                    else
+                    {
+                        self._isStartGame = NO;
+                        [[OALSimpleAudio sharedInstance] playEffect:kEffectError];
+                        CCActionCallFunc* callFunc = [CCActionCallFunc actionWithTarget:self selector:@selector(showFinishLayer)];
+                        
+                        obj.zOrder = kZorderScore + 1;//place error obj to toppest
+                        NSArray *actionArray = @[[CCActionScaleTo actionWithDuration:0.5 scale:1.3],
+                                                 [CCActionScaleTo actionWithDuration:0.5 scale:1],
+                                                 [CCActionScaleTo actionWithDuration:0.5 scale:1.3],
+                                                 [CCActionScaleTo actionWithDuration:0.5 scale:1],callFunc];
+                        CCActionSequence *actions = [CCActionSequence actionWithArray:actionArray];
+                        [obj runAction:actions];
+                        
+                        CCLOG(@"GameOver");
+                    }
                 }
-                else
-                {
-                    [[OALSimpleAudio sharedInstance] playEffect:kEffectError];
-                    CCActionCallFunc* callFunc = [CCActionCallFunc actionWithTarget:self selector:@selector(showFinishLayer)];
-
-                    NSArray *actionArray = @[[CCActionScaleTo actionWithDuration:0.5 scale:1.1],
-                                             [CCActionScaleTo actionWithDuration:0.5 scale:1],
-                                             [CCActionScaleTo actionWithDuration:0.5 scale:1.1],
-                                             [CCActionScaleTo actionWithDuration:0.5 scale:1],callFunc];
-                    CCActionSequence *actions = [CCActionSequence actionWithArray:actionArray];
-                    [obj runAction:actions];
-                    
-                    [GameDataHandler sharedGameDataHandler].tapCount = m_lableRightTapCount.string.integerValue;
-                    CCLOG(@"GameOver");
-                    NSNotificationCenter *notiCenter = [NSNotificationCenter defaultCenter];
-                    [notiCenter postNotificationName:kShowAdMessage object:nil];
-
-                }
-                 NSString *string = [NSString stringWithFormat:@"row = %ld,collum = %ld",(long)obj.rowIndex,(long)obj.colIndex];
+                
+                NSString *string = [NSString stringWithFormat:@"row = %ld,collum = %ld",(long)obj.rowIndex,(long)obj.colIndex];
                 CCLOG(string);
             }
         }
     }
+
 }
 
 -(void)touchEnded:(UITouch *)touch withEvent:(UIEvent *)event
 {
-//    NSNotificationCenter *notiCenter = [NSNotificationCenter defaultCenter];
-//    [notiCenter postNotificationName:kShowAdMessage object:nil];
+    if (self._isStartGame==NO)
+    {
+        return;
+    }
+    
 }
 
 - (void)update:(CCTime)delta
 {
     [self handleModeUiDisplay];
     self._updateStasticCount++;
+    self._beepStasticCount++;
     
-    if (eGameModeCount == self._gameMode)
+    NSInteger moveCount = 0;
+    
+    if (self._gameMode != eGameModeTime)
     {
+        if (self._isStartGame)
+        {
+            if (self._gameMode == eGameModeCount)
+            {
+                moveCount = self._dataHandler.level*kLevelMoveparameter+kStarMoveParameter;
+
+            } else
+            {
+                moveCount = self._dataHandler.level*kLevelMoveparameterCrazy+kStarMoveParameter;
+            }
+            
+            for (NSInteger count = 0; count<moveCount; count++)
+            {
+                [self moveBlocks];
+            }
+        }
+    }
+    
+    if (self._gameMode!=eGameModeCount)
+    {
+        if (self._beepStasticCount>60)
+        {
+            if (self._dataHandler.timeLeft<5)
+            {
+                [[OALSimpleAudio sharedInstance] playEffect:kEffectBeep];
+            }
+            self._beepStasticCount = 0;
+        }
         
-        [self moveBlocks];
-//        if (self._updateStasticCount>1)
-//        {
-//            [self moveBlocks];
-//            self._updateStasticCount = 0;
-//        }
+        if (0==self._dataHandler.timeLeft)
+        {
+            [self showFinishLayer];
+        }
     }
 }
 
@@ -218,6 +285,8 @@
     [[OALSimpleAudio sharedInstance] preloadEffect:kEffectPianoLa];
     [[OALSimpleAudio sharedInstance] preloadEffect:kEffectPianoQi];
     [[OALSimpleAudio sharedInstance] preloadEffect:kEffectPianoDi];
+    
+    [[OALSimpleAudio sharedInstance] preloadEffect:kEffectBeep];
 
 }
 
@@ -227,9 +296,6 @@
     BOOL isUpLevel = ( tapCount>(currentLevel+1)*kLevelParameter )?YES:NO;
     if (isUpLevel)
     {
-        currentLevel = currentLevel +1;
-        [m_labelLevel setString:[NSString stringWithFormat:@"%d",currentLevel]];
-        
         // the animation manager of each node is stored in the 'userObject' property
         CCBAnimationManager* animationManager = self.userObject;
         animationManager.delegate = self;
@@ -255,7 +321,10 @@
         CGSize viewSize = [CCDirector sharedDirector].viewSize;
         explosion.position = ccp(viewSize.width/2,viewSize.height/2);
         [self addChild:explosion];
-
+        
+        int currentLevel = m_labelLevel.string.intValue +1;
+        [m_labelLevel setString:[NSString stringWithFormat:@"%d",currentLevel]];
+        self._dataHandler.level = currentLevel;
     }
     
 }
@@ -297,8 +366,17 @@
 
 -(void)showFinishLayer
 {
+    [GameDataHandler sharedGameDataHandler].tapCount = m_lableRightTapCount.string.integerValue;
     CCScene *scene = [CCBReader loadAsScene:@"FinishScene"];
     [[CCDirector sharedDirector] replaceScene:scene withTransition:[CCTransition transitionMoveInWithDirection:CCTransitionDirectionDown duration:0.5]];
+    
+    if(self._dataHandler.errorCount>=3)
+    {
+        NSNotificationCenter *notiCenter = [NSNotificationCenter defaultCenter];
+        [notiCenter postNotificationName:kShowAdMessage object:nil];
+        self._dataHandler.errorCount = 0;
+    }
+
 }
 
 - (void)handleModeUiDisplay
@@ -312,7 +390,7 @@
             [m_labelTime setString:self._dataHandler.getUseTimeString];
             break;
         case eGameModeCrazy:
-            [m_labelTime setString:self._dataHandler.getUseTimeString];
+            [m_labelTime setString:self._dataHandler.getLeftTimeString];
             break;
         default:
             break;

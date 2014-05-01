@@ -9,6 +9,7 @@
 #import "MainScene.h"
 #import "./DataHandler/GameDataHandler.h"
 #import "Def/SoundDef.h"
+#import "DataHandler/GameKitHelper.h"
 
 @implementation MainScene
 
@@ -18,6 +19,9 @@
     [[OALSimpleAudio sharedInstance] preloadEffect:kEffectPianoRe];
     [[OALSimpleAudio sharedInstance] preloadEffect:kEffectPianoMi];
     [[OALSimpleAudio sharedInstance] preloadEffect:kEffectPianoFa];
+    
+    [[GameKitHelper sharedGameKitHelper] authenticateLocalPlayer];
+
 }
 
 
@@ -43,6 +47,8 @@
     }
     else if(sender==m_buttonType4)
     {
+        [[GameKitHelper sharedGameKitHelper] showLeaderboard:kBoardSetId];
+        //[[GameKitHelper sharedGameKitHelper] showGameCenter];
         [[OALSimpleAudio sharedInstance] playEffect:kEffectPianoFa];
         CCLOG(@"Game Center");
     }

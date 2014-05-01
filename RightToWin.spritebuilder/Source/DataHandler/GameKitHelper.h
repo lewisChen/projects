@@ -9,7 +9,10 @@
 //   Include the GameKit framework
 #import <GameKit/GameKit.h>
 
-#define kHighScoreBoardIdentifier @"com.zhenyuChen.numberPuzzle.highScore"
+#define kBoardSetId (@"rightToWin.RightToWinLeaderboard")
+#define kBoardIdentifierTimeMode @"com.zhenyuChen.RightToWin.timeMode"
+#define kBoardIdentifierCountMode (@"com.zhenyuChen.RightToWin.CountMode")
+#define kBoardIdentifierCrazeMode (@"com.zhenyuChen.RightToWin.CrazyMode")
 
 //   Protocol to notify external
 //   objects when Game Center events occur or
@@ -35,6 +38,7 @@
 -(void)submitScore:(int64_t)score category:(NSString*)identifier;
 //show leaderboard
 - (void)showLeaderboard : (NSString*)leaderboard;
+- (void) showGameCenter;
 
 //GKGameCenterControllerDelegate
 - (void)gameCenterViewControllerDidFinish:(GKGameCenterViewController *)gameCenterViewController;

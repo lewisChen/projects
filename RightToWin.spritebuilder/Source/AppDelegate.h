@@ -43,6 +43,7 @@
 @property (nonatomic,retain) GADBannerView *adView;
 
 - (void)registerAdMessage;
+- (void)registerShareSdk;
 - (void)showAdView;
 - (void)hideAdView;
 //GADBannerViewDelegate

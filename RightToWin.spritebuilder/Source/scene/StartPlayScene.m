@@ -8,7 +8,7 @@
 #import "StartPlayScene.h"
 #import "../DataHandler/GameDataHandler.h"
 #import "../Def/SoundDef.h"
-
+#import "../AppDelegate.h"
 
 @implementation StartPlayScene
 
@@ -20,6 +20,9 @@
     [[OALSimpleAudio sharedInstance] preloadEffect:kEffectPianoLa];
     [[OALSimpleAudio sharedInstance] preloadEffect:kEffectPianoQi];
     [[OALSimpleAudio sharedInstance] preloadEffect:kEffectPianoDi];
+    
+    NSNotificationCenter *notiCenter = [NSNotificationCenter defaultCenter];
+    [notiCenter postNotificationName:kShowAdMessage object:nil];
 }
 
 
@@ -54,8 +57,10 @@
     
     //set select type
     [GameDataHandler sharedGameDataHandler].blockTypeSelect = blockType;
-    CCScene *scene = [CCBReader loadAsScene:@"PlayScene"];
-    [[CCDirector sharedDirector] replaceScene:scene withTransition:[CCTransition transitionMoveInWithDirection:CCTransitionDirectionDown duration:0.5]];
+    
+    CCScene *scene = [CCBReader loadAsScene:@"ReadyGoScene"];
+    [[CCDirector sharedDirector] replaceScene:scene];
+    //[[CCDirector sharedDirector] replaceScene:scene withTransition:[CCTransition transitionMoveInWithDirection:CCTransitionDirectionDown duration:0.5]];
 
 }
 

@@ -19,7 +19,7 @@
     CCLabelTTF *m_labelLevel;
     CCLabelTTF *m_labelTime;
     CCSprite9Slice *m_backGround;
-    CCSprite *m_spriteArrow;
+    CCLabelTTF *m_lableLevelUp;
     eBlockType m_currentBlockType;
 }
 

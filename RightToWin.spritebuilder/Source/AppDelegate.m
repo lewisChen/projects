@@ -27,6 +27,9 @@
 
 #import "AppDelegate.h"
 #import "CCBuilderReader.h"
+#import "DataHandler/GameDataHandler.h"
+//#import <ShareSDK/ShareSDK.h>
+//#import "ShareSDK/ShareSDK.framework/Headers/ShareSDK.h"
 
 @interface AppController ()
 @property CGSize _Adsize;
@@ -68,9 +71,10 @@
     }
     
     [self registerAdMessage];
+    [self registerShareSdk];
     
     CGSize winSize = [[UIScreen mainScreen] bounds].size;
-    m_admobView = [[GADBannerView alloc] initWithFrame:CGRectMake(0.0,winSize.height, self._Adsize.width, self._Adsize.height)];
+    m_admobView = [[GADBannerView alloc] initWithFrame:CGRectMake(0.0,winSize.height-self._Adsize.height, self._Adsize.width, self._Adsize.height)];
     m_admobView.center = ccp(winSize.width/2, m_admobView.center.y);
     m_admobView.adUnitID = @"a15355d8e0b278a";
     m_admobView.delegate = self;
@@ -97,7 +101,8 @@
 {
     NSNotificationCenter *notiCenter = [NSNotificationCenter defaultCenter];
     [notiCenter removeObserver:self name:kShowAdMessage object:nil];
-    
+    [notiCenter removeObserver:self name:kHideAdMessage object:nil];
+
     [self delete:m_admobView];
 }
 
@@ -114,23 +119,37 @@
 
 }
 
+-(void)registerShareSdk
+{
+//    [ShareSDK registerApp:@"1aea577cbaf0"];
+//    [ShareSDK connectFacebookWithAppKey:<#(NSString *)#> appSecret:<#(NSString *)#>]
+//    //[ShareSDK connectSinaWeiboWithAppKey:@"411087673" appSecret:@"e9284a35bb72d31ee8cb048d567c38c2" redirectUri:@"https://api.weibo.com/oauth2/default.html"];
+}
+
 -(void)showAdView
 {
     CGSize winSize = [[UIScreen mainScreen] bounds].size;
-    
+    [GameDataHandler sharedGameDataHandler].errorCount = 0;
     [UIView animateWithDuration:0.2
                      animations:^{m_admobView.frame = CGRectMake(0.0,winSize.height-self._Adsize.height, self._Adsize.width, self._Adsize.height);
-                                  m_admobView.center = ccp(winSize.width/2, m_admobView.center.y);
-                                    }
-                     completion:^(BOOL finished){
-                         [UIView animateWithDuration:0.0
-                                               delay:5
-                                             options:UIViewAnimationOptionTransitionNone
-                                          animations:^{m_admobView.frame = CGRectMake(0.0,winSize.height, self._Adsize.width, self._Adsize.height);}
-                                          completion:^(BOOL finish){}];
-                     }];
+                         m_admobView.center = ccp(winSize.width/2, m_admobView.center.y);
+                     }
+                     completion:^(BOOL finished){}];
 
-    //[m_admobView loadRequest:[GADRequest request]];
+
+    
+//    [UIView animateWithDuration:0.2
+//                     animations:^{m_admobView.frame = CGRectMake(0.0,winSize.height-self._Adsize.height, self._Adsize.width, self._Adsize.height);
+//                                  m_admobView.center = ccp(winSize.width/2, m_admobView.center.y);
+//                                    }
+//                     completion:^(BOOL finished){
+//                         [UIView animateWithDuration:0.0
+//                                               delay:10
+//                                             options:UIViewAnimationOptionTransitionNone
+//                                          animations:^{m_admobView.frame = CGRectMake(0.0,winSize.height, self._Adsize.width, self._Adsize.height);}
+//                                          completion:^(BOOL finish){}];
+//                     }];
+
 }
 
 

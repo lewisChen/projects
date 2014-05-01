@@ -13,6 +13,7 @@
 #define kEffectLevelUp (@"levelUp.mp3")
 #define kEffectExplosion (@"explosion.wav")
 #define kEffectError (@"systemError.wav")
+#define kEffectBeep (@"beep.m4a")
 
 #define kEffectPianoDo (@"1.mp3")
 #define kEffectPianoRe (@"2.mp3")
