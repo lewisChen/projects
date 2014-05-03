@@ -155,7 +155,9 @@
 
 -(void)hideAdView
 {
-    m_admobView.frame = CGRectMake(0.0,[CCDirector sharedDirector].viewSize.height, self._Adsize.width,self._Adsize.height);
+    CGSize winSize = [[UIScreen mainScreen] bounds].size;
+
+    m_admobView.frame = CGRectMake(0.0,winSize.height, self._Adsize.width,self._Adsize.height);
 }
 
 -(void)adViewDidReceiveAd:(GADBannerView *)view
