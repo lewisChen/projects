@@ -476,7 +476,7 @@
         }
     }
     
-    if (visableCount == MAX_ITEM_COUNT_X*MAX_ITEM_COUNT_Y)
+    if (visableCount >0)//== MAX_ITEM_COUNT_X*MAX_ITEM_COUNT_Y)
     {
         CCAction *rotateAction = nil;
         for (node in childrenArray)
@@ -507,8 +507,10 @@
 -(void)showFinishLayer
 {
     self.isTimerStart = NO;//stop timer
-    CCNode *finishLayer = [CCBReader load:@"GameFinishLayer.ccbi" owner:self];//[CCBReader load:@"GameFinishLayer.ccbi"];
-    finishLayer.position = ccp(0.0, self.contentSize.height);
+    CCNode *finishLayer = [CCBReader load:@"GameFinishLayer.ccbi"];
+    CGSize viewSize = [CCDirector sharedDirector].viewSize;
+
+    finishLayer.position = ccp(0.0, viewSize.height);
     [self addChild:finishLayer z:2];
     CCAction *moveAction = [CCActionMoveTo actionWithDuration:0.5 position:ccp(0.0, 0.0)];
     [finishLayer runAction:moveAction];

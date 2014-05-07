@@ -29,10 +29,10 @@ enum Estar
 - (void) didLoadFromCCB
 {
     GameDataHandler *dataHandler = [GameDataHandler sharedGameDataHandler];
-    self.contentSize = [CCDirector sharedDirector].viewSize;
+    CGSize viewSize = [CCDirector sharedDirector].viewSize;
     
     m_labelResult = [CCLabelBMFont labelWithString:@"" fntFile:@"FinishFont.fnt"];
-    m_labelResult.position = ccp(self.contentSize.width/2, self.contentSize.height*3/4);
+    m_labelResult.position = ccp(viewSize.width/2, viewSize.height*3/4);
     [self addChild:m_labelResult];
 
     [m_labelLevel setString:[NSString stringWithFormat:@"%d",dataHandler.level]];
