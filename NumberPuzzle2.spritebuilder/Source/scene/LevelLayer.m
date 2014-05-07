@@ -476,7 +476,7 @@
         }
     }
     
-    if (visableCount >0)//== MAX_ITEM_COUNT_X*MAX_ITEM_COUNT_Y)
+    if (visableCount == MAX_ITEM_COUNT_X*MAX_ITEM_COUNT_Y)
     {
         CCAction *rotateAction = nil;
         for (node in childrenArray)
