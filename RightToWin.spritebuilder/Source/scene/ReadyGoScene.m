@@ -27,8 +27,8 @@
     
     [m_blockObj setType:[GameDataHandler sharedGameDataHandler].blockTypeSelect];
     
-    NSNotificationCenter *notiCenter = [NSNotificationCenter defaultCenter];
-    [notiCenter postNotificationName:kHideAdMessage object:nil];
+//    NSNotificationCenter *notiCenter = [NSNotificationCenter defaultCenter];
+//    [notiCenter postNotificationName:kHideAdMessage object:nil];
 }
 
 -(void)completedAnimationSequenceNamed:(NSString *)name
