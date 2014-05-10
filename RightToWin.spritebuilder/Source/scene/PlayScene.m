@@ -8,11 +8,11 @@
 #import "PlayScene.h"
 #import "../obj/BlockObj.h"
 #import "../admob/GADAdSize.h"
-#import "../Def/SoundDef.h"
 #include "../libs/cocos2d-iphone/external/ObjectAL/OALSimpleAudio.h"
 #import "../AppDelegate.h"
 #import "../DataHandler/GameDataHandler.h"
 #import "../../../../../tools/RandomArray.h"
+#import "../../../../../tools/CreateArrayFromList.h"
 #import "../Def/uiPostionDef.h"
 
 
@@ -24,9 +24,9 @@
 #define kMoveOffset (0.1)
 
 //#define kMaxLevel (10)
-#define kLevelMoveparameter (10)
-#define kLevelMoveparameterCrazy (30)
-#define kStarMoveParameter (60)
+#define kLevelMoveparameter (40)
+#define kLevelMoveparameterCrazy (60)
+#define kStarMoveParameter (80)
 
 @interface PlayScene ()
 @property NSInteger _updateStasticCount;
@@ -35,6 +35,10 @@
 @property eGameMode _gameMode;
 @property GameDataHandler *_dataHandler;
 @property BOOL _isStartGame;
+@property NSArray* _musicArray;
+@property NSInteger _soundStasticCount;
+@property NSInteger _moveStastic;
+
 @end
 
 @implementation PlayScene
@@ -63,6 +67,11 @@
     [m_targetItem setType:self.currentBlockType];
     
     self._isStartGame = YES;
+    
+    self._musicArray = [self readMusicPlist];
+    self._soundStasticCount = 0;
+    
+    self._moveStastic = 0;
 }
 
 
@@ -183,11 +192,13 @@
                 {
                     if (self.currentBlockType == obj.blockType)
                     {
-                        [self playRandomSound];
+                        [self playMusicFromSound];
+                        //[self playRandomSound];
                         [obj setBlockDisable];
                         [m_lableRightTapCount setString:[NSString stringWithFormat:@"%d",m_lableRightTapCount.string.intValue+1]];
                         self._tapCountStatistic++;//need to be reseted in the increaseLevel method
                         [self increaseLevel:self._tapCountStatistic];
+                        self._moveStastic++;
                         [self moveBlocks];
                     }
                     else
@@ -208,8 +219,8 @@
                     }
                 }
                 
-                NSString *string = [NSString stringWithFormat:@"row = %ld,collum = %ld",(long)obj.rowIndex,(long)obj.colIndex];
-                CCLOG(string);
+//                NSString *string = [NSString stringWithFormat:@"row = %ld,collum = %ld",(long)obj.rowIndex,(long)obj.colIndex];
+//                CCLOG(string);
             }
         }
     }
@@ -239,11 +250,11 @@
         {
             if (self._gameMode == eGameModeCount)
             {
-                moveCount = self._dataHandler.level*kLevelMoveparameter+kStarMoveParameter;
+                moveCount = self._moveStastic+self._dataHandler.level*kLevelMoveparameter+kStarMoveParameter;
 
             } else
             {
-                moveCount = self._dataHandler.level*kLevelMoveparameterCrazy+kStarMoveParameter;
+                moveCount = self._moveStastic+self._dataHandler.level*kLevelMoveparameterCrazy+kStarMoveParameter;
             }
             
             for (NSInteger count = 0; count<moveCount; count++)
@@ -332,7 +343,12 @@
 -(void)playRandomSound
 {
     NSInteger randomNumber = (arc4random()%eRandomSoundMax);
-    switch (randomNumber)
+    [self playPianoFrom:(enum eRandomSound)randomNumber];
+}
+
+-(void)playPianoFrom:(enum eRandomSound)key
+{
+    switch (key)
     {
         case eRandomSound1:
             [[OALSimpleAudio sharedInstance] playEffect:kEffectPianoDo];
@@ -358,17 +374,31 @@
         case eRandomSound8:
             [[OALSimpleAudio sharedInstance] playEffect:kEffectPianoDi];
             break;
-
+            
         default:
             break;
+    }
+
+}
+
+-(void)playMusicFromSound
+{
+    NSString *pianoKeyString = nil;
+    if (self._soundStasticCount<self._musicArray.count)
+    {
+        pianoKeyString = [self._musicArray objectAtIndex:self._soundStasticCount];
+        [self playPianoFrom:(enum eRandomSound)pianoKeyString.integerValue];
+        self._soundStasticCount++;
+    }
+    else if(self._soundStasticCount>=self._musicArray.count)
+    {
+        self._soundStasticCount = 0;
     }
 }
 
 -(void)showFinishLayer
 {
     [GameDataHandler sharedGameDataHandler].tapCount = m_lableRightTapCount.string.integerValue;
-    CCScene *scene = [CCBReader loadAsScene:@"FinishScene"];
-    [[CCDirector sharedDirector] replaceScene:scene withTransition:[CCTransition transitionMoveInWithDirection:CCTransitionDirectionDown duration:0.5]];
     
     if(self._dataHandler.errorCount>=3)
     {
@@ -376,7 +406,8 @@
         [notiCenter postNotificationName:kShowAdMessage object:nil];
         self._dataHandler.errorCount = 0;
     }
-
+    CCScene *scene = [CCBReader loadAsScene:@"FinishScene"];
+    [[CCDirector sharedDirector] replaceScene:scene withTransition:[CCTransition transitionMoveInWithDirection:CCTransitionDirectionDown duration:0.5]];
 }
 
 - (void)handleModeUiDisplay
@@ -395,6 +426,17 @@
         default:
             break;
     }
+}
+
+-(NSArray*)readMusicPlist
+{
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"musicList" ofType:@"plist"];
+    NSMutableDictionary *data = [[NSMutableDictionary alloc] initWithContentsOfFile:path];
+    
+    NSString *musicString = [data objectForKey:@"music2"];
+    NSArray *musicArray = readListMakeArray(musicString, @",");
+    
+    return musicArray;
 }
 
 @end

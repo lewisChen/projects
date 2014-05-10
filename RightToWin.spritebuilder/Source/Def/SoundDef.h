@@ -12,7 +12,7 @@
 #define kEffectTouched (@"itemTouched.mp3")
 #define kEffectLevelUp (@"levelUp.mp3")
 #define kEffectExplosion (@"explosion.wav")
-#define kEffectError (@"systemError.wav")
+#define kEffectError (@"error.mp3")
 #define kEffectBeep (@"beep.m4a")
 
 #define kEffectPianoDo (@"1.mp3")
@@ -25,7 +25,7 @@
 #define kEffectPianoDi (@"8.mp3")
 
 
-typedef enum : NSUInteger {
+enum eRandomSound {
     eRandomSound1,
     eRandomSound2,
     eRandomSound3,
@@ -36,7 +36,8 @@ typedef enum : NSUInteger {
     eRandomSound8,
     
     eRandomSoundMax
-} eRandomSound;
+};
+
 
 
 #endif

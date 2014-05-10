@@ -8,6 +8,7 @@
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
 #import "BlockObj.h"
+#import "../Def/SoundDef.h"
 
 
 @interface PlayScene : CCNode<CCBAnimationManagerDelegate>
@@ -21,6 +22,7 @@
     CCSprite9Slice *m_backGround;
     CCLabelTTF *m_lableLevelUp;
     eBlockType m_currentBlockType;
+    
 }
 
 @property(readwrite,nonatomic) eBlockType currentBlockType;
@@ -36,7 +38,10 @@
 - (void)increaseLevel:(NSInteger) tapCount;
 - (void)completedAnimationSequenceNamed:(NSString*)name;
 - (void)playRandomSound;
+- (void)playPianoFrom: (enum eRandomSound)key;
+- (void)playMusicFromSound;
 - (void)showFinishLayer;
 - (void)handleModeUiDisplay;
+- (NSArray*)readMusicPlist;
 
 @end
