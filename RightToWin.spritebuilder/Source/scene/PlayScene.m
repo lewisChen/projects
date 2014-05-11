@@ -20,13 +20,15 @@
 #define kCollumOfItemCount ((UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)?(6):(5))
 
 #define kZorderScore (10)
-#define kLevelParameter (10)
+#define kLevelParameter (20)
 #define kMoveOffset (0.1)
 
 //#define kMaxLevel (10)
 #define kLevelMoveparameter (40)
 #define kLevelMoveparameterCrazy (60)
-#define kStarMoveParameter (80)
+#define kStarMoveParameter (60)
+
+#define kTapMoveParameter (10)
 
 @interface PlayScene ()
 @property NSInteger _updateStasticCount;
@@ -38,6 +40,8 @@
 @property NSArray* _musicArray;
 @property NSInteger _soundStasticCount;
 @property NSInteger _moveStastic;
+
+@property BOOL _isTapMoveEnable;
 
 @end
 
@@ -90,7 +94,7 @@
             obj.rowIndex = row;
             if (self._gameMode!=eGameModeTime)
             {
-                obj.position = ccp((obj.contentSize.width/2)+obj.contentSize.width*collum,obj.contentSize.height+(obj.contentSize.height/2)+obj.contentSize.height*row);
+                obj.position = ccp((obj.contentSize.width/2)+obj.contentSize.width*collum,obj.contentSize.height*2+(obj.contentSize.height/2)+obj.contentSize.height*row);
             }
             else
             {
@@ -107,30 +111,7 @@
 {
     NSArray *typeArray = nil;
     NSString *typeString = nil;
-    if (eGameModeTime == self._gameMode)
-    {
-        for (BlockObj *obj in m_blockArray)
-        {
-            if (obj.rowIndex<(kRowOfItemCount-1))
-            {
-                BlockObj *objNextRow = [m_blockArray objectAtIndex:((obj.rowIndex+1)*kCollumOfItemCount+obj.colIndex)];
-                [obj setType:objNextRow.blockType];
-                
-            }
-            else if((kRowOfItemCount-1) == obj.rowIndex)
-            {
-                typeArray = getRandomArray(kCollumOfItemCount);//[self getRandomArray:kCollumOfItemCount];
-                for (NSInteger index = 0; index<typeArray.count; index++)
-                {
-                    BlockObj *objLastCollum = [m_blockArray objectAtIndex:(obj.rowIndex*kCollumOfItemCount+index)];
-                    typeString = [typeArray objectAtIndex:index];
-                    [objLastCollum setType:(eBlockType)typeString.integerValue];
-                }
-                break;
-            }
-        }
-    }
-    else//other mode move block method
+    if (eGameModeTime != self._gameMode)
     {
         for (NSInteger rowIndex = 0; rowIndex<kRowOfItemCount; rowIndex++)
         {
@@ -170,6 +151,67 @@
     }
 }
 
+-(void)moveBlocksAfterTap
+{
+    NSArray *typeArray = nil;
+    NSString *typeString = nil;
+    if (eGameModeTime == self._gameMode)
+    {
+        for (NSInteger rowIndex = 0; rowIndex<kRowOfItemCount; rowIndex++)
+        {
+            BlockObj *currentObj = nil;
+            for (NSInteger collumIndex = 0; collumIndex<kCollumOfItemCount; collumIndex++)
+            {
+                currentObj = [m_blockArray objectAtIndex:rowIndex*kCollumOfItemCount+collumIndex];
+                currentObj.position = ccp(currentObj.position.x, currentObj.position.y-kTapMoveParameter);
+            }
+            
+            BOOL isOutScene = ( (currentObj.position.y+(currentObj.contentSize.height/2))<0 )?YES:NO;
+            if (isOutScene)
+            {
+                self._isTapMoveEnable = NO;//stop move
+                typeArray = getRandomArray(kCollumOfItemCount);
+                for (NSInteger collumIndex = 0; collumIndex<kCollumOfItemCount; collumIndex++)
+                {
+                    currentObj = [m_blockArray objectAtIndex:rowIndex*kCollumOfItemCount+collumIndex];
+                    typeString = [typeArray objectAtIndex:collumIndex];
+                    [currentObj setType:(eBlockType)typeString.integerValue];
+                    
+                    
+                    BlockObj *topObj = [m_blockArray objectAtIndex:(kRowOfItemCount-1)*kCollumOfItemCount + collumIndex];
+                    currentObj.position = ccp(topObj.position.x, topObj.position.y+topObj.contentSize.height- kTapMoveParameter + topObj.contentSize.height*rowIndex);
+                }
+            }
+        }
+    }
+
+//    NSArray *typeArray = nil;
+//    NSString *typeString = nil;
+//    if (eGameModeTime == self._gameMode)
+//    {
+//        for (BlockObj *obj in m_blockArray)
+//        {
+//            if (obj.rowIndex<(kRowOfItemCount-1))
+//            {
+//                BlockObj *objNextRow = [m_blockArray objectAtIndex:((obj.rowIndex+1)*kCollumOfItemCount+obj.colIndex)];
+//                [obj setType:objNextRow.blockType];
+//                
+//            }
+//            else if((kRowOfItemCount-1) == obj.rowIndex)
+//            {
+//                typeArray = getRandomArray(kCollumOfItemCount);//[self getRandomArray:kCollumOfItemCount];
+//                for (NSInteger index = 0; index<typeArray.count; index++)
+//                {
+//                    BlockObj *objLastCollum = [m_blockArray objectAtIndex:(obj.rowIndex*kCollumOfItemCount+index)];
+//                    typeString = [typeArray objectAtIndex:index];
+//                    [objLastCollum setType:(eBlockType)typeString.integerValue];
+//                }
+//                break;
+//            }
+//        }
+//    }
+
+}
 
 -(void)touchBegan:(UITouch *)touch withEvent:(UIEvent *)event
 {
@@ -192,14 +234,14 @@
                 {
                     if (self.currentBlockType == obj.blockType)
                     {
-                        [self playMusicFromSound];
-                        //[self playRandomSound];
+                        //[self playMusicFromSound];
+                        [self playRandomSound];
                         [obj setBlockDisable];
                         [m_lableRightTapCount setString:[NSString stringWithFormat:@"%d",m_lableRightTapCount.string.intValue+1]];
                         self._tapCountStatistic++;//need to be reseted in the increaseLevel method
                         [self increaseLevel:self._tapCountStatistic];
                         self._moveStastic++;
-                        [self moveBlocks];
+                        self._isTapMoveEnable = YES;//enable tile move for a row after one tap
                     }
                     else
                     {
@@ -250,17 +292,25 @@
         {
             if (self._gameMode == eGameModeCount)
             {
-                moveCount = self._moveStastic+self._dataHandler.level*kLevelMoveparameter+kStarMoveParameter;
+                moveCount = self._moveStastic*2+kStarMoveParameter;//self._dataHandler.level*kLevelMoveparameter+kStarMoveParameter;
 
             } else
             {
-                moveCount = self._moveStastic+self._dataHandler.level*kLevelMoveparameterCrazy+kStarMoveParameter;
+                moveCount = self._moveStastic*3+kStarMoveParameter;//self._dataHandler.level*kLevelMoveparameterCrazy+kStarMoveParameter;
             }
             
             for (NSInteger count = 0; count<moveCount; count++)
             {
                 [self moveBlocks];
             }
+
+        }
+    }
+    else//time mode
+    {
+        if (self._isTapMoveEnable == YES)
+        {
+            [self moveBlocksAfterTap];
         }
     }
     
@@ -280,6 +330,7 @@
             [self showFinishLayer];
         }
     }
+    
 }
 
 -(void)initSoundEgine
@@ -316,6 +367,11 @@
         
         //reset tap statistic
         self._tapCountStatistic = 0;
+        
+        if (self._gameMode == eGameModeCrazy)
+        {
+            [self._dataHandler resetTime];
+        }
 
     }
 }

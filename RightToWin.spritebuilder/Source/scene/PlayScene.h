@@ -29,6 +29,7 @@
 
 - (void)placeAllBlock;
 - (void)moveBlocks;
+- (void)moveBlocksAfterTap;
 //-(NSMutableArray*)getRandomArray:(NSInteger)arraySize;
 //- (bool)isNumberInArray:(NSMutableArray*)array :(NSInteger)number;
 - (void)touchBegan:(UITouch *)touch withEvent:(UIEvent *)event;
