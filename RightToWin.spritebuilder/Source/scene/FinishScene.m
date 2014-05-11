@@ -53,9 +53,6 @@
     {
         CCScene *scene = [CCBReader loadAsScene:@"ReadyGoScene"];
         [[CCDirector sharedDirector] replaceScene:scene];
-
-//        CCScene *scene = [CCBReader loadAsScene:@"PlayScene"];
-//        [[CCDirector sharedDirector] replaceScene:scene withTransition:[CCTransition transitionMoveInWithDirection:CCTransitionDirectionDown duration:0.5]];
     }
     else if(m_buttonBack == sender)
     {
