@@ -68,5 +68,6 @@ typedef enum : NSUInteger
 -(NSString*)getLeftTimeString;
 -(double)getTimeLimit;
 -(NSInteger)getGameLevel:(enum eDifficultLevel)difficultLevel;
+-(void)resetTime;
 
 @end

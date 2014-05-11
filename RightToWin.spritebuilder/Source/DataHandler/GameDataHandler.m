@@ -247,4 +247,9 @@ static GameDataHandler* _sharedGameDataHandler = nil;
     return gameLevel;
 }
 
+-(void)resetTime
+{
+    self.startTime = CACurrentMediaTime();
+}
+
 @end
