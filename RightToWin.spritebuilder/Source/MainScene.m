@@ -11,6 +11,8 @@
 #import "Def/SoundDef.h"
 #import "DataHandler/GameKitHelper.h"
 
+#define appId (869242710)
+
 @implementation MainScene
 
 - (void) didLoadFromCCB
@@ -22,6 +24,12 @@
     
     [[GameKitHelper sharedGameKitHelper] authenticateLocalPlayer];
 
+}
+
+-(void)buttonRate:(id)sender
+{
+    NSString *str = [NSString stringWithFormat:@"itms-apps://itunes.apple.com/app/id%d",appId];
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:str]];
 }
 
 
