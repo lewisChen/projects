@@ -26,7 +26,7 @@
 //#define kMaxLevel (10)
 #define kLevelMoveparameter (40)
 #define kLevelMoveparameterCrazy (60)
-#define kStarMoveParameter (60)
+#define kStarMoveParameter (50)
 
 #define kTapMoveParameter (10)
 
@@ -42,6 +42,7 @@
 @property NSInteger _moveStastic;
 
 @property BOOL _isTapMoveEnable;
+@property BlockObj *_objLastTap;
 
 @end
 
@@ -219,6 +220,7 @@
     {
         return;
     }
+    
     CGPoint currentPosition = [touch locationInView:touch.view];
     currentPosition = [[CCDirector sharedDirector] convertToGL:currentPosition];
     currentPosition = [self convertToNodeSpace:currentPosition];
@@ -234,14 +236,15 @@
                 {
                     if (self.currentBlockType == obj.blockType)
                     {
-                        //[self playMusicFromSound];
-                        [self playRandomSound];
-                        [obj setBlockDisable];
+                        [self playMusicFromSound];
+                        //[self playRandomSound];
                         [m_lableRightTapCount setString:[NSString stringWithFormat:@"%d",m_lableRightTapCount.string.intValue+1]];
                         self._tapCountStatistic++;//need to be reseted in the increaseLevel method
                         [self increaseLevel:self._tapCountStatistic];
                         self._moveStastic++;
-                        self._isTapMoveEnable = YES;//enable tile move for a row after one tap
+                        self._objLastTap = obj;
+                        [obj setBlockDisable];
+                        break;
                     }
                     else
                     {
@@ -258,14 +261,15 @@
                         [obj runAction:actions];
                         
                         CCLOG(@"GameOver");
+                        break;
                     }
                 }
-                
-//                NSString *string = [NSString stringWithFormat:@"row = %ld,collum = %ld",(long)obj.rowIndex,(long)obj.colIndex];
-//                CCLOG(string);
+                //                NSString *string = [NSString stringWithFormat:@"row = %ld,collum = %ld",(long)obj.rowIndex,(long)obj.colIndex];
+                //                CCLOG(string);
             }
         }
     }
+
 
 }
 
@@ -276,6 +280,10 @@
         return;
     }
     
+    if (self._gameMode == eGameModeTime)
+    {
+        self._isTapMoveEnable = YES;//enable tile move for a row after one tap
+    }
 }
 
 - (void)update:(CCTime)delta
@@ -292,11 +300,11 @@
         {
             if (self._gameMode == eGameModeCount)
             {
-                moveCount = self._moveStastic*2+kStarMoveParameter;//self._dataHandler.level*kLevelMoveparameter+kStarMoveParameter;
+                moveCount = self._moveStastic+kStarMoveParameter;//self._dataHandler.level*kLevelMoveparameter+kStarMoveParameter;
 
             } else
             {
-                moveCount = self._moveStastic*3+kStarMoveParameter;//self._dataHandler.level*kLevelMoveparameterCrazy+kStarMoveParameter;
+                moveCount = self._moveStastic*2+kStarMoveParameter;//self._dataHandler.level*kLevelMoveparameterCrazy+kStarMoveParameter;
             }
             
             for (NSInteger count = 0; count<moveCount; count++)
@@ -331,6 +339,12 @@
         }
     }
     
+//    if (self._updateStasticCount>20)
+//    {
+//        //[self playRandomSound];
+//        [self playMusicFromSound];
+//        self._updateStasticCount=0;
+//    }
 }
 
 -(void)initSoundEgine
@@ -368,7 +382,7 @@
         //reset tap statistic
         self._tapCountStatistic = 0;
         
-        if (self._gameMode == eGameModeCrazy)
+        if ((self._gameMode == eGameModeCrazy)||(self._gameMode == eGameModeTime))
         {
             [self._dataHandler resetTime];
         }
@@ -443,7 +457,7 @@
     if (self._soundStasticCount<self._musicArray.count)
     {
         pianoKeyString = [self._musicArray objectAtIndex:self._soundStasticCount];
-        [self playPianoFrom:(enum eRandomSound)pianoKeyString.integerValue];
+        [self playPianoFrom:(enum eRandomSound)pianoKeyString.integerValue-1];
         self._soundStasticCount++;
     }
     else if(self._soundStasticCount>=self._musicArray.count)
@@ -489,7 +503,9 @@
     NSString *path = [[NSBundle mainBundle] pathForResource:@"musicList" ofType:@"plist"];
     NSMutableDictionary *data = [[NSMutableDictionary alloc] initWithContentsOfFile:path];
     
-    NSString *musicString = [data objectForKey:@"music2"];
+    NSInteger soundIndex = arc4random()%(data.count)+1;
+    
+    NSString *musicString = [data objectForKey:[NSString stringWithFormat:@"music%ld",(long)soundIndex]];
     NSArray *musicArray = readListMakeArray(musicString, @",");
     
     return musicArray;
