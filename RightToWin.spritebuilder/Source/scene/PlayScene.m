@@ -26,7 +26,7 @@
 //#define kMaxLevel (10)
 #define kLevelMoveparameter (40)
 #define kLevelMoveparameterCrazy (60)
-#define kStarMoveParameter (50)
+#define kStarMoveParameter ((UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)?(50):(80))
 
 #define kTapMoveParameter (10)
 
