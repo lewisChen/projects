@@ -145,7 +145,7 @@
                     
                     
                     BlockObj *topObj = [m_blockArray objectAtIndex:(kRowOfItemCount-1)*kCollumOfItemCount + collumIndex];
-                    currentObj.position = ccp(topObj.position.x, topObj.position.y+topObj.contentSize.height- kMoveOffset + topObj.contentSize.height*rowIndex);
+                    currentObj.position = ccp(topObj.position.x, currentObj.position.y+kRowOfItemCount*topObj.contentSize.height);
                 }
             }
         }
@@ -180,7 +180,7 @@
                     
                     
                     BlockObj *topObj = [m_blockArray objectAtIndex:(kRowOfItemCount-1)*kCollumOfItemCount + collumIndex];
-                    currentObj.position = ccp(topObj.position.x, topObj.position.y+topObj.contentSize.height- kTapMoveParameter + topObj.contentSize.height*rowIndex);
+                    currentObj.position = ccp(topObj.position.x, currentObj.position.y+kRowOfItemCount*topObj.contentSize.height);
                 }
             }
         }
