@@ -26,9 +26,11 @@
 //#define kMaxLevel (10)
 #define kLevelMoveparameter (40)
 #define kLevelMoveparameterCrazy (60)
-#define kStarMoveParameter ((UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)?(50):(80))
+#define kStarMoveParameter ((UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)?(50):(90))
 
 #define kTapMoveParameter (10)
+
+#define kAddMoveThreshold (4)
 
 @interface PlayScene ()
 @property NSInteger _updateStasticCount;
@@ -40,9 +42,9 @@
 @property NSArray* _musicArray;
 @property NSInteger _soundStasticCount;
 @property NSInteger _moveStastic;
+@property NSInteger _moveAddStastic;
 
 @property BOOL _isTapMoveEnable;
-@property BlockObj *_objLastTap;
 
 @end
 
@@ -95,12 +97,17 @@
             obj.rowIndex = row;
             if (self._gameMode!=eGameModeTime)
             {
-                obj.position = ccp((obj.contentSize.width/2)+obj.contentSize.width*collum,obj.contentSize.height*2+(obj.contentSize.height/2)+obj.contentSize.height*row);
+                obj.position = ccp((obj.contentSize.width/2)+obj.contentSize.width*collum,obj.contentSize.height*2.5+(obj.contentSize.height/2)+obj.contentSize.height*row);
             }
             else
             {
                 obj.position = ccp((obj.contentSize.width/2)+obj.contentSize.width*collum,(obj.contentSize.height/2)+obj.contentSize.height*row);
+                if(0==row)
+                {
+                    [obj setBlockDisable];
+                }
             }
+            
             
             [self addChild:obj];
             [m_blockArray addObject:obj];
@@ -236,14 +243,31 @@
                 {
                     if (self.currentBlockType == obj.blockType)
                     {
+                        [obj setBlockDisable];
                         [self playMusicFromSound];
                         //[self playRandomSound];
                         [m_lableRightTapCount setString:[NSString stringWithFormat:@"%d",m_lableRightTapCount.string.intValue+1]];
                         self._tapCountStatistic++;//need to be reseted in the increaseLevel method
                         [self increaseLevel:self._tapCountStatistic];
-                        self._moveStastic++;
-                        self._objLastTap = obj;
-                        [obj setBlockDisable];
+                        
+                        if(eGameModeTime!=self._gameMode)
+                        {
+                            if(eGameModeCount==self._gameMode)
+                            {
+                                self._moveAddStastic= self._moveAddStastic+4;
+                            }
+                            else if(eGameModeCrazy == self._gameMode)
+                            {
+                                self._moveAddStastic = self._moveAddStastic+2;
+                            }
+
+                            if(self._moveAddStastic>=kAddMoveThreshold)
+                            {
+                                self._moveStastic++;
+                                self._moveAddStastic = 0;
+                            }
+                        }
+                        
                         break;
                     }
                     else
