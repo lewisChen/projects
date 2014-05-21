@@ -14,6 +14,8 @@
 #import "../SoundDef/SoundDef.h"
 #import "GameKitHelper.h"
 
+#define appId (846452219)
+
 
 @implementation MainScene
 
@@ -67,6 +69,12 @@
     [[OALSimpleAudio sharedInstance] playEffect:kEffectClickButton];
     [[GameKitHelper sharedGameKitHelper] showLeaderboard:kHighScoreBoardIdentifier];
 
+}
+
+-(void)buttonRate:(id)sender
+{
+    NSString *str = [NSString stringWithFormat:@"itms-apps://itunes.apple.com/app/id%d",appId];
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:str]];
 }
 
 @end
