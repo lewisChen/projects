@@ -16,7 +16,7 @@
 #import "../Def/uiPostionDef.h"
 
 
-#define kRowOfItemCount (10)
+#define kRowOfItemCount (6)
 #define kCollumOfItemCount ((UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)?(6):(5))
 
 #define kZorderScore (10)
@@ -26,11 +26,11 @@
 //#define kMaxLevel (10)
 #define kLevelMoveparameter (40)
 #define kLevelMoveparameterCrazy (60)
-#define kStarMoveParameter ((UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)?(50):(90))
+#define kStarMoveParameter (50)//((UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)?(50):(90))
 
 #define kTapMoveParameter (10)
 
-#define kAddMoveThreshold (4)
+#define kAddMoveThreshold (5)
 
 @interface PlayScene ()
 @property NSInteger _updateStasticCount;
@@ -43,6 +43,7 @@
 @property NSInteger _soundStasticCount;
 @property NSInteger _moveStastic;
 @property NSInteger _moveAddStastic;
+@property NSInteger _tapMoveCount;
 
 @property BOOL _isTapMoveEnable;
 
@@ -79,6 +80,8 @@
     self._soundStasticCount = 0;
     
     self._moveStastic = 0;
+    self._tapMoveCount = 0;
+    self._isTapMoveEnable = NO;
 }
 
 
@@ -102,10 +105,10 @@
             else
             {
                 obj.position = ccp((obj.contentSize.width/2)+obj.contentSize.width*collum,(obj.contentSize.height/2)+obj.contentSize.height*row);
-                if(0==row)
-                {
-                    [obj setBlockDisable];
-                }
+//                if(0==row)
+//                {
+//                    [obj setBlockDisable];
+//                }
             }
             
             
@@ -177,7 +180,13 @@
             BOOL isOutScene = ( (currentObj.position.y+(currentObj.contentSize.height/2))<0 )?YES:NO;
             if (isOutScene)
             {
-                self._isTapMoveEnable = NO;//stop move
+                self._tapMoveCount--;
+                if (0==self._tapMoveCount)
+                {
+                    self._isTapMoveEnable = NO;//stop move
+
+                }
+                
                 typeArray = getRandomArray(kCollumOfItemCount);
                 for (NSInteger collumIndex = 0; collumIndex<kCollumOfItemCount; collumIndex++)
                 {
@@ -268,6 +277,12 @@
                             }
                         }
                         
+                        if (eGameModeTime==self._gameMode)
+                        {
+                            self._tapMoveCount++;//add tap move Count
+
+                        }
+                        
                         break;
                     }
                     else
@@ -328,7 +343,7 @@
 
             } else
             {
-                moveCount = self._moveStastic*2+kStarMoveParameter;//self._dataHandler.level*kLevelMoveparameterCrazy+kStarMoveParameter;
+                moveCount = self._moveStastic*4+kStarMoveParameter;//self._dataHandler.level*kLevelMoveparameterCrazy+kStarMoveParameter;
             }
             
             for (NSInteger count = 0; count<moveCount; count++)
@@ -487,6 +502,7 @@
     else if(self._soundStasticCount>=self._musicArray.count)
     {
         self._soundStasticCount = 0;
+        self._musicArray = [self readMusicPlist];
     }
 }
 
