@@ -90,12 +90,26 @@
 
 -(void)setBlockDisable
 {
+    m_spriteType6.scale = 0;
     m_spriteType1.zOrder = kNormalZorder;
     m_spriteType2.zOrder = kNormalZorder;
     m_spriteType3.zOrder = kNormalZorder;
     m_spriteType4.zOrder = kNormalZorder;
     m_spriteType5.zOrder = kNormalZorder;
+    m_spriteType1.visible = NO;
+    m_spriteType2.visible = NO;
+    m_spriteType3.visible = NO;
+    m_spriteType4.visible = NO;
+    m_spriteType5.visible = NO;
+    
     m_spriteType6.zOrder = kTopZorder;
+    
+    CCActionCallFunc *actionEndFunction = [CCActionCallFunc actionWithTarget:self selector:@selector(disableActionCall)];
+    CCActionScaleBy *actionScale = [CCActionScaleTo actionWithDuration:0.15 scale:1];
+    NSArray *actionArray  = @[actionScale,actionEndFunction];
+    CCAction *action = [CCActionSequence actionWithArray:actionArray];
+    [m_spriteType6 runAction:action];
+    
     self.blockType = eBlockTypeDisable;
 }
 
@@ -148,6 +162,15 @@
         default:
             break;
     }
+}
+
+-(void)disableActionCall
+{
+    m_spriteType1.visible = YES;
+    m_spriteType2.visible = YES;
+    m_spriteType3.visible = YES;
+    m_spriteType4.visible = YES;
+    m_spriteType5.visible = YES;
 }
 
 @end

@@ -42,5 +42,6 @@ typedef enum : NSUInteger
 -(void)setType:(eBlockType)type;
 -(void)setBlockDisable;
 -(void)handleUnknowType;
+-(void)disableActionCall;
 
 @end
