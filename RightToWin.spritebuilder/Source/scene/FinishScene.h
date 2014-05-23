@@ -20,8 +20,11 @@
     
     CCButton *m_buttonRetry;
     CCButton *m_buttonBack;
+    
+    CCSprite9Slice *m_background;
 }
 
 -(void)sumitScore;
+-(void)setBackgroundRandomColor;
 
 @end

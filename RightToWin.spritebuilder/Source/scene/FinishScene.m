@@ -12,10 +12,22 @@
 #import "../DataHandler/GameKitHelper.h"
 
 
+typedef enum : NSUInteger {
+    eColor_1 = 0,
+    eColor_2,
+    eColor_3,
+    eColor_4,
+    eColor_5,
+    eColor_6,
+    
+    eColorMax
+} eColor;
+
 @implementation FinishScene
 
 - (void) didLoadFromCCB
 {
+    [self setBackgroundRandomColor];
     GameDataHandler *dataHandle = [GameDataHandler sharedGameDataHandler];
     eGameMode mode = dataHandle.gameMode;
     dataHandle.errorCount++;
@@ -81,6 +93,37 @@
             break;
     }
 
+}
+
+-(void)setBackgroundRandomColor
+{
+    NSInteger colorIndex = (arc4random()%eColorMax);
+    ccColor3B color = ccBLACK;
+    switch (colorIndex)
+    {
+        case eColor_1:
+            color = ccc3(100, 0, 20);
+            break;
+        case eColor_2:
+            color = ccMAGENTA;
+            break;
+        case eColor_3:
+            color = ccORANGE;
+            break;
+        case eColor_4:
+            color = ccc3(200, 10, 150);
+            break;
+        case eColor_5:
+            color = ccGRAY;
+            break;
+        case eColor_6:
+            color = ccBLACK;
+            break;
+            
+        default:
+            break;
+    }
+    [m_background setColor:[CCColor colorWithCcColor3b:color]];
 }
 
 @end
