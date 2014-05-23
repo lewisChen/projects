@@ -282,6 +282,10 @@
                             self._tapMoveCount++;//add tap move Count
                             self._blockObjJustTap = obj;
                         }
+                        else
+                        {
+                            [obj setBlockDisable];
+                        }
                         
                         break;
                     }
