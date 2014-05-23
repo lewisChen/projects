@@ -46,6 +46,7 @@
 @property NSInteger _tapMoveCount;
 
 @property BOOL _isTapMoveEnable;
+@property BlockObj* _blockObjJustTap;
 
 @end
 
@@ -252,7 +253,6 @@
                 {
                     if (self.currentBlockType == obj.blockType)
                     {
-                        [obj setBlockDisable];
                         [self playMusicFromSound];
                         //[self playRandomSound];
                         [m_lableRightTapCount setString:[NSString stringWithFormat:@"%d",m_lableRightTapCount.string.intValue+1]];
@@ -280,7 +280,7 @@
                         if (eGameModeTime==self._gameMode)
                         {
                             self._tapMoveCount++;//add tap move Count
-
+                            self._blockObjJustTap = obj;
                         }
                         
                         break;
@@ -321,7 +321,15 @@
     
     if (self._gameMode == eGameModeTime)
     {
-        self._isTapMoveEnable = YES;//enable tile move for a row after one tap
+        if (self._blockObjJustTap!=nil)
+        {
+            if(self._blockObjJustTap.blockType!=eBlockTypeDisable)
+            {
+                self._isTapMoveEnable = YES;//enable tile move for a row after one tap
+                [self._blockObjJustTap setBlockDisable];
+            }
+            self._blockObjJustTap = nil;
+        }
     }
 }
 
