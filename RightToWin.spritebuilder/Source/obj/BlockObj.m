@@ -105,7 +105,7 @@
     m_spriteType6.zOrder = kTopZorder;
     
     CCActionCallFunc *actionEndFunction = [CCActionCallFunc actionWithTarget:self selector:@selector(disableActionCall)];
-    CCActionScaleBy *actionScale = [CCActionScaleTo actionWithDuration:0.1 scale:1];
+    CCActionScaleBy *actionScale = [CCActionScaleTo actionWithDuration:0.15 scale:1];
     NSArray *actionArray  = @[actionScale,actionEndFunction];
     CCAction *action = [CCActionSequence actionWithArray:actionArray];
     [m_spriteType6 runAction:action];
