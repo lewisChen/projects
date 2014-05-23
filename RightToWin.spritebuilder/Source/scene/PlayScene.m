@@ -181,7 +181,7 @@
             if (isOutScene)
             {
                 self._tapMoveCount--;
-                if (0==self._tapMoveCount)
+                if (self._tapMoveCount<=0)
                 {
                     self._isTapMoveEnable = NO;//stop move
 
