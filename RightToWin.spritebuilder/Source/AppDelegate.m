@@ -31,6 +31,8 @@
 //#import <ShareSDK/ShareSDK.h>
 //#import "ShareSDK/ShareSDK.framework/Headers/ShareSDK.h"
 
+#define adId (@"ca-app-pub-3096608906422109/9707640472")
+
 @interface AppController ()
 @property CGSize _Adsize;
 @end
@@ -76,7 +78,7 @@
     CGSize winSize = [[UIScreen mainScreen] bounds].size;
     m_admobView = [[GADBannerView alloc] initWithFrame:CGRectMake(0.0,winSize.height-self._Adsize.height, self._Adsize.width, self._Adsize.height)];
     m_admobView.center = ccp(winSize.width/2, m_admobView.center.y);
-    m_admobView.adUnitID = @"a15355d8e0b278a";
+    m_admobView.adUnitID = adId;//@"a15355d8e0b278a";
     m_admobView.delegate = self;
     m_admobView.rootViewController = navController_;
     [[[window_ rootViewController] view] addSubview:m_admobView];
