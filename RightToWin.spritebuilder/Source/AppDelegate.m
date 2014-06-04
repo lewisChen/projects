@@ -73,14 +73,6 @@
     }
     
     
-    GameDataHandler *dataHandler =  [GameDataHandler sharedGameDataHandler];
-    [dataHandler initSaveData];
-    if (dataHandler.getIsRate==NO)
-    {
-        [dataHandler increaseEnterTime];
-    }
-    
-    
     [self registerAdMessage];
     [self registerShareSdk];
     
@@ -102,6 +94,18 @@
     
     return YES;
 }
+
+
+- (void)applicationDidBecomeActive:(UIApplication *)application
+{
+    GameDataHandler *dataHandler =  [GameDataHandler sharedGameDataHandler];
+    [dataHandler initSaveData];
+    if (dataHandler.getIsRate==NO)
+    {
+        [dataHandler increaseEnterTime];
+    }
+}
+
 
 - (CCScene*) startScene
 {
