@@ -105,7 +105,7 @@
             }
             else
             {
-                obj.position = ccp((obj.contentSize.width/2)+obj.contentSize.width*collum,(obj.contentSize.height/2)+obj.contentSize.height*row);
+                obj.position = ccp((obj.contentSize.width/2)+obj.contentSize.width*collum,obj.contentSize.height*row);
                 if(0==row)
                 {
                     [obj setBlockDisable];
