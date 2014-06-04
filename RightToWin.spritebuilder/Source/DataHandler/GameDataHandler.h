@@ -69,6 +69,7 @@ typedef enum : NSUInteger
 //-(NSInteger)getGameLevel:(enum eDifficultLevel)difficultLevel;
 -(void)resetTime;
 -(void)increaseEnterTime;
+-(void)resetEnterTime;
 -(void)setIsRate;
 -(BOOL)getIsRate;
 

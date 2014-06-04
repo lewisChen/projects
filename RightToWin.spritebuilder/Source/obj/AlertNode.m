@@ -20,17 +20,18 @@
     CCActionSequence *actions = [CCActionSequence actionWithArray:actionArray];
 
 
+    GameDataHandler *dataHandler =  [GameDataHandler sharedGameDataHandler];
+
     if (m_buttonOk == sender)
     {
-        GameDataHandler *dataHandler =  [GameDataHandler sharedGameDataHandler];
         [dataHandler setIsRate];
-        
+
         NSString *str = [NSString stringWithFormat:@"itms-apps://itunes.apple.com/app/id%d",appId];
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:str]];
     }
     else if(m_cancelBtn == sender)
     {
-        //do nothing
+        [dataHandler resetEnterTime];
     }
     
     [self runAction:actions];

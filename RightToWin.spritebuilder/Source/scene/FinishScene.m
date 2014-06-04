@@ -132,7 +132,7 @@ typedef enum : NSUInteger {
 -(void)showAlertView
 {
     GameDataHandler *dataHandle = [GameDataHandler sharedGameDataHandler];
-    if (dataHandle.enterGameCount>=2)
+    if (dataHandle.enterGameCount>=3)
     {
         if (NO == dataHandle.getIsRate)
         {

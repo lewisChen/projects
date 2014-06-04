@@ -228,6 +228,13 @@ static GameDataHandler* _sharedGameDataHandler = nil;
     
 }
 
+-(void)resetEnterTime
+{
+    NSUserDefaults *saveDefaults = [NSUserDefaults standardUserDefaults];
+    [saveDefaults setObject:[NSNumber numberWithInteger:0] forKey:kEnterTime];
+    self.enterGameCount = 0;
+}
+
 -(void)setIsRate
 {
     if (self.getIsRate==NO)
