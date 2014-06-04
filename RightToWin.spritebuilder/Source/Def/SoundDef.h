@@ -14,6 +14,7 @@
 #define kEffectExplosion (@"explosion.wav")
 #define kEffectError (@"error.mp3")
 #define kEffectBeep (@"beep.m4a")
+#define kEffectPass (@"pass.mp3")
 
 #define kEffectPianoDo (@"1.mp3")
 #define kEffectPianoRe (@"2.mp3")

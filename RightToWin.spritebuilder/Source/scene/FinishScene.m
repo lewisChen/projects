@@ -10,6 +10,7 @@
 #import "../DataHandler/GameDataHandler.h"
 #import "../Def/SoundDef.h"
 #import "../DataHandler/GameKitHelper.h"
+#import "../AppDelegate.h"
 
 
 typedef enum : NSUInteger {
@@ -54,6 +55,10 @@ typedef enum : NSUInteger {
     
     [m_blockObj setType:(eBlockType)dataHandle.blockTypeSelect];
     [[OALSimpleAudio sharedInstance] preloadEffect:kEffectTouched];
+    [[OALSimpleAudio sharedInstance] preloadEffect:kEffectPass];
+    [[OALSimpleAudio sharedInstance] playEffect:kEffectPass];
+
+    
     [m_labelTapCount setString:[NSString stringWithFormat:@"%d",dataHandle.tapCount]];
     
     [self sumitScore];
@@ -131,18 +136,39 @@ typedef enum : NSUInteger {
 
 -(void)showAlertView
 {
+    
     GameDataHandler *dataHandle = [GameDataHandler sharedGameDataHandler];
     if (dataHandle.enterGameCount>=3)
     {
         if (NO == dataHandle.getIsRate)
         {
-            CGSize viewSize = [CCDirector sharedDirector].viewSize;
-            CCNode *alertView = [CCBReader load:@"alertNode"];
-            alertView.position = ccp(viewSize.width/2, viewSize.height/2);
-            [self addChild:alertView];
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Rate and Advice"
+                                                            message:@"Could you give us some advice for the game?"
+                                                           delegate:self
+                                                  cancelButtonTitle:@"Later"
+                                                  otherButtonTitles:@"Sure", nil];
+            [alert show];
         }
     }
     
 }
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    GameDataHandler *dataHandler =  [GameDataHandler sharedGameDataHandler];
+
+    if (buttonIndex==1)
+    {
+        NSString *str = [NSString stringWithFormat:@"itms-apps://itunes.apple.com/app/id%d",appId];
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:str]];
+        [dataHandler setIsRate];
+
+    }
+    else if (buttonIndex==0)
+    {
+        [dataHandler resetEnterTime];
+    }
+}
+
 
 @end

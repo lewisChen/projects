@@ -9,8 +9,6 @@
 #import <Foundation/Foundation.h>
 #import "cocos2d.h"
 
-#define appId (869242710)
-
 @interface AlertNode : CCNode
 {
     CCButton *m_cancelBtn;

@@ -10,7 +10,7 @@
 #import "./DataHandler/GameDataHandler.h"
 #import "Def/SoundDef.h"
 #import "DataHandler/GameKitHelper.h"
-#import "obj/AlertNode.h"
+#import "AppDelegate.h"
 
 @implementation MainScene
 

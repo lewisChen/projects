@@ -8,6 +8,7 @@
 
 #import "AlertNode.h"
 #import "../DataHandler/GameDataHandler.h"
+#import "../AppDelegate.h"
 
 
 @implementation AlertNode

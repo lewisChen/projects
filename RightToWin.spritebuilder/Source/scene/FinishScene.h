@@ -10,7 +10,7 @@
 #import "cocos2d.h"
 #import "../obj/BlockObj.h"
 
-@interface FinishScene : CCNode
+@interface FinishScene : CCNode<UIAlertViewDelegate>
 {
     CCLabelTTF *m_labelTime;
     CCLabelTTF *m_lableCrazy;
@@ -27,5 +27,6 @@
 -(void)sumitScore;
 -(void)setBackgroundRandomColor;
 -(void)showAlertView;
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex;
 
 @end

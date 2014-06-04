@@ -31,6 +31,9 @@
 #define kShowAdMessage (@"kShowAdMessage")
 #define kHideAdMessage (@"kHideAdMessage")
 
+#define appId (869242710)
+
+
 @interface AppController : CCAppDelegate<GADBannerViewDelegate>
 {
     GADBannerView *m_admobView;
