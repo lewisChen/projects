@@ -10,8 +10,7 @@
 #import "./DataHandler/GameDataHandler.h"
 #import "Def/SoundDef.h"
 #import "DataHandler/GameKitHelper.h"
-
-#define appId (869242710)
+#import "obj/AlertNode.h"
 
 @implementation MainScene
 
@@ -39,26 +38,26 @@
     {
         [GameDataHandler sharedGameDataHandler].gameMode = eGameModeTime;
         [[OALSimpleAudio sharedInstance] playEffect:kEffectPianoDo];
-        CCLOG(@"Time Mode");
+        //CCLOG(@"Time Mode");
     }
     else if(sender==m_buttonType2)
     {
         [GameDataHandler sharedGameDataHandler].gameMode = eGameModeCount;
         [[OALSimpleAudio sharedInstance] playEffect:kEffectPianoRe];
-        CCLOG(@"Count Mode");
+        //CCLOG(@"Count Mode");
     }
     else if(sender==m_buttonType3)
     {
         [GameDataHandler sharedGameDataHandler].gameMode = eGameModeCrazy;
         [[OALSimpleAudio sharedInstance] playEffect:kEffectPianoMi];
-        CCLOG(@"Crazy Mode");
+        //CCLOG(@"Crazy Mode");
     }
     else if(sender==m_buttonType4)
     {
         [[GameKitHelper sharedGameKitHelper] showLeaderboard:kBoardSetId];
         //[[GameKitHelper sharedGameKitHelper] showGameCenter];
         [[OALSimpleAudio sharedInstance] playEffect:kEffectPianoFa];
-        CCLOG(@"Game Center");
+        //CCLOG(@"Game Center");
     }
     
     if (sender!=m_buttonType4)

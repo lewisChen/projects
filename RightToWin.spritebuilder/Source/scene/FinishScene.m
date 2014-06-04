@@ -57,6 +57,9 @@ typedef enum : NSUInteger {
     [m_labelTapCount setString:[NSString stringWithFormat:@"%d",dataHandle.tapCount]];
     
     [self sumitScore];
+    
+
+    [self showAlertView];
 }
 
 -(void)buttonPress:(id)sender
@@ -124,6 +127,23 @@ typedef enum : NSUInteger {
             break;
     }
     [m_background setColor:[CCColor colorWithCcColor3b:color]];
+}
+
+-(void)showAlertView
+{
+    GameDataHandler *dataHandle = [GameDataHandler sharedGameDataHandler];
+    if (dataHandle.enterGameCount>=2)
+    {
+        if (NO == dataHandle.getIsRate)
+        {
+            CGSize winSize = [[UIScreen mainScreen] bounds].size;
+            
+            CCNode *alertView = [CCBReader load:@"alertNode"];
+            alertView.position = ccp(winSize.width/2, winSize.height/2);
+            [self addChild:alertView];
+        }
+    }
+    
 }
 
 @end

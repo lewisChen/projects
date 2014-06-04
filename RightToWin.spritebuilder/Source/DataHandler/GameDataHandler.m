@@ -13,52 +13,13 @@
 //#define kLevelNormal (0)
 //#define kLevelHard (0)
 
-enum eLevelRecordTag
-{
-    eLevelRecordEasy = 0,
-    eLevelRecordNormal,
-    eLevelRecordHard,
-    eStarCount,
-};
 
 NSString* const kGameSaveData = @"kGameSaveData";
+NSString* const kIsRate = @"kIsRate";
+NSString* const kHighestScore = @"kHighestScore";
+NSString* const kEnterTime = @"kEnterTime";
 
-inline static id getSavaDataByDifficultLevel(enum eDifficultLevel difficultLevel)
-{
-    id tempData = 0;
-    NSUserDefaults *saveDefaults = [NSUserDefaults standardUserDefaults];
-    NSArray* saveArray = [saveDefaults objectForKey:kGameSaveData];
 
-    switch (difficultLevel)
-    {
-        case eDifficultLevelEasy:
-            tempData = [saveArray objectAtIndex:eLevelRecordEasy];
-            break;
-        case eDifficultLevelNormal:
-            tempData = [saveArray objectAtIndex:eLevelRecordNormal];
-            break;
-        case eDifficultLevelHard:
-            tempData = [saveArray objectAtIndex:eLevelRecordHard];
-        default:
-            break;
-    }
-    return tempData;
-}
-
-inline static id getStarCount(void)
-{
-    id tempData = 0;
-    NSUserDefaults *saveDefaults = [NSUserDefaults standardUserDefaults];
-    NSArray* saveArray = [saveDefaults objectForKey:kGameSaveData];
-    
-    if (saveArray)
-    {
-        tempData = [saveArray objectAtIndex:eStarCount];
-
-    }
-    
-    return tempData;
-}
 
 @interface GameDataHandler ()
 @property double startTime;
@@ -72,13 +33,12 @@ inline static id getStarCount(void)
 @synthesize tapCount = m_tapCount;
 @synthesize level = m_level;
 
-@synthesize difficultLevel = m_difficultLevel;
 @synthesize errorCount = m_errorCount;
 @synthesize useTime = m_useTime;
 @synthesize timeLeft = m_timeLeft;
 @synthesize timeLimit = m_timeLimit;
-@synthesize starCount = m_starCount;
 @synthesize isWin = m_isWin;
+@synthesize enterGameCount = m_enterGameCount;
 
 static GameDataHandler* _sharedGameDataHandler = nil;
 
@@ -120,24 +80,31 @@ static GameDataHandler* _sharedGameDataHandler = nil;
 -(void)initSaveData
 {
     NSUserDefaults *saveDefaults = [NSUserDefaults standardUserDefaults];
-    NSArray* saveArray = [saveDefaults objectForKey:kGameSaveData];
-
-    if (nil==saveArray)
+    
+    NSNumber *enterGameTime = [saveDefaults objectForKey:kEnterTime];
+    if (nil==enterGameTime)
     {
-        saveArray = [NSArray arrayWithObjects:[NSNumber numberWithInteger:0],
-                                              [NSNumber numberWithInteger:0],
-                                              [NSNumber numberWithInteger:0],
-                                              [NSNumber numberWithInteger:0],
-                                              nil];
-        [self saveDataArray:saveArray withKey:kGameSaveData];
+        [saveDefaults setObject:[NSNumber numberWithInteger:0] forKey:kEnterTime];
     }
+    else
+    {
+        [self loadData];
+    }
+    
+    NSNumber *isRate = [saveDefaults objectForKey:kIsRate];
+    if (nil==isRate)
+    {
+        [saveDefaults setObject:[NSNumber numberWithBool:NO] forKey:kIsRate];
+    }
+    
 }
 
 -(void)loadData
 {
-    id tempData = getSavaDataByDifficultLevel(self.difficultLevel);
-    self.level = [(NSNumber*)tempData integerValue];
-    self.timeLeft = self.getTimeLimit;
+    NSUserDefaults *saveDefaults = [NSUserDefaults standardUserDefaults];
+    NSNumber *enterTime = [saveDefaults objectForKey:kEnterTime];
+    
+    self.enterGameCount = enterTime.integerValue;
 }
 
 -(void)resetSaveData
@@ -148,40 +115,40 @@ static GameDataHandler* _sharedGameDataHandler = nil;
 
 -(void)saveData
 {
-    NSUserDefaults *saveDefaults = [NSUserDefaults standardUserDefaults];
-    NSArray* saveArray = [saveDefaults objectForKey:kGameSaveData];
-    NSArray *newArray = nil;
-    
-    id starCountAlready = getStarCount();
-    self.starCount = [(NSNumber*)starCountAlready integerValue] + self.starCount;
-    
-    switch (self.difficultLevel)
-    {
-        case eDifficultLevelEasy:
-            newArray = [NSArray arrayWithObjects:[NSNumber numberWithInteger:self.level],
-                                                [saveArray objectAtIndex:eLevelRecordNormal],
-                                                [saveArray objectAtIndex:eLevelRecordHard],
-                                                [NSNumber numberWithInteger:self.starCount],
-                                                nil];
-            break;
-        case eDifficultLevelNormal:
-            newArray = [NSArray arrayWithObjects:[saveArray objectAtIndex:eLevelRecordEasy],
-                                                [NSNumber numberWithInteger:self.level],
-                                                [saveArray objectAtIndex:eLevelRecordHard],
-                                                [NSNumber numberWithInteger:self.starCount],
-                                                nil];
-            break;
-        case eDifficultLevelHard:
-            newArray = [NSArray arrayWithObjects:[saveArray objectAtIndex:eLevelRecordEasy],
-                                                 [saveArray objectAtIndex:eLevelRecordNormal],
-                                                 [NSNumber numberWithInteger:self.level],
-                                                [NSNumber numberWithInteger:self.starCount],
-                                                 nil];
-            break;
-        default:
-            break;
-    }
-    [self saveDataArray:newArray withKey:kGameSaveData];
+//    NSUserDefaults *saveDefaults = [NSUserDefaults standardUserDefaults];
+//    NSArray* saveArray = [saveDefaults objectForKey:kGameSaveData];
+//    NSArray *newArray = nil;
+//    
+//    id starCountAlready = getStarCount();
+//    self.starCount = [(NSNumber*)starCountAlready integerValue] + self.starCount;
+//    
+//    switch (self.difficultLevel)
+//    {
+//        case eDifficultLevelEasy:
+//            newArray = [NSArray arrayWithObjects:[NSNumber numberWithInteger:self.level],
+//                                                [saveArray objectAtIndex:eLevelRecordNormal],
+//                                                [saveArray objectAtIndex:eLevelRecordHard],
+//                                                [NSNumber numberWithInteger:self.starCount],
+//                                                nil];
+//            break;
+//        case eDifficultLevelNormal:
+//            newArray = [NSArray arrayWithObjects:[saveArray objectAtIndex:eLevelRecordEasy],
+//                                                [NSNumber numberWithInteger:self.level],
+//                                                [saveArray objectAtIndex:eLevelRecordHard],
+//                                                [NSNumber numberWithInteger:self.starCount],
+//                                                nil];
+//            break;
+//        case eDifficultLevelHard:
+//            newArray = [NSArray arrayWithObjects:[saveArray objectAtIndex:eLevelRecordEasy],
+//                                                 [saveArray objectAtIndex:eLevelRecordNormal],
+//                                                 [NSNumber numberWithInteger:self.level],
+//                                                [NSNumber numberWithInteger:self.starCount],
+//                                                 nil];
+//            break;
+//        default:
+//            break;
+//    }
+//    [self saveDataArray:newArray withKey:kGameSaveData];
 }
 
 -(void)saveDataArray:(NSArray*)array withKey:(NSString *)key
@@ -239,17 +206,42 @@ static GameDataHandler* _sharedGameDataHandler = nil;
     return timeLimit;
 }
 
--(NSInteger)getGameLevel:(enum eDifficultLevel)difficultLevel
-{
-    NSInteger gameLevel = 0;
-    id tempData = getSavaDataByDifficultLevel(difficultLevel);
-    gameLevel = [(NSNumber*)tempData integerValue];
-    return gameLevel;
-}
 
 -(void)resetTime
 {
     self.startTime = CACurrentMediaTime();
+}
+
+-(void)increaseEnterTime
+{
+    NSUserDefaults *saveDefaults = [NSUserDefaults standardUserDefaults];
+    NSNumber *enterTime = [saveDefaults objectForKey:kEnterTime];
+    if (enterTime!=nil)
+    {
+        NSInteger currentEnterCount = [enterTime integerValue];
+        
+        NSInteger enterCount = currentEnterCount+1;
+        [saveDefaults setObject:[NSNumber numberWithInteger:enterCount] forKey:kEnterTime];
+        self.enterGameCount = enterCount;
+
+    }
+    
+}
+
+-(void)setIsRate
+{
+    if (self.getIsRate==NO)
+    {
+        NSUserDefaults *saveDefaults = [NSUserDefaults standardUserDefaults];
+        [saveDefaults setObject:[NSNumber numberWithBool:YES] forKey:kIsRate];
+    }
+}
+-(BOOL)getIsRate
+{
+    NSUserDefaults *saveDefaults = [NSUserDefaults standardUserDefaults];
+    NSNumber *isRate = [saveDefaults objectForKey:kIsRate];
+    return isRate.boolValue;
+
 }
 
 @end

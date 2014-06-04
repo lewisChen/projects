@@ -72,6 +72,15 @@
         self._Adsize = kGADAdSizeLeaderboard.size;
     }
     
+    
+    GameDataHandler *dataHandler =  [GameDataHandler sharedGameDataHandler];
+    [dataHandler initSaveData];
+    if (dataHandler.getIsRate==NO)
+    {
+        [dataHandler increaseEnterTime];
+    }
+    
+    
     [self registerAdMessage];
     [self registerShareSdk];
     

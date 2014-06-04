@@ -26,5 +26,6 @@
 
 -(void)sumitScore;
 -(void)setBackgroundRandomColor;
+-(void)showAlertView;
 
 @end

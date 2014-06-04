@@ -33,13 +33,13 @@ typedef enum : NSUInteger
     eGameMode m_gameMode;
     NSInteger m_tapCount;
     NSInteger m_level;
-    NSInteger m_difficultLevel;
     NSInteger m_errorCount;
     double m_useTime;
     double m_timeLeft;
     double m_timeLimit;
     NSInteger m_starCount;
     BOOL m_isWin;
+    NSInteger m_enterGameCount;
 }
 
 @property(nonatomic,readwrite) eBlockType blockTypeSelect;
@@ -47,13 +47,12 @@ typedef enum : NSUInteger
 @property(nonatomic,readwrite) NSInteger  tapCount;
 
 @property(nonatomic,readwrite) NSInteger level;
-@property(nonatomic,readwrite) NSInteger difficultLevel;
 @property(nonatomic,readwrite) NSInteger errorCount;
 @property(nonatomic,readwrite) double useTime;
 @property(nonatomic,readwrite) double timeLeft;
 @property(nonatomic,readwrite) double timeLimit;
-@property(nonatomic,readwrite) NSInteger starCount;
 @property(nonatomic,readwrite) BOOL isWin;
+@property(nonatomic,readwrite) NSInteger enterGameCount;
 
 
 +(GameDataHandler*)sharedGameDataHandler;
@@ -67,7 +66,10 @@ typedef enum : NSUInteger
 -(NSString*)getUseTimeString;
 -(NSString*)getLeftTimeString;
 -(double)getTimeLimit;
--(NSInteger)getGameLevel:(enum eDifficultLevel)difficultLevel;
+//-(NSInteger)getGameLevel:(enum eDifficultLevel)difficultLevel;
 -(void)resetTime;
+-(void)increaseEnterTime;
+-(void)setIsRate;
+-(BOOL)getIsRate;
 
 @end
