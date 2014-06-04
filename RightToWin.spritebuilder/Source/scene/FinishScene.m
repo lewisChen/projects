@@ -136,10 +136,9 @@ typedef enum : NSUInteger {
     {
         if (NO == dataHandle.getIsRate)
         {
-            CGSize winSize = [[UIScreen mainScreen] bounds].size;
-            
+            CGSize viewSize = [CCDirector sharedDirector].viewSize;
             CCNode *alertView = [CCBReader load:@"alertNode"];
-            alertView.position = ccp(winSize.width/2, winSize.height/2);
+            alertView.position = ccp(viewSize.width/2, viewSize.height/2);
             [self addChild:alertView];
         }
     }
