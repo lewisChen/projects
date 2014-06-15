@@ -18,15 +18,26 @@
     
     CGPoint m_beginPoint;
     CGPoint m_endPoint;
+    
+    NSMutableArray *m_arrayAllBlock;
+    
+    BOOL m_isIgnoreTouchMove;
 }
 
 @property(nonatomic,assign)CGPoint beginPoint;
 @property(nonatomic,assign)CGPoint endPoint;
+@property(nonatomic,retain)NSMutableArray* arrayAllBlock;
+@property(nonatomic,readwrite)BOOL isIgnoreTouchMove;
 
 -(CGPoint)convertIndexToPoint:(ColorBlock*)colorBlock;
 -(void)changeBlockPosition:(ColorBlock *)colorBlock indexRow:(NSInteger)indexRow indexCollum:(NSInteger)indexCollum isAnimate:(BOOL)isAnimate;
 -(void)generateColorBlock;
 -(void)update:(CCTime)delta;
 -(void)moveBlock;
+-(NSInteger)getMinRowWithBlock:(ColorBlock*)block;
+-(BOOL)isStartGenerate;
+-(BOOL)isCanMoveLeft;
+-(BOOL)isCanMoveRight;
+
 
 @end

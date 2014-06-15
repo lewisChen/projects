@@ -12,6 +12,10 @@
 #import "../obj/ColorBlock.h"
 
 #define kMoveThreshold (5)
+#define kZorderTop (100)
+#define kZorderBlock (1)
+
+#define kMaxCollum (5)
 
 @interface PlayScene ()
 @property BOOL _isGenerateBlock;
@@ -23,6 +27,8 @@
 
 @synthesize beginPoint = m_beginPoint;
 @synthesize endPoint = m_endPoint;
+@synthesize arrayAllBlock = m_arrayAllBlock;
+@synthesize isIgnoreTouchMove = m_isIgnoreTouchMove;
 
 - (void) didLoadFromCCB
 {
@@ -30,6 +36,11 @@
     [self setUserInteractionEnabled:YES];
     self._isGenerateBlock = YES;
     self._currentBlock = nil;
+    self.isIgnoreTouchMove = NO;
+    
+    m_pauseLayer.zOrder = kZorderTop;
+    
+    self.arrayAllBlock = [[NSMutableArray alloc] init];
 }
 
 -(void)initGroundSizeAndColor
@@ -84,7 +95,7 @@
         
         if (YES == isAnimate)
         {
-            CCAction *actionMove = [CCActionMoveTo actionWithDuration:0.5 position:point];
+            CCAction *actionMove = [CCActionMoveTo actionWithDuration:0.2 position:point];
             [colorBlock runAction:actionMove];
         }
         else
@@ -97,20 +108,39 @@
 
 -(void)rightMove
 {
-    CCLOG(@"right");
-    [self changeBlockPosition:self._currentBlock indexRow:self._currentBlock.indexRow indexCollum:self._currentBlock.indexCollum+1 isAnimate:NO];
+    if (self.isIgnoreTouchMove!=YES)
+    {
+        if (self.isCanMoveRight)
+        {
+            CCLOG(@"right");
+            [self changeBlockPosition:self._currentBlock indexRow:self._currentBlock.indexRow indexCollum:self._currentBlock.indexCollum+1 isAnimate:NO];
+
+        }
+    }
 }
 
 -(void)leftMove
 {
-    CCLOG(@"left");
-    [self changeBlockPosition:self._currentBlock indexRow:self._currentBlock.indexRow indexCollum:self._currentBlock.indexCollum-1 isAnimate:NO];
+    if (self.isIgnoreTouchMove!=YES)
+    {
+        if (self.isCanMoveLeft)
+        {
+            CCLOG(@"left");
+            [self changeBlockPosition:self._currentBlock indexRow:self._currentBlock.indexRow indexCollum:self._currentBlock.indexCollum-1 isAnimate:NO];
+
+        }
+    }
 }
 
 -(void)downMove
 {
-    CCLOG(@"down");
-    [self changeBlockPosition:self._currentBlock indexRow:self._currentBlock.indexRow-1 indexCollum:self._currentBlock.indexCollum isAnimate:NO];
+    if (self.isIgnoreTouchMove!=YES)
+    {
+        self.isIgnoreTouchMove = YES;
+        CCLOG(@"down");
+        [self changeBlockPosition:self._currentBlock indexRow:[self getMinRowWithBlock:self._currentBlock] indexCollum:self._currentBlock.indexCollum isAnimate:YES];
+
+    }
 }
 
 -(void)touchBegan:(UITouch *)touch withEvent:(UIEvent *)event
@@ -161,44 +191,123 @@
 -(void)generateColorBlock
 {
     ColorBlock *colorBlock = (ColorBlock*)[CCBReader load:@"ColorBlock.ccbi"];
+    colorBlock.zOrder = kZorderBlock;
     colorBlock.indexRow = 8;
-    colorBlock.indexCollum = 3;
+    colorBlock.indexCollum = kMaxCollum/2;
     [self addChild:colorBlock];
     [self changeBlockPosition:colorBlock indexRow:colorBlock.indexRow indexCollum:colorBlock.indexCollum isAnimate:NO];
     self._currentBlock = colorBlock;
     self._isGenerateBlock = NO;
+    
+    [self.arrayAllBlock addObject:colorBlock];
 }
 
 -(void)update:(CCTime)delta
 {
-    if (self._isGenerateBlock)
-    {
-        [self generateColorBlock];
-    }
-    
     self._updateStasticCount++;
     if (self._updateStasticCount>60)
     {
         [self moveBlock];
         self._updateStasticCount = 0;
     }
+    
+    self._isGenerateBlock = [self isStartGenerate];
+    if (self._isGenerateBlock)
+    {
+        self.isIgnoreTouchMove = NO;
+        [self generateColorBlock];
+    }
 }
 
 -(void)moveBlock
 {
-    if (self._currentBlock.indexRow>0)
+    NSInteger minRow = [self getMinRowWithBlock:self._currentBlock];
+    
+    if (self._currentBlock.indexRow>minRow)
     {
+        
         [self changeBlockPosition:self._currentBlock
                          indexRow:self._currentBlock.indexRow-1
                       indexCollum:self._currentBlock.indexCollum
                         isAnimate:NO];
-        
-        
+    }
+}
+
+-(NSInteger)getMinRowWithBlock:(ColorBlock *)block
+{
+    NSInteger result = 0;
+    for (ColorBlock *obj in self.arrayAllBlock)
+    {
+        if (block.indexCollum == obj.indexCollum)
+        {
+            result = result + 1;
+        }
+    }
+    
+    result = result-1;//index is start from 0
+    return result;
+}
+
+-(BOOL)isStartGenerate
+{
+    if (self._currentBlock==nil)
+    {
+        return YES;
     }
     else
     {
-        self._isGenerateBlock = YES;
+        if (self._currentBlock.indexRow == [self getMinRowWithBlock:self._currentBlock])
+        {
+            return YES;
+        }
+        else
+        {
+            return NO;
+        }
     }
+}
+
+-(BOOL)isCanMoveLeft
+{
+    for (ColorBlock *obj in self.arrayAllBlock)
+    {
+        if (obj.indexRow == self._currentBlock.indexRow)
+        {
+            if (obj.indexCollum == (self._currentBlock.indexCollum-1))
+            {
+                return NO;
+            }
+        }
+    }
+    
+    if (self._currentBlock.indexCollum==0)
+    {
+        return NO;
+    }
+    
+    return YES;
+}
+
+-(BOOL)isCanMoveRight
+{
+    for (ColorBlock *obj in self.arrayAllBlock)
+    {
+        if (obj.indexRow == self._currentBlock.indexRow)
+        {
+            if (obj.indexCollum==(self._currentBlock.indexCollum+1))
+            {
+                return NO;
+            }
+        }
+    }
+    
+    if ((self._currentBlock.indexCollum+1)==kMaxCollum)
+    {
+        return NO;
+    }
+    
+    return YES;
+
 }
 
 @end
