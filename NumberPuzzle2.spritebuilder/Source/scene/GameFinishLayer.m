@@ -81,6 +81,8 @@ enum Estar
 -(void)initResource
 {
     [[OALSimpleAudio sharedInstance] preloadEffect:kEffectStar];
+    [[OALSimpleAudio sharedInstance] preloadEffect:kEffectPass];
+
 }
 
 -(void)handleShowScore
@@ -184,6 +186,7 @@ enum Estar
             obj.visible = YES;
             [obj runAction:actionStar];
         }
+        [[OALSimpleAudio sharedInstance] playEffect:kEffectPass];
     }
 
 }

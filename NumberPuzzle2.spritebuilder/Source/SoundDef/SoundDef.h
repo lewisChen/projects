@@ -14,5 +14,7 @@
 #define kEffectStar @"starSound.wav"
 #define kEffectMatch (@"match.mp3")
 #define kEffectTouched (@"itemTouched.mp3")
+#define kEffectPass (@"pass.mp3")
+
 
 #endif
