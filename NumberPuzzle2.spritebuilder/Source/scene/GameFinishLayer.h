@@ -32,4 +32,7 @@
 -(CCAction*)getStarAction;
 -(void)showIsWinLabel:(BOOL)value;
 
+-(void)showAlertView;
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex;
+
 @end

@@ -30,6 +30,7 @@ enum eDifficultLevel
     double m_timeLimit;
     NSInteger m_starCount;
     BOOL m_isWin;
+    NSInteger m_enterGameCount;
 }
 
 @property(nonatomic,readwrite) NSInteger level;
@@ -40,6 +41,7 @@ enum eDifficultLevel
 @property(nonatomic,readwrite) double timeLimit;
 @property(nonatomic,readwrite) NSInteger starCount;
 @property(nonatomic,readwrite) BOOL isWin;
+@property(nonatomic,readwrite) NSInteger enterGameCount;
 
 
 +(GameDataHandler*)sharedGameDataHandler;
@@ -54,5 +56,11 @@ enum eDifficultLevel
 -(NSString*)getLeftTimeString;
 -(double)getTimeLimit;
 -(NSInteger)getGameLevel:(enum eDifficultLevel)difficultLevel;
+
+-(void)increaseEnterTime;
+-(void)resetEnterTime;
+-(void)setIsRate;
+-(BOOL)getIsRate;
+
 
 @end

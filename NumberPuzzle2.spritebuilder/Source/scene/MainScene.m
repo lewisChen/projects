@@ -13,9 +13,7 @@
 #include "../libs/cocos2d-iphone/external/ObjectAL/OALSimpleAudio.h"
 #import "../SoundDef/SoundDef.h"
 #import "GameKitHelper.h"
-
-#define appId (846452219)
-
+#import "AppDelegate.h"
 
 @implementation MainScene
 

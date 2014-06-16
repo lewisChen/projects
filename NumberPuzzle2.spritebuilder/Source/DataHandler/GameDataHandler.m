@@ -23,6 +23,9 @@ enum eLevelRecordTag
 };
 
 NSString* const kGameSaveData = @"kGameSaveData";
+NSString* const kIsRate = @"kIsRate";
+NSString* const kEnterTime = @"kEnterTime";
+
 
 inline static id getSavaDataByDifficultLevel(enum eDifficultLevel difficultLevel)
 {
@@ -76,6 +79,8 @@ inline static id getStarCount(void)
 @synthesize timeLimit = m_timeLimit;
 @synthesize starCount = m_starCount;
 @synthesize isWin = m_isWin;
+@synthesize enterGameCount = m_enterGameCount;
+
 
 static GameDataHandler* _sharedGameDataHandler = nil;
 
@@ -128,13 +133,31 @@ static GameDataHandler* _sharedGameDataHandler = nil;
                                               nil];
         [self saveDataArray:saveArray withKey:kGameSaveData];
     }
+    
+    NSNumber *enterGameTime = [saveDefaults objectForKey:kEnterTime];
+    if (nil==enterGameTime)
+    {
+        [saveDefaults setObject:[NSNumber numberWithInteger:0] forKey:kEnterTime];
+    }
+    
+    NSNumber *isRate = [saveDefaults objectForKey:kIsRate];
+    if (nil==isRate)
+    {
+        [saveDefaults setObject:[NSNumber numberWithBool:NO] forKey:kIsRate];
+    }
+
+
 }
 
 -(void)loadData
 {
-    id tempData = getSavaDataByDifficultLevel(self.difficultLevel);
+    id tempData = getSavaDataByDifficultLevel((enum eDifficultLevel)self.difficultLevel);
     self.level = [(NSNumber*)tempData integerValue];
     self.timeLeft = self.getTimeLimit;
+    
+    NSUserDefaults *saveDefaults = [NSUserDefaults standardUserDefaults];
+    NSNumber *enterTime = [saveDefaults objectForKey:kEnterTime];
+    self.enterGameCount = enterTime.integerValue;
     
 //    tempData = getSavaDataByDifficultLevel(eDifficultLevelHard);
 //    tempData = getSavaDataByDifficultLevel(eDifficultLevelNormal);
@@ -270,5 +293,45 @@ static GameDataHandler* _sharedGameDataHandler = nil;
     gameLevel = [(NSNumber*)tempData integerValue];
     return gameLevel;
 }
+
+-(void)increaseEnterTime
+{
+    NSUserDefaults *saveDefaults = [NSUserDefaults standardUserDefaults];
+    NSNumber *enterTime = [saveDefaults objectForKey:kEnterTime];
+    if (enterTime!=nil)
+    {
+        NSInteger currentEnterCount = [enterTime integerValue];
+        
+        NSInteger enterCount = currentEnterCount+1;
+        [saveDefaults setObject:[NSNumber numberWithInteger:enterCount] forKey:kEnterTime];
+        self.enterGameCount = enterCount;
+        
+    }
+    
+}
+
+-(void)resetEnterTime
+{
+    NSUserDefaults *saveDefaults = [NSUserDefaults standardUserDefaults];
+    [saveDefaults setObject:[NSNumber numberWithInteger:0] forKey:kEnterTime];
+    self.enterGameCount = 0;
+}
+
+-(void)setIsRate
+{
+    if (self.getIsRate==NO)
+    {
+        NSUserDefaults *saveDefaults = [NSUserDefaults standardUserDefaults];
+        [saveDefaults setObject:[NSNumber numberWithBool:YES] forKey:kIsRate];
+    }
+}
+-(BOOL)getIsRate
+{
+    NSUserDefaults *saveDefaults = [NSUserDefaults standardUserDefaults];
+    NSNumber *isRate = [saveDefaults objectForKey:kIsRate];
+    return isRate.boolValue;
+    
+}
+
 
 @end

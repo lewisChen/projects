@@ -12,6 +12,7 @@
 #import "../SoundDef/SoundDef.h"
 #import "GameDataHandler.h"
 #import "GameKitHelper.h"
+#import "AppDelegate.h"
 
 #define kMaxError (30)
 
@@ -46,6 +47,8 @@ enum Estar
     {
         [[GameKitHelper sharedGameKitHelper] submitScore:dataHandler.starCount category:kHighScoreBoardIdentifier];
     }
+    
+    [self showAlertView];
 }
 
 -(void)retryButtonPress:(id)sender
@@ -204,7 +207,7 @@ enum Estar
     }
     else
     {
-        temString =@"YOu LOSE!";
+        temString =@"YOU LOSE!";
     }
     [m_labelResult setString:temString];
     
@@ -214,6 +217,42 @@ enum Estar
 {
     [[OALSimpleAudio sharedInstance] playEffect:kEffectStar];
     
+}
+
+-(void)showAlertView
+{
+    
+    GameDataHandler *dataHandle = [GameDataHandler sharedGameDataHandler];
+    if (dataHandle.enterGameCount>=3)
+    {
+        if (NO == dataHandle.getIsRate)
+        {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Rate and Advice"
+                                                            message:@"Could you give us some advice for the game?"
+                                                           delegate:self
+                                                  cancelButtonTitle:@"Later"
+                                                  otherButtonTitles:@"Sure", nil];
+            [alert show];
+        }
+    }
+    
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    GameDataHandler *dataHandler =  [GameDataHandler sharedGameDataHandler];
+    
+    if (buttonIndex==1)
+    {
+        NSString *str = [NSString stringWithFormat:@"itms-apps://itunes.apple.com/app/id%d",appId];
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:str]];
+        [dataHandler setIsRate];
+        
+    }
+    else if (buttonIndex==0)
+    {
+        [dataHandler resetEnterTime];
+    }
 }
 
 
